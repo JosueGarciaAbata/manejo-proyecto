@@ -19,7 +19,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement("ALTER TABLE <nombre_tabla> ADD CONSTRAINT check_nom_lis_alnum CHECK (nom_lis ~* '^[a-zA-Z0-9 ]+$')");            
+        DB::statement("
+            ALTER TABLE political_parties 
+            ADD CONSTRAINT check_nom_lis_alnum 
+            CHECK (nom_lis REGEXP '^[a-zA-Z0-9 ]+$')
+        ");            
     }
 
     /**
