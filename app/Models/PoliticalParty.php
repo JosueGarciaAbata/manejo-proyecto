@@ -10,11 +10,11 @@ class PoliticalParty extends Model
     use SoftDeletes;
 
     protected $table = 'political_parties'; 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_lis';
 
     protected $fillable = [
-        'name',
-        'description',
+        'nom_lis',
+        'des_lis',
     ];
 
     protected static function boot()
@@ -28,7 +28,7 @@ class PoliticalParty extends Model
         });
 
         static::creating(function ($party) {
-            if (!preg_match('/^[a-zA-Z0-9 ]+$/', $party->name)) {
+            if (!preg_match('/^[a-zA-Z0-9 ]+$/', $party->nom_lis)) {
                 throw new \Exception("The name must contain only alphanumeric characters and spaces.");
             }
         });
