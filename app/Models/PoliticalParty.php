@@ -33,4 +33,9 @@ class PoliticalParty extends Model
             }
         });
     }
+
+    public function candidates()
+    {
+        return $this->hasMany(Candidate::class, 'political_party_id');
+    }
 }
