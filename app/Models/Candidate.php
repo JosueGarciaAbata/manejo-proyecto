@@ -29,7 +29,13 @@ class Candidate extends Model
             if (!PoliticalParty::find($candidate->id_pol_par_bel)) {
                 throw new \Exception("Invalid political party ID.");
             }
+            
+            $validPositions = ['Rector', 'Vicerrector'];
+            if (!in_array($candidate->car_can, $validPositions)) {
+                throw new \Exception("Invalid candidate position. Must be 'Rector' or 'Vicerrector'.");
+            }
         });
+        
     }
 
     public function politicalParty()
