@@ -42,4 +42,9 @@ class Candidate extends Model
     {
         return $this->belongsTo(PoliticalParty::class, 'id_pol_par_bel');
     }
+
+    public function proposals()
+    {
+        return $this->hasMany(Proposal::class, 'id_can');
+    }
 }
