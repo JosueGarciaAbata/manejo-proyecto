@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id('id_lis'); // Primary Key
             $table->string('nom_lis', 100)->notNullable();
             $table->text('des_lis')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 

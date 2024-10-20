@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('id_can_pro')
                   ->constrained('candidates', 'id_can')
                   ->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

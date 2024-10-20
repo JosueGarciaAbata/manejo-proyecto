@@ -29,6 +29,7 @@ return new class extends Migration
                 ->on('political_parties')
                 ->onDelete('cascade');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
