@@ -22,8 +22,9 @@
         </section>
 
     <!-- Breadcrumb Section End -->
-
-    <!-- Candidates Section Begin -->
+    
+    @foreach ($candidates as $candidate)
+        <!-- Candidates Section Begin -->
         <section class="candidates-section">
         <div class="container">
             <div class="row">
@@ -33,15 +34,16 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="cd-pic">
-                                    <img src="resources/img/ruta_imagen" alt="">
+                                    <img src="resources/img/ {{ $candidate->imagen }}" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="cd-text">
                                     <div class="cd-title">
-                                       <h4>Nombre y Apellido</h4>
-                                       <span>Titulo</span>
-                                       <span>Cargo</span>
+                                       <h4>{{ $candidate->nombre }}, {{ $candidate->apellido }}</h4>
+                                       <span>{{ $candidate->cargo }}</span>
+                                       <span>{{ $candidate->titulo }}</span>
+                                       <span>{{ $candidate->fecha_ingreso }}</span>
                                     {{-- Información sobre el candidato --}}
                                     </div>
                                     {{-- El candidato tiene muchas propuestas --}}
@@ -57,6 +59,7 @@
         </div>
     </section>
     <!-- Candidates Section End -->
+    @endforeach
 
     @include('layouts.footer')
 </body>
