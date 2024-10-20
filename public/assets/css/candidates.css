@@ -1,0 +1,37 @@
+.breadcrumb-section {
+    padding-top: 30px;
+    padding-right: auto;
+    padding-left: auto;
+    padding-bottom: 30px;
+}
+
+.breadcrumb-section .breadcrumb-text {
+    text-align: center;
+}
+
+.candidates-section {
+    padding-top: 0;
+}
+
+.candidate-item {
+    margin-bottom: 50px;
+}
+
+.cd-pic img {
+    min-width: 100%;
+    border-radius: 2px;
+}
+
+.candidate-item .cd-text .cd-title {
+    margin-bottom: 28px;
+}
+
+.candidate-item .cd-text .cd-title h4 {
+    color: black;
+    font-weight: 600;
+    margin-bottom: 13px;
+}
+
+.candidate-item .cd-text .cd-title span {
+    display: block;
+}

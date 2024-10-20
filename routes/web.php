@@ -7,7 +7,7 @@ Route::get('/', function () {
 });
 
 Route::get('/candidates', function () {
-    return view('candidates');
+    return view('candidates.candidates');
 });
 
 Route::get('/eventsAndNews', function () {
