@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id('id_eve');
-            $table->string('tit_eve', 20);
+            $table->string('tit_eve', 50);
             $table->string('des_eve', 150);
             $table->dateTime("fec_pub_eve");
             $table->dateTime("fec_eve");
-            $table->string("tag_eve", 50)->notNullable();
+            $table->string("tag_eve", 50);
             
         });
     }
