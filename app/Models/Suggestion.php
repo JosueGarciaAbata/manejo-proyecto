@@ -13,7 +13,7 @@ class Suggestion extends Model
     protected $primaryKey = 'id_sug';
 
     protected $fillable = [
-        'tit_su',
+        'tit_sug',
         'des_sug',
         'id_vot_sug'
     ];

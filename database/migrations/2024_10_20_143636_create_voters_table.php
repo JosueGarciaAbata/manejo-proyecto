@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('id_lis_vot')
                   ->constrained('political_parties', 'id_lis')
                   ->onDelete("cascade");
+            $table->timestamps();
         });
     }
 

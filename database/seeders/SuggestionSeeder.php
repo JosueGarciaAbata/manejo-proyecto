@@ -23,9 +23,9 @@ class SuggestionSeeder extends Seeder
             // Crear entre 1 y 5 sugerencias para cada votante
             for ($j = 0; $j < rand(1, 5); $j++) {
                 Suggestion::create([
-                    'tit_su' => $faker->sentence(3),   // Título de la sugerencia
-                    'des_sug' => $faker->paragraph,    // Descripción de la sugerencia
-                    'id_vot_sug' => $voter->id_vot,    // Relación con el votante
+                    'tit_sug' => substr($faker->sentence(5), 0, 49),
+                    'des_sug' => substr(  $faker->realText(150), 0, 145),
+                    'id_vot_sug' => $voter->id_vot, 
                 ]);
             }
         }

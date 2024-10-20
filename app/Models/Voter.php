@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Voter extends Model
 {
-    use SoftDeletes;
 
     protected $table = 'voters'; 
     protected $primaryKey = 'id_vot';
@@ -18,7 +16,7 @@ class Voter extends Model
         'ema_vot',
     ];
 
-    
+
     //Mantengo esta validación para un mensaje de error más claro y personalizado si la verificación de la base de datos falla.
     protected static function boot()
     {

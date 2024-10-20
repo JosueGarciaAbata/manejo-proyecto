@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
             PoliticalPartiesSeeder::class,
             CandidateSeeder::class,
             ProposalSeeder::class,
+            VoterSeeder::class,
+            SuggestionSeeder::class,
+            EventsSeeder::class,
         ]);
 
         // User::factory(10)->create();
