@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PoliticalPartiesSeeder::class,
+            CandidateSeeder::class,
         ]);
 
         // User::factory(10)->create();
