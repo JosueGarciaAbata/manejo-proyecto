@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nom_can', 100)->notNullable();
             $table->string('ape_can', 100)->notNullable();
             
-            $table->enum('car_can', ['Rector', 'Vicerrector'])->notNullable();
+            $validPositions = ['Rector', 'Vicerrector Académico', 'Vicerrector de Investigación', 'Vicerrector Administrativo'];
+            $table->enum('car_can', $validPositions)->notNullable();
             
             $table->string('tit_can', 150)->notNullable();
             $table->date('fec_ing_can')->notNullable();
