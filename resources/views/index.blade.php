@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    @include('layouts.header')
-</head>
-
-<body>
-    @include('layouts.navbar')
-
-    <h1>Hola mundo</h1>
+@include('layouts.header')
 
 
 
-    @include('layouts.footer')
-</body>
+@include('layouts.navbar')
 
-</html>
+<div class="image-container">
+    <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation"
+        alt="Descripción de la imagen">
+
+</div><!-- /.image-container -->
+@include('layouts.footer')
