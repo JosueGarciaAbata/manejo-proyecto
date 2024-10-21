@@ -9,15 +9,13 @@
 .contact-info-one {
     position: relative;
 
-
-
     .container {
         position: absolute;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
 
-        @media(max-width: 1199px) {
+        @media (max-width: 1199px) {
             position: relative;
             bottom: auto;
             left: auto;
@@ -31,30 +29,30 @@
         padding: 30px 60px;
         background-color: $thm-base-color-2;
 
-        @media(max-width: 375px) {
+        @media (max-width: 375px) {
             padding: 30px 15px;
         }
 
-        [class*=col-xl-] {
+        [class*="col-xl-"] {
             padding-top: 29px;
             padding-bottom: 29px;
         }
 
-        [class*=col-xl-]:nth-child(2) {
+        [class*="col-xl-"]:nth-child(2) {
             position: relative;
 
             &:before,
             &:after {
-                content: '';
+                content: "";
                 width: 5px;
                 height: 100%;
-                border-left: 1px solid rgba(#fff, .2);
-                border-right: 1px solid rgba(#fff, .2);
+                border-left: 1px solid rgba(#fff, 0.2);
+                border-right: 1px solid rgba(#fff, 0.2);
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
 
-                @media(max-width: 1199px) {
+                @media (max-width: 1199px) {
                     width: 100%;
                     height: 5px;
                     border-left: 0;
@@ -62,8 +60,8 @@
                     top: 0;
                     left: 0;
                     transform: translateY(0);
-                    border-top: 1px solid rgba(#fff, .2);
-                    border-bottom: 1px solid rgba(#fff, .2);
+                    border-top: 1px solid rgba(#fff, 0.2);
+                    border-bottom: 1px solid rgba(#fff, 0.2);
                 }
             }
 
@@ -74,7 +72,7 @@
             &:after {
                 right: 0;
 
-                @media(max-width: 1199px) {
+                @media (max-width: 1199px) {
                     top: auto;
                     right: auto;
                     bottom: 0;
@@ -96,14 +94,14 @@
         align-items: center;
         justify-content: center;
 
-        @media(max-width: 375px) {
+        @media (max-width: 375px) {
             font-size: 18px;
             line-height: 1.2em;
         }
 
         a {
             color: inherit;
-            transition: all .4s ease;
+            transition: all 0.4s ease;
 
             &:hover {
                 color: $thm-black;
@@ -117,7 +115,6 @@
     }
 }
 
-
 .contact-form-one {
     padding-top: 110px;
     padding-bottom: 120px;
@@ -129,7 +126,6 @@
     }
 
     &__form {
-
         input,
         textarea {
             display: block;
@@ -162,18 +158,20 @@
         margin-left: -5px;
         margin-right: -5px;
 
-        >[class*=col-lg-] {
+        > [class*="col-lg-"] {
             padding-left: 5px;
             padding-right: 5px;
         }
     }
 
-    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(
+            .input-group-btn
+        ) {
         width: 100%;
         margin-bottom: 10px;
     }
 
-    .bootstrap-select>.dropdown-toggle {
+    .bootstrap-select > .dropdown-toggle {
         border: none !important;
         padding: 0;
         padding-left: 30px;
@@ -192,15 +190,14 @@
         border-top-width: 4px;
     }
 
-
     [type="radio"]:checked,
     [type="radio"]:not(:checked) {
         position: absolute;
         left: -9999px;
     }
 
-    [type="radio"]:checked+label,
-    [type="radio"]:not(:checked)+label {
+    [type="radio"]:checked + label,
+    [type="radio"]:not(:checked) + label {
         position: relative;
         padding-left: 55px;
         cursor: pointer;
@@ -210,9 +207,9 @@
         font-weight: 500;
     }
 
-    [type="radio"]:checked+label:before,
-    [type="radio"]:not(:checked)+label:before {
-        content: '';
+    [type="radio"]:checked + label:before,
+    [type="radio"]:not(:checked) + label:before {
+        content: "";
         position: absolute;
         left: 0;
         top: 0;
@@ -222,9 +219,9 @@
         background: #eef1f6;
     }
 
-    [type="radio"]:checked+label:after,
-    [type="radio"]:not(:checked)+label:after {
-        content: '';
+    [type="radio"]:checked + label:after,
+    [type="radio"]:not(:checked) + label:after {
+        content: "";
         width: 12px;
         height: 12px;
         background: $thm-base-color-2;
@@ -234,12 +231,12 @@
         transition: all 0.2s ease;
     }
 
-    [type="radio"]:not(:checked)+label:after {
+    [type="radio"]:not(:checked) + label:after {
         opacity: 0;
         transform: scale(0);
     }
 
-    [type="radio"]:checked+label:after {
+    [type="radio"]:checked + label:after {
         opacity: 1;
         transform: scale(1);
     }
@@ -263,12 +260,12 @@
     p {
         margin: 0;
 
-        +p {
+        + p {
             margin-top: 10px;
         }
     }
 
-    .row+.row {
+    .row + .row {
         margin-top: 50px;
     }
 }
@@ -285,7 +282,9 @@
     background-color: #d41e44;
     position: relative;
 
-    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(
+            .input-group-btn
+        ) {
         margin-bottom: 0;
         width: auto;
 
@@ -294,7 +293,7 @@
         left: 0;
     }
 
-    .bootstrap-select>.dropdown-toggle {
+    .bootstrap-select > .dropdown-toggle {
         width: 130px;
         height: 135px;
         background-color: #c6183c;
@@ -327,11 +326,12 @@
 }
 
 .donation-page__payment-time {
-    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(
+            .input-group-btn
+        ) {
         margin-top: 10px;
     }
 }
-
 
 .donation-contribute {
     .inner-container {
@@ -339,11 +339,13 @@
     }
 
     &__amount {
-        background-color: rgba(#0c1a3c, .1);
+        background-color: rgba(#0c1a3c, 0.1);
         position: relative;
         width: calc(100% - 172px);
 
-        .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(
+                .input-group-btn
+            ) {
             margin-bottom: 0;
             width: auto;
 
@@ -352,10 +354,10 @@
             left: 0;
         }
 
-        .bootstrap-select>.dropdown-toggle {
+        .bootstrap-select > .dropdown-toggle {
             width: 80px;
             height: 75px;
-            background-color: rgba(#0c1a3c, .1);
+            background-color: rgba(#0c1a3c, 0.1);
             text-align: center;
             font-size: 18px;
             font-weight: 600;
@@ -435,23 +437,20 @@
             color: $thm-black;
         }
 
-        .bootstrap-select>.dropdown-toggle {
+        .bootstrap-select > .dropdown-toggle {
             background-color: #eef1f6;
             color: $thm-black;
         }
     }
 }
 
-
 .mailchimp-one {
-    
-
     .container {
         position: relative;
         padding-top: 120px;
         padding-bottom: 120px;
         &::before {
-            content: '';
+            content: "";
             width: 100%;
             max-width: 1170px;
             height: 5px;
@@ -469,7 +468,7 @@
         color: $thm-black;
         font-size: 26px;
         font-weight: bold;
-        letter-spacing: -.02em;
+        letter-spacing: -0.02em;
     }
 
     &__form {

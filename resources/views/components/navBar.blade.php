@@ -2,14 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
         <div class="container clearfix">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="logo-box clearfix">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="assets/images/logo-dark.png" class="main-logo" width="177" alt="Awesome Image" />
-                </a>
-                <button class="menu-toggler" data-target=".main-navigation">
-                    <span class="fa fa-bars"></span>
-                </button>
-            </div><!-- /.logo-box -->
+
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="main-navigation">
@@ -34,7 +27,10 @@
 
             <div class="right-side-box">
                 <div class="header-social">
-                    <!-- Aquí podrías añadir iconos de redes sociales si es necesario -->
+                    <a href="https://www.facebook.com/profile.php?id=61565950187878" class="fa fa-facebook-square"></a>
+                    <a href="https://www.instagram.com/marycruzlascano/" class="fa fa-instagram"></a>
+
+
                 </div><!-- /.header-social -->
             </div><!-- /.right-side-box -->
         </div><!-- /.container -->
