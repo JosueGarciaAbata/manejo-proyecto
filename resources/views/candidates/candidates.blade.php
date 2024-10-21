@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    @include('layouts.header')
-</head>
-
-<body>
-    @include('layouts.navbar')
- 
+@section('title', 'Candidates')
+    
+@section('content')
     <!-- Breadcrumb Section Begin -->
         <section class="breadcrumb-section">
             <div class="container">
@@ -54,10 +49,4 @@
         </div>
     </div>
     </section>
-    <!-- Candidates Section End -->
-
-    @include('layouts.footer')
-</body>
-
-</html>
-
+@endsection

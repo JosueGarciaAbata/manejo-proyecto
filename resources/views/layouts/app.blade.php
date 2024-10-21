@@ -1,32 +1,30 @@
-{{-- Haciendo uso de plantillas --}}
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>@yield('title', 'UTA')</title>
 
-    {{-- Un yield permite añadir un solo contenido --}}
-    <title>@yield('title')</title>
-
-    {{-- Permite añadir más contenido--}}
-    @stack('css')
+    @include('layouts.partials.favicons')
+    @include('layouts.partials.styles')
 </head>
+
 <body>
-    
-    <header>
-        
-    </header>
+    @include('components.preloader')
+    <div class="page-wrapper">
+        @include('components.topbar')
+        @include('components.header')
 
-    {{-- Especifica que se reemplazará por un contenido variable. --}}
-    @yield('content')
+        <main>
+            @yield('content')
+        </main>
 
-    <footer>
+        @include('components.footer')
+    </div>
 
-    </footer>
-
-    @stack('js')    
+    @include('layouts.partials.scripts')
 </body>
+
 </html>
