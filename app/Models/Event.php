@@ -17,8 +17,10 @@ class Event extends Model
         'des_eve',
         'fec_pub_eve',
         'fec_eve',
-        'tag_eve'
+        'tag_eve',
+        'pre_img',
+        'res_img'
     ];
 
-    
+    protected $dates = ['deleted_at'];
 }
