@@ -13,6 +13,8 @@ Route::get('/candidates', [CandidateController::class, 'show']);
 
 Route::get('/eventsAndNews', [EventController::class, 'index']);
 
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
+
 Route::get('/proposals', function () {
     return view('pages.proposals');
 });
