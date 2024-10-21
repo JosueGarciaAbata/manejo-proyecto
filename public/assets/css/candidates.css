@@ -1,0 +1,48 @@
+/* Breadcrum section */
+
+.breadcrumb-section {
+    padding-top: 30px;
+    padding-right: auto;
+    padding-left: auto;
+    padding-bottom: 30px;
+}
+
+.breadcrumb-section .breadcrumb-text {
+    text-align: center;
+}
+
+/* Candidates section */
+
+.candidates-section {
+    padding-top: 0;
+}
+
+.candidate-item {
+    margin-bottom: 50px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-item .cd-pic img {
+    max-width: 100px;
+    min-width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
+
+.candidate-item .cd-text .cd-title {
+    margin-bottom: 28px;
+}
+
+.candidate-item .cd-text .cd-title h4 {
+    color: black;
+    font-weight: 600;
+    margin-bottom: 13px;
+}
+
+.candidate-item .cd-text .cd-title span {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
