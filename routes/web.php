@@ -1,14 +1,13 @@
 <?php
 
+use App\Http\Controllers\CandidateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('/candidates', function () {
-    return view('pages.candidates');
-});
+Route::get('/candidates', [CandidateController::class, 'show']);
 
 Route::get('/eventsAndNews', function () {
     return view('pages.eventsAndNews');

@@ -9,7 +9,7 @@ class Candidate extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'candidates'; 
+    protected $table = 'candidates';
     protected $primaryKey = 'id_can';
 
     protected $fillable = [
@@ -18,24 +18,24 @@ class Candidate extends Model
         'car_can',
         'tit_can',
         'fec_ing_can',
-        'id_pol_par_bel', 
+        'id_pol_par_bel',
     ];
 
     protected static function boot()
     {
         parent::boot();
-        
+
         static::creating(function ($candidate) {
             if (!PoliticalParty::find($candidate->id_pol_par_bel)) {
                 throw new \Exception("Invalid political party ID.");
             }
-            
+
             $validPositions = ['Rector', 'Vicerrector Académico', 'Vicerrector de Investigación', 'Vicerrector Administrativo'];
             if (!in_array($candidate->car_can, $validPositions)) {
                 throw new \Exception("Invalid candidate position. Must be 'Rector' or 'Vicerrector'.");
             }
         });
-        
+
     }
 
     public function politicalParty()
