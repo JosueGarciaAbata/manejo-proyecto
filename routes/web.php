@@ -1,23 +1,22 @@
 <?php
 
+use App\Http\Controllers\CandidateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('pages.home');
 });
 
-Route::get('/candidates', function () {
-    return view('candidates');
-});
+Route::get('/candidates', [CandidateController::class, 'show']);
 
 Route::get('/eventsAndNews', function () {
-    return view('eventsAndNews');
+    return view('pages.eventsAndNews');
 });
 
 Route::get('/proposals', function () {
-    return view('proposals');
+    return view('pages.proposals');
 });
 
 Route::get('/suggestions', function () {
-    return view('suggestions');
+    return view('pages.suggestions');
 });
