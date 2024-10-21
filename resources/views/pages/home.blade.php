@@ -244,5 +244,5 @@
 
             </video>
         </div>
-        <script src="{{ asset('assets/js/startCountDown.js') }}"></script>
+
     @endsection

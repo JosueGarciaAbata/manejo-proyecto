@@ -16,6 +16,6 @@
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ asset('assets/js/countdown.min.js') }}"></script>
-
+<script src="{{ asset('assets/js/startCountDown.js') }}"></script>
 <!-- Template scripts -->
 <script src="{{ asset('assets/js/theme.js') }}"></script>
