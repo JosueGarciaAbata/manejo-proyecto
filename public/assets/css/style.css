@@ -1978,6 +1978,14 @@ h6 {
     outline: none;
 }
 
+.video_presentation {
+    display: block;
+    width: 100%;
+    height: 675px;
+    border: none;
+    outline: none;
+}
+
 .contact-info-one {
     position: relative;
 }
@@ -3054,8 +3062,8 @@ h6 {
 * 15, about styles
 */
 .about-one {
-    padding-top: 120px;
-    padding-bottom: 110px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 .about-one .block-title {
     margin-top: 60px;

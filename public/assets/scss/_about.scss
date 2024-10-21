@@ -1,17 +1,17 @@
 .about-one {
-    padding-top: 120px;
+    padding-top: 1px;
     padding-bottom: 110px;
 
     .block-title {
         margin-top: 60px;
 
-        @media(max-width: 991px) {
+        @media (max-width: 991px) {
             margin-top: 50px;
         }
     }
 
     img {
-        @media(max-width: 991px) {
+        @media (max-width: 991px) {
             max-width: 100%;
             margin-bottom: 10px;
         }
@@ -19,7 +19,6 @@
 }
 
 .about-two {
-
     padding-top: 120px;
     padding-bottom: 80px;
 
@@ -42,7 +41,6 @@
     }
 }
 
-
 .about-three {
     overflow: hidden;
     position: relative;
@@ -51,14 +49,14 @@
         padding-top: 120px;
         padding-bottom: 120px;
 
-        >img {
+        > img {
             max-width: 100%;
             position: relative;
             z-index: 2;
         }
 
         &:before {
-            content: '';
+            content: "";
             width: 200%;
             height: 100%;
             background-color: $thm-base-color;
@@ -98,7 +96,7 @@
             font-size: 18px;
             line-height: 30px;
             font-weight: bold;
-            letter-spacing: -.02em;
+            letter-spacing: -0.02em;
             margin-top: 10px;
         }
     }
@@ -115,21 +113,20 @@
     }
 }
 
-
 .about-four {
-	padding: 120px 0;
+    padding: 120px 0;
     .row.low-gutters {
         margin-left: -5px;
         margin-right: -5px;
 
-        >[class*=col-] {
+        > [class*="col-"] {
             padding-left: 5px;
             padding-right: 5px;
         }
     }
 
     &__box {
-    	padding: 50px;
+        padding: 50px;
         &-top {
             display: flex;
             align-items: center;
@@ -145,7 +142,7 @@
             color: #fff;
             font-weight: bold;
             font-size: 26px;
-            letter-spacing: -.02em;
+            letter-spacing: -0.02em;
             line-height: 1em;
             margin-left: 10px;
         }
@@ -160,52 +157,49 @@
         }
     }
 
-
-
     &__btn {
-    	padding: 5.5px 30px;
-    	font-size: 16px;
+        padding: 5.5px 30px;
+        font-size: 16px;
         color: $thm-black;
         background-color: #fff;
         margin-top: 30px;
     }
 
     &__image {
-    	position: relative;
+        position: relative;
     }
     &__sign {
-    	position: absolute;
-    	bottom: 20px;
-    	left: 20px;
-    	z-index: 10;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        z-index: 10;
     }
 
     .block-title {
-    	margin-bottom: 0;
+        margin-bottom: 0;
     }
 
     &__list {
-    	margin: 0;
-    	margin-top: 25px;
-    	li {
-    		position: relative;
-    		color: #7c859b;
-    		font-size: 18px;
-    		font-weight: 500;
-    		padding-left: 30px;
-    		+ li {
-    			margin-top: 3px;
-    		}
-    		> img {
-    			position: absolute;
-    			top: 50%;
-    			left: 0;
-    			transform: translateY(-50%);
-    		}
-    	}
+        margin: 0;
+        margin-top: 25px;
+        li {
+            position: relative;
+            color: #7c859b;
+            font-size: 18px;
+            font-weight: 500;
+            padding-left: 30px;
+            + li {
+                margin-top: 3px;
+            }
+            > img {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+        }
     }
 }
-
 
 .about-five {
     .block-title {
@@ -216,7 +210,7 @@
         display: inline-block;
         top: -120px;
         &:before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: calc(100% + 10px);
@@ -254,7 +248,7 @@
 
         &-image {
             &-inner {
-            width: 188px;
+                width: 188px;
                 > img {
                     width: 100%;
                 }
@@ -270,7 +264,7 @@
             color: $thm-black;
             font-size: 18px;
             line-height: 30px;
-            letter-spacing: -.02em;
+            letter-spacing: -0.02em;
         }
     }
 }
