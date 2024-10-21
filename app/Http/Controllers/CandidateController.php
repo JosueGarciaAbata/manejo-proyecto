@@ -10,6 +10,6 @@ class CandidateController extends Controller
     public function show()
     {
         $candidates = Candidate::all();
-        return view('candidates.candidates', compact('candidates'));
+        return view('pages.candidates', compact('candidates'));
     }
 }
