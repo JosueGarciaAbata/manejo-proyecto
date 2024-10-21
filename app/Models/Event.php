@@ -23,4 +23,13 @@ class Event extends Model
     ];
 
     protected $dates = ['deleted_at'];
+    
+    public function getPreviewImgUrlAttribute()
+    {
+        $path = public_path($this->preview_img);
+        if (file_exists($path)) return asset($this->preview_img);
+        
+        return asset('assets/images/event/example_preview_event.jpg');
+    }
+
 }
