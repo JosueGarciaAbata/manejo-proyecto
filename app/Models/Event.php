@@ -26,10 +26,21 @@ class Event extends Model
     
     public function getPreviewImgUrlAttribute()
     {
-        $path = public_path($this->preview_img);
-        if (file_exists($path)) return asset($this->preview_img);
-        
+        $path = public_path($this->pre_img);
+        if (file_exists($path)) return asset($this->pre_img);
+
         return asset('assets/images/event/example_preview_event.jpg');
+    }
+
+    public function getResourceImgUrlAttribute()
+    {
+        $path = public_path($this->res_img);
+        
+        if (file_exists($path)) {
+            return asset($this->res_img);
+        }
+        
+        return asset('assets/images/resources/example_event.jpg');
     }
 
 }
