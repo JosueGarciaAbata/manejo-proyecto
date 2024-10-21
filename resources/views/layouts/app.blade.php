@@ -14,7 +14,7 @@
 <body>
     @include('components.preloader')
     <div class="page-wrapper">
-        @include('components.topbar')
+
         @include('components.header')
 
         <main>

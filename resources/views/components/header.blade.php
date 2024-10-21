@@ -1,14 +1,7 @@
 <header class="site-header site-header__header-one">
     <nav class="navbar navbar-expand-lg navbar-light header-navigation stricky">
         <div class="container clearfix">
-            <div class="logo-box clearfix">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('assets/images/logo-dark.png') }}" class="main-logo" width="177" alt="Logo" />
-                </a>
-                <button class="menu-toggler" data-target=".main-navigation">
-                    <span class="fa fa-bars"></span>
-                </button>
-            </div>
+
 
             <div class="main-navigation">
                 <ul class="navigation-box">
@@ -22,9 +15,12 @@
 
             <div class="right-side-box">
                 <div class="header-social">
-                    <!-- Redes sociales -->
-                </div>
-            </div>
+                    <a href="https://www.facebook.com/profile.php?id=61565950187878" class="fa fa-facebook-square"></a>
+                    <a href="https://www.instagram.com/marycruzlascano/" class="fa fa-instagram"></a>
+
+
+                </div><!-- /.header-social -->
+            </div><!-- /.right-side-box -->
         </div>
     </nav>
 </header>
