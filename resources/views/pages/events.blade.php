@@ -6,15 +6,31 @@
 
     <section class="inner-banner">
         <div class="container">
-            <h2 class="inner-banner__title">All Events</h2><!-- /.inner-banner__title -->
+            <h2 class="inner-banner__title">Eventos</h2><!-- /.inner-banner__title -->
             <ul class="list-unstyled thm-breadcrumb">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li>Events</li>
             </ul><!-- /.list-unstyled -->
         </div><!-- /.container -->
     </section><!-- /.inner-banner -->
-    
+    <div class="cta-three__bottom">
+        <div class="container">
+            <div class="inner-container thm-base-bg-2 text-center wow fadeInUp animated" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-name: fadeInUp;">
+                <img src="assets/images/resources/decor-star-1-2.png" class="cta-three__bottom-star-1" alt="Awesome Image">
+                <h3 class="cta-three__bottom-title">Siempre promoviendo tu bienestar</h3><!-- /.cta-three__bottom-title -->
+                <img src="assets/images/resources/decor-star-1-2.png" class="cta-three__bottom-star-2" alt="Awesome Image">
+            </div><!-- /.inner-container -->
+        </div><!-- /.container -->
+    </div>
     <section class="event-one">
+
+
+        <div class="block-title text-center">
+            <p class="block-title__tag-line">Descubre nuevos eventos</p>
+            <h2 class="block-title__title">Esperamos contar contigo!</h2><!-- /.block-title__title -->
+        </div>
+        
+
         <div class="container">
             <div class="row">
                 @forelse ($events as $event)
@@ -31,7 +47,6 @@
                                 <h3 class="event-one__title">
                                     <a href="#">{{ $event->tit_eve }}</a>
                                 </h3>
-                                <p>{{ Str::limit($event->des_eve, 100) }}</p> <!-- Muestra un resumen de la descripción -->
                             </div>
                         </div>
                     </div>
@@ -41,31 +56,12 @@
             </div>
 
             <div class="post-pagination">
-                <a href="#"><i class="fa fa-angle-double-left"></i></a>
-                <a href="#">01</a>
-                <a href="#">..</a>
-                <a href="#">04</a>
-                <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                {{ $events->links() }}
             </div><!-- /.post-pagination -->
         </div>
     </section><!-- /.event-one -->
 
-    <section class="countdown-one thm-base-bg">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h3 class="countdown-one__title">Our new campaign <br> starts in:</h3><!-- /.countdown-one__title -->
-                </div><!-- /.col-lg-6 -->
-                <div class="col-lg-6 d-flex justify-content-end">
-                    <div class="countdown-one__right">
-                        <ul class="countdown-one__list list-unstyled">
-                            <!-- content loading via js -->
-                        </ul><!-- /.coundown-one__list -->
-                    </div><!-- /.countdown-one__right -->
-                </div><!-- /.col-lg-6 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </section><!-- /.countdown-one -->
+
 
 @endsection
 
