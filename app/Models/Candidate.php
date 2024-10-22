@@ -15,6 +15,7 @@ class Candidate extends Model
     protected $fillable = [
         'nom_can',
         'ape_can',
+        'ruta_can',
         'car_can',
         'tit_can',
         'fec_ing_can',
