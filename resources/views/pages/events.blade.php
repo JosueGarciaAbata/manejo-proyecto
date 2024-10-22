@@ -45,7 +45,9 @@
                             <div class="event-one__content">
                                 <p class="event-one__date">{{ \Carbon\Carbon::parse($event->fec_eve)->format('d M, Y') }}</p>
                                 <h3 class="event-one__title">
-                                    <a href="#">{{ $event->tit_eve }}</a>
+                                    <a href="{{ route('event.show', ['id' => $event->id_eve]) }}">
+                                        {{ $event->tit_eve }}
+                                    </a>
                                 </h3>
                             </div>
                         </div>
