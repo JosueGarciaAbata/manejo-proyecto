@@ -4,28 +4,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const modal = document.getElementById("ventanaModal");
     const suggestions = document.querySelectorAll(".event-one__single");
-    const span = document.getElementsByClassName("cerrar")[0];
+    const btnAddSuggestion = document.getElementById("add-suggestion");
+    const closeBtns = document.querySelectorAll(".cerrar");
+    const formModal = document.getElementById("form-add-suggestion");
 
-    // Cierra el modal al hacer clic en el botón de cerrar
-    span.addEventListener("click", () => {
-        modal.style.display = "none";
-    });
+    // Función para cerrar modales
+    const closeModal = (modalContainer) => {
+        if (modalContainer) {
+            modalContainer.style.display = "none";
+        }
+    };
 
-    // Añade un evento de clic a cada sugerencia
-    suggestions.forEach((suggestion) => {
-        suggestion.addEventListener("click", () => {
-            modal.style.display = "block";
-            
-            // Obtiene y establece el título y la descripción del modal
-            modal.querySelector("#title").textContent = suggestion.querySelector('.event-one__title').textContent;
-            modal.querySelector("#description").textContent = suggestion.querySelector('.suggestion-details').textContent;
+    // Cierra el modal al hacer clic en los botones de cerrar
+    closeBtns.forEach(closeBtn => {
+        closeBtn.addEventListener("click", (e) => {
+            const modalContainer = closeBtn.closest(".modal");
+            closeModal(modalContainer);
         });
     });
 
+    // Añade un evento de clic a cada sugerencia
+    suggestions.forEach(suggestion => {
+        suggestion.addEventListener("click", () => {
+            modal.style.display = "block";
+            modal.querySelector("#title").textContent = suggestion.querySelector(".event-one__title").textContent;
+            modal.querySelector("#description").textContent = suggestion.querySelector(".suggestion-details").textContent;
+        });
+    });
+
+    // Abre el formulario de añadir sugerencia
+    btnAddSuggestion.addEventListener("click", () => {
+        formModal.style.display = "block";
+    });
+
     // Cierra el modal si se hace clic fuera de él
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
+    window.addEventListener("click", (event) => {
+        if (event.target.classList.contains("modal")) {
+            // Cierra todos los modales
+            const modals = document.querySelectorAll(".modal");
+            modals.forEach(modal => closeModal(modal));
         }
     });
 });

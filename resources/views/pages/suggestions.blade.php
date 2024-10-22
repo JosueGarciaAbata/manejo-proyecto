@@ -3,14 +3,45 @@
 @section('title', 'Suggestions')
 
 @section('content')
-<div id="ventanaModal" class="modal">
-    <div class="contenido-modal">
-        <span class="cerrar">&times;</span>
-        <h2 id="title"></h2>
-        <p id="description"></p>
+    <div id="ventanaModal" class="modal">
+        <div class="contenido-modal">
+            <span class="cerrar">&times;</span>
+            <h2 id="title"></h2>
+            <p id="description"></p>
+        </div>
     </div>
-  </div>
-    <div class="container" >
+    <div id="form-add-suggestion" class="modal">
+        <div class="contenido-modal">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>Tus sugerencias son valiosos para un mejor futuro</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quam molestias
+                                voluptatibus dicta provident quasi? Unde distinctio rerum explicabo doloribus atque?
+                                Adipisci fugiat in odio autem laborum doloremque dolorum quas..</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="" method="POST" class="comment-form contact-form">
+                            <input type="text" name='title' placeholder="Titulo">
+                            <input type="text" name='email' placeholder="Email">
+                            <textarea name='description' placeholder="Descripcion"></textarea>
+                            <button type="submit" class="site-btn">Enviar sugerencia</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <span class="cerrar">&times;</span>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <p class="primary-btn top-btn" id="add-suggestion"><i class="fa fa-plus"></i> Añadir sugerencia</p>
+
         <div class="row">
             @forelse ($suggestions as $suggestion)
                 <div class="col-lg-6 ">
@@ -41,7 +72,8 @@
         @endphp
 
         <div class="post-pagination">
-            {{-- Botón para la página anterior (<<) --}} @if ($suggestions->onFirstPage())
+            {{-- Botón para la página anterior (<<) --}}
+            @if ($suggestions->onFirstPage())
                 <a class="disabled" aria-disabled="true"><i class="fa fa-angle-double-left"></i></a>
             @else
                 <a href="{{ $suggestions->previousPageUrl() }}"><i class="fa fa-angle-double-left"></i></a>

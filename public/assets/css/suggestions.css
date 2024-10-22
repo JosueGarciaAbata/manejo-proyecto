@@ -5,6 +5,10 @@
 .suggestion{
     padding: 1rem;
 }
+#add-suggestion:hover{
+    color: #007bff;
+    cursor: pointer;
+}
 
 .modal {
     display: none; /* Por defecto, estará oculto */
