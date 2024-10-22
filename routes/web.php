@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SuggestionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,6 +20,4 @@ Route::get('/proposals', function () {
     return view('pages.proposals');
 });
 
-Route::get('/suggestions', function () {
-    return view('pages.suggestions');
-});
+Route::get('/suggestions', [SuggestionController::class,'index']);

@@ -19,3 +19,4 @@
 <script src="{{ asset('assets/js/startCountDown.js') }}"></script>
 <!-- Template scripts -->
 <script src="{{ asset('assets/js/theme.js') }}"></script>
+<script src="{{ asset('assets/js/suggestions.js') }}"></script>
