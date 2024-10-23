@@ -12,6 +12,11 @@ Route::get('/', function () {
 Route::get('/candidates', [CandidateController::class, 'show']);
 
 Route::get('/eventsAndNews', [EventController::class, 'index'])->name('events');
+Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
+Route::get('/events/search/tag', [EventController::class, 'searchByTag'])->name('events.searchByTag');
+Route::get('/events/search/date', [EventController::class, 'searchByDate'])->name('events.searchByDate');
+Route::get('/', [EventController::class, 'latestEvents'])->name('home');
+
 
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
