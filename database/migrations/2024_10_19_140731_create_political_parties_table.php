@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,6 +15,7 @@ return new class extends Migration
             $table->id('id_lis'); // Primary Key
             $table->string('nom_lis', 100)->notNullable();
             $table->text('des_lis')->nullable();
+            $table->text('mis_vis_lis')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -24,7 +24,7 @@ return new class extends Migration
             ALTER TABLE political_parties 
             ADD CONSTRAINT check_nom_lis_alnum 
             CHECK (nom_lis REGEXP '^[a-zA-Z0-9 ]+$')
-        ");            
+        ");
     }
 
     /**

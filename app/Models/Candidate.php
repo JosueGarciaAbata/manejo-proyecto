@@ -46,6 +46,6 @@ class Candidate extends Model
 
     public function proposals()
     {
-        return $this->hasMany(Proposal::class, 'id_can');
+        return $this->hasMany(Proposal::class, 'id_can_pro');
     }
 }
