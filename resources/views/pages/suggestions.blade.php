@@ -24,12 +24,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <form action="" method="POST" class="comment-form contact-form">
-                            <input type="text" name='title' placeholder="Titulo">
-                            <input type="text" name='email' placeholder="Email">
-                            <textarea name='description' placeholder="Descripcion"></textarea>
-                            <button type="submit" class="site-btn">Enviar sugerencia</button>
+                    <div class="col-lg-7">
+                        <form action="{{ route('suggestions.store') }}" method="POST" class="mailchimp-one__form add-suggestion">
+                            @csrf
+                            <input type="text" name='tit_sug' id="title" placeholder="Titulo">
+                            <input type="text" name='ema_sug' placeholder="Email">
+                            <textarea maxlength="150" name='des_sug' placeholder="Descripcion"></textarea>
+                            <button type="submit" class="thm-btn mailchimp-one__form-btn">Enviar sugerencia</button>
                         </form>
                     </div>
                 </div>
@@ -101,7 +102,7 @@
                 @if ($currentPage < $lastPage - 3)
                     <a class="disabled" aria-disabled="true">...</a>
                 @endif
-                <a href="{{ $events->url($lastPage) }}">{{ sprintf('%02d', $lastPage) }}</a>
+                <a href="{{ $suggestions->url($lastPage) }}">{{ sprintf('%02d', $lastPage) }}</a>
             @endif
 
             {{-- Botón para la página siguiente (>>) --}}

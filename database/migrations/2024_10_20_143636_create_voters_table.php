@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('voters', function (Blueprint $table) {
             $table->id('id_vot');
-            $table->string('nom_vot', 25);
-            $table->string('ape_vot', 25);
+            $table->string('nom_vot', 25)->nullable();
+            $table->string('ape_vot', 25)->nullable();
             $table->string('ema_vot')->unique();
             $table->foreignId('id_lis_vot')
                   ->constrained('political_parties', 'id_lis')
-                  ->onDelete("cascade");
+                  ->onDelete("cascade")->nullable();
             $table->timestamps();
         });
     }

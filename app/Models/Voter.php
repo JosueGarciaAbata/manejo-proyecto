@@ -14,6 +14,7 @@ class Voter extends Model
         'nom_vot',
         'ape_vot',
         'ema_vot',
+        'id_lis_vot'
     ];
 
 

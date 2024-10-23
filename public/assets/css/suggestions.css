@@ -2,33 +2,32 @@
     display: none;
 }
 
-.suggestion{
+.suggestion {
     padding: 1rem;
 }
-#add-suggestion:hover{
+#add-suggestion:hover {
     color: #007bff;
     cursor: pointer;
 }
 
 .modal {
-    display: none; /* Por defecto, estará oculto */
-    position: fixed; /* Posición fija */
-    z-index: 1; /* Se situará por encima de otros elementos de la página*/
-    padding-top: 200px; /* El contenido estará situado a 200px de la parte superior */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 12.5rem;
     left: 0;
     top: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Algura completa */
+    width: 100%;
+    height: 100%;
     overflow: auto; /* Se activará el scroll si es necesario */
-    background-color: rgba(0, 0, 0, 0.5); /* Color negro con opacidad del 50% */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Ventana o caja modal */
 .contenido-modal {
     position: relative; /* Relativo con respecto al contenedor -modal- */
     background-color: white;
     margin: auto; /* Centrada */
-    padding: 20px;
+    padding: 1.25rem;
     width: 60%;
     -webkit-animation-name: animarsuperior;
     -webkit-animation-duration: 0.5s;
@@ -72,4 +71,36 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.add-suggestion {
+    display: flexbox;
+    flex-direction: column;
+}
+
+.add-suggestion input,
+textarea {
+    background-color: rgb(238, 241, 246);
+    color: #0c1a3c;
+    border: thin solid #333;
+    margin-bottom: 0.25rem;
+    margin-left: 1rem;
+    width: 50vw;
+    padding: 1rem;
+}
+
+.add-suggestion button {
+    background-color: #222;
+    position: relative;
+    bottom: 3rem;
+    left: 32vw;
+    width: auto;
+}
+.add-suggestion button:hover{
+    background-color: #d41e44;
+    color: #fff;
+}
+
+textarea {
+    height: 8rem;
 }
