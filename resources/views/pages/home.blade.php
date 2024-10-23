@@ -44,7 +44,7 @@
                     <div class="about-three__content">
                         <div class="block-title text-left">
 
-                            <h2 class="block-title__title">Msión y Visión</h2><!-- /.block-title__title -->
+                            <h2 class="block-title__title">Misión y Visión</h2><!-- /.block-title__title -->
                         </div><!-- /.block-title -->
                         <div class="about-three__box-wrap">
                             <div class="about-three__box">
@@ -63,9 +63,7 @@
                                 <!-- /.about-three__box-title -->
                             </div><!-- /.about-three__box -->
                         </div>
-                        <p class="about-three__text">There are many variations of passages of Lorem Ipsum available, but the
-                            majority have suffered alteration in some form, by injected humour, or randomised words which
-                            don't look even slightly believable.</p><!-- /.about-three__text -->
+                        <p class="about-three__text">{{ $missionVision }}</p><!-- /.about-three__text -->
 
                     </div><!-- /.about-three__content -->
                 </div><!-- /.col-lg-6 -->
@@ -78,7 +76,7 @@
     <section class="fact-one ">
         <div class="container text-center">
             <img src="assets/images/resources/decor-star-1-1.png" class="fact-one__star-1" alt="">
-            <h3 class="fact-one__title counter" style="color:#0C1B3C">640</h3>
+            <h3 class="fact-one__title counter" style="color:#0C1B3C">{{ $voteCount }}</h3>
             <p class="fact-one__text">Gente que se ha unido a la campaña</p>
             <img src="assets/images/resources/decor-star-1-1.png" class="fact-one__star-2" alt="">
         </div><!-- /.container -->
@@ -96,59 +94,32 @@
             </div><!-- /.block-title -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="history-one__single wow fadeInUp">
+                    @forelse($proposals as $proposal)
+                        <div class="history-one__single wow fadeInUp">
 
-                        <div class="campaing-one__single">
-                            <i class="potisen-icon-sprout"></i>
-                            <h3 class="campaing-one__title"><a href="#">Environment</a></h3>
-                            <!-- /.campaing-one__title -->
-                        </div><!-- /.campaing-one__single -->
+                            <div class="campaing-one__single">
+                                <i class="potisen-icon-sprout"></i>
+                                <h3 class="campaing-one__title"></h3>
+                                <!-- /.campaing-one__title -->
+                            </div><!-- /.campaing-one__single -->
 
-                        <div class="history-one__content">
-                            <h3 class="history-one__title">
+                            <div class="history-one__content">
+                                <h3 class="history-one__title">
+                                    {{ $proposal->tit_pro }}
+                                    Potisen Entered in Politics
+                                </h3>
+                                <p class="history-one__text">
+                                    {{ $proposal->des_pro }}
 
-                                Potisen Entered in Politics
-                            </h3>
-                            <p class="history-one__text">There are many variations of passages of lorem Ipsum available but
-                                the majority have suffered alteration in some form injected which don't look of available
-                                but the majority have suffered even slightly believable. Lorem Ipsum is simply dummy text of
-                                the printing and typesetting industry. </p>
-                        </div><!-- /.history-one__content -->
-                    </div><!-- /.history-one__single -->
-                    <div class="history-one__single wow fadeInUp">
-                        <div class="campaing-one__single">
-                            <i class="potisen-icon-sprout"></i>
-                            <h3 class="campaing-one__title"><a href="#">Environment</a></h3>
-                            <!-- /.campaing-one__title -->
-                        </div><!-- /.campaing-one__single -->
-                        <div class="history-one__content">
-                            <h3 class="history-one__title">
+                                </p>
+                            </div><!-- /.history-one__content -->
+                        </div><!-- /.history-one__single -->
 
-                                Potisen was Growing
-                            </h3>
-                            <p class="history-one__text">There are many variations of passages of lorem Ipsum available but
-                                the majority have suffered alteration in some form injected which don't look of available
-                                but the majority have suffered even slightly believable. Lorem Ipsum is simply dummy text of
-                                the printing and typesetting industry. </p>
-                        </div><!-- /.history-one__content -->
-                    </div><!-- /.history-one__single -->
-                    <div class="history-one__single wow fadeInUp">
-                        <div class="campaing-one__single">
-                            <i class="potisen-icon-sprout"></i>
-                            <h3 class="campaing-one__title"><a href="#">Environment</a></h3>
-                            <!-- /.campaing-one__title -->
-                        </div><!-- /.campaing-one__single -->
-                        <div class="history-one__content">
-                            <h3 class="history-one__title">
 
-                                We Become Leader in America
-                            </h3>
-                            <p class="history-one__text">There are many variations of passages of lorem Ipsum available but
-                                the majority have suffered alteration in some form injected which don't look of available
-                                but the majority have suffered even slightly believable. Lorem Ipsum is simply dummy text of
-                                the printing and typesetting industry. </p>
-                        </div><!-- /.history-one__content -->
-                    </div><!-- /.history-one__single -->
+                    @empty
+                        <p>No se encontraron las propuestas.</p>
+                    @endforelse
+
 
                 </div><!-- /.col-lg-12 -->
             </div><!-- /.row -->

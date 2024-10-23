@@ -19,7 +19,7 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         return view('pages.event-detail', compact('event'));
     }
-    
+
     public function search(Request $request)
     {
         $request->validate([
@@ -34,9 +34,9 @@ class EventController extends Controller
         }
 
         if ($request->filled('query')) {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 $q->where('tit_eve', 'LIKE', "%{$request->input('query')}%")
-                ->orWhere('tag_eve', 'LIKE', "%{$request->input('query')}%");
+                    ->orWhere('tag_eve', 'LIKE', "%{$request->input('query')}%");
             });
         }
 
@@ -67,8 +67,7 @@ class EventController extends Controller
 
     public function latestEvents()
     {
-        $events = Event::orderBy('fec_ini_eve', 'desc')->take(3)->get();
-        return view('pages.home', compact('events'));
+        return Event::orderBy('fec_ini_eve', 'desc')->take(3)->get();
     }
 
 }

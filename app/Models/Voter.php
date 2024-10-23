@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Voter extends Model
 {
 
-    protected $table = 'voters'; 
+    protected $table = 'voters';
     protected $primaryKey = 'id_vot';
 
     protected $fillable = [
@@ -22,12 +22,19 @@ class Voter extends Model
     {
         parent::boot();
         static::creating(function ($voter) {
-            if (Voter::where('ema_vot', $voter->ema_vot)->exists())
-            {
+            if (Voter::where('ema_vot', $voter->ema_vot)->exists()) {
                 throw new \Exception("The voter is already registered");
             }
         });
     }
+
+
+    public function politicalParty()
+    {
+        return $this->belongsTo(PoliticalParty::class, 'id_lis_vot');
+    }
+
+
 
     public function suggestions()
     {
