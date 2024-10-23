@@ -163,55 +163,30 @@
     <section class="event-one event-one__home-one">
         <div class="container">
             <div class="block-title text-center">
-
-                <h2 class="block-title__title">Proximos Eventos</h2><!-- /.block-title__title -->
-            </div><!-- /.block-title -->
+                <h2 class="block-title__title">Proximos Eventos</h2>
+            </div>
             <div class="row">
-                <div class="col-xl-4">
-                    <div class="event-one__single">
-                        <div class="event-one__image">
-                            <div class="event-one__image-inner">
-                                <img src="assets/images/event/event-1-1.jpg" alt="">
-                            </div><!-- /.event-one__image-inner -->
-                        </div><!-- /.event-one__image -->
-                        <div class="event-one__content">
-                            <p class="event-one__date">20 Oct, 2019</p>
-                            <h3 class="event-one__title"><a href="event-details.html">Let’s meet your candidate in
-                                    america</a></h3><!-- /.event-one__title -->
-                        </div><!-- /.event-one__content -->
-                    </div><!-- /.event-one__single -->
-                </div><!-- /.col-lg-6 -->
-                <div class="col-xl-4">
-                    <div class="event-one__single">
-                        <div class="event-one__image">
-                            <div class="event-one__image-inner">
-                                <img src="assets/images/event/event-1-2.jpg" alt="">
-                            </div><!-- /.event-one__image-inner -->
-                        </div><!-- /.event-one__image -->
-                        <div class="event-one__content">
-                            <p class="event-one__date">20 Oct, 2019</p>
-                            <h3 class="event-one__title"><a href="event-details.html">Let’s meet your candidate in
-                                    america</a></h3><!-- /.event-one__title -->
-                        </div><!-- /.event-one__content -->
-                    </div><!-- /.event-one__single -->
-                </div><!-- /.col-lg-6 -->
-                <div class="col-xl-4">
-                    <div class="event-one__single">
-                        <div class="event-one__image">
-                            <div class="event-one__image-inner">
-                                <img src="assets/images/event/event-1-3.jpg" alt="">
-                            </div><!-- /.event-one__image-inner -->
-                        </div><!-- /.event-one__image -->
-                        <div class="event-one__content">
-                            <p class="event-one__date">20 Oct, 2019</p>
-                            <h3 class="event-one__title"><a href="event-details.html">Let’s meet your candidate in
-                                    america</a></h3><!-- /.event-one__title -->
-                        </div><!-- /.event-one__content -->
-                    </div><!-- /.event-one__single -->
-                </div><!-- /.col-lg-6 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </section><!-- /.event-one -->
+                @forelse($events as $event)
+                    <div class="col-xl-4">
+                        <div class="event-one__single">
+                            <div class="event-one__image">
+                                <div class="event-one__image-inner">
+                                    <img src="{{ $event->preview_img_url }}" alt="{{ $event->tit_eve }}">
+                                </div>
+                            </div>
+                            <div class="event-one__content">
+                                <p class="event-one__date">{{ $event->formatted_start_date }}</p>
+                                <h3 class="event-one__title"><a href="#">{{ $event->tit_eve }}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p>No upcoming events found.</p>
+                @endforelse
+            </div>
+        </div>
+    </section> 
+    
     <section class="countdown-one thm-gray-bg countdown-one__home-one" style="   padding-top: 50px;padding-bottom: 50px;">
         <div class="container">
             <div class="inner-container">
