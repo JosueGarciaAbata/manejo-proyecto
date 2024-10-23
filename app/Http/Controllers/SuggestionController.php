@@ -32,19 +32,16 @@ class SuggestionController extends Controller
     public function store(StoreSuggestionRequest $request)
     {
         $validatedData=$request->validated();
-        $voter = Voter::where('ema_vot', $validatedData['ema_vot_sug'])->first();
+        $voter = Voter::where('ema_vot', $validatedData['ema_sug'])->first();
 
-        // Si el votante no existe, crear uno nuevo
+        // crear votante si no existe
         if (!$voter) {
-            // Crear el votante sin nombre y apellido
             $voter = Voter::create([
-                'email' => $validatedData['email'], // Guardar solo el correo
-                // Puedes agregar más campos si lo deseas
+                'ema_vot' => $validatedData['ema_sug'], 
             ]);
 
-            // Redirigir a la página de completar el registro
-            return redirect()->route('voters.completeRegistration', ['email' => $validatedData['email']])
-                ->with('success', 'Registro exitoso. Completa tu registro.');
+            return redirect()->route('voters.complete-register', ['email' => $validatedData['ema_sug']])
+                ->with('success', 'Correo electrónico registrado correctamente, completa tu tus datos personales.');
         }
 
         // Crear la sugerencia
@@ -55,7 +52,7 @@ class SuggestionController extends Controller
         ]);
 
         // Redirigir con un mensaje de éxito
-        return redirect()->route('suggestions.index')->with('success', 'Sugerencia enviada con éxito.');
+        return redirect()->route('home')->with('success', 'Sugerencia enviada con éxito.');
     }
 
     /**

@@ -24,7 +24,7 @@ class VoterController extends Controller
             'ape_vot' => $validatedData['ape_vot'],
         ]);
 
-        return redirect()->route('suggestions.index')->with('success', 'Registro completado exitosamente.');
+        return redirect()->route('home')->with('success', 'Registro completado exitosamente.');
     }
 
     

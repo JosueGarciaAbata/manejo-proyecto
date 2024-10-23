@@ -25,6 +25,6 @@ Route::get('/suggestions', [SuggestionController::class,'index'])->name('suggest
 
 Route::post('/suggestions',[SuggestionController::class,'store'])->name('suggestions.store');
 
-Route::get('/voters/complete-register',[VoterController::class,'create'])->name('voters.index');
+Route::get('/voters/complete-register',[VoterController::class,'create'])->name('voters.complete-register');
 
-Route::post('/voters/complete-register',[VoterController::class,'completeRegistration'])->name('voters.register');
+Route::post('/voters/complete-register',[VoterController::class,'store'])->name('voters.register');

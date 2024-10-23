@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Suggestions')
+@section('title', 'Voters Register')
 
 @section('content')
-    <section class="form-voter-registrer">
-        <form action="{{ route('voters.registerComplete') }}" method="POST">
+    <section class="voter-register-container" >
+        <form action="{{ route('voters.register') }}" method="POST" class="voter-register-form add-suggestion">
             @csrf
-            <input type="hidden" name="email" value="{{ request('email') }}"> <!-- Guardar el correo -->
-            <input type="text" name="first_name" placeholder="Nombre" required>
-            <input type="text" name="last_name" placeholder="Apellido" required>
-            <button type="submit">Completar Registro</button>
+            <input type="hidden" name="ema_vot" value="{{ request('email') }}">
+            <input type="text" name="nom_vot" placeholder="Nombre" required>
+            <input type="text" name="ape_vot" placeholder="Apellido" required>
+            <button type="submit">Enviar</button>
         </form>
     </section>
 @endsection
