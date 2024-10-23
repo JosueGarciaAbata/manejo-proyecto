@@ -44,7 +44,9 @@
                     <p class="event-details-box__text">Etiquetas para este evento. Descubre contenido similar.</p>
                     <ul class="sidebar__tags-list">
                         @foreach(explode(',', $event->tag_eve) as $tag)
-                            <li class="sidebar__tags-list-item"><a href="#">{{ trim($tag) }}</a></li>
+                            <li class="sidebar__tags-list-item"><a href="{{ route('events.searchByTag', ['tag' => trim($tag)]) }}">
+                                {{ trim($tag) }}
+                            </a></li>
                         @endforeach
                     </ul>
                 </div><!-- /.event-details-box__single -->

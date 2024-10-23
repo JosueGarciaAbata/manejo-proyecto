@@ -9,53 +9,119 @@
             <h2 class="inner-banner__title">Eventos</h2><!-- /.inner-banner__title -->
             <ul class="list-unstyled thm-breadcrumb">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li>Events</li>
+                <li><a href="{{ route('events') }}">Events</a></li>
             </ul><!-- /.list-unstyled -->
         </div><!-- /.container -->
     </section><!-- /.inner-banner -->
-    <div class="cta-three__bottom">
+    
+    <section class="mailchimp-one">
         <div class="container">
-            <div class="inner-container thm-base-bg-2 text-center wow fadeInUp animated" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-name: fadeInUp;">
-                <img src="assets/images/resources/decor-star-1-2.png" class="cta-three__bottom-star-1" alt="Awesome Image">
-                <h3 class="cta-three__bottom-title">Siempre promoviendo tu bienestar</h3><!-- /.cta-three__bottom-title -->
-                <img src="assets/images/resources/decor-star-1-2.png" class="cta-three__bottom-star-2" alt="Awesome Image">
-            </div><!-- /.inner-container -->
+            <div class="row align-items-center">
+                <div class="col-lg-2">
+                    <h3 class="mailchimp-one__title">Personaliza tú busqueda:</h3><!-- /.mailchimp-one__title -->
+                </div><!-- /.col-lg-5 -->
+                <div class="col-lg-10">
+                    <form method="GET" action="{{ route('events.search') }}" class="mailchimp-one__form row" novalidate="true">
+                        <div class="form-group col-md-4">
+                            <input type="date" id="date" name="date" class="form-control" value="{{ request('date') }}">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" id="query" name="query" class="form-control" placeholder="Buscar por título, tag..." value="{{ request('query') }}">
+                        </div>
+                        
+                        <button type="submit" class="thm-btn mailchimp-one__form-btn">Aplicar</button>
+                        
+                    </form>
+                </div><!-- /.col-lg-7 -->
+            </div>
         </div><!-- /.container -->
-    </div>
+    </section>
+    
     <section class="event-one">
-
-
         <div class="block-title text-center">
             <p class="block-title__tag-line">Descubre nuevos eventos</p>
             <h2 class="block-title__title">Esperamos contar contigo!</h2><!-- /.block-title__title -->
         </div>
         
-
         <div class="container">
+            @if(request()->has('tag'))
+            @php
+                $tags = explode(',', request('tag'));
+            @endphp
+        
+            <div class="row align-items-center" style="padding: 20px 0;">
+                <div class="col-lg-3">
+                    <p class="block-title__tag-line">Tags Seleccionados:</p>
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-8">
+                    <ul class="sidebar__tags-list" style="padding-left: 15px;">
+                        @foreach($tags as $tag)
+                            <li class="sidebar__tags-list-item" style="display: inline-block; margin-right: 10px;">
+                                <a href="{{ route('events.searchByTag', ['tag' => trim($tag)]) }}">
+                                    {{ trim($tag) }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>                                                               
+                </div><!-- /.col-lg-8 -->
+            </div><!-- /.row -->
+        @endif
+        
+
             <div class="row">
                 @forelse ($events as $event)
-                    <div class="col-lg-6">
-                        <div class="event-one__single">
-                            <div class="event-one__image">
-                                <div class="event-one__image-inner">
-                                    <!-- Se utiliza el accessor para obtener la URL de la imagen de previsualización -->
+                <div class="col-lg-6">
+                    <div class="event-one__single">
+                        <div class="event-one__image">
+                            <div class="event-one__image-inner">
+                                <a href="{{ route('event.show', ['id' => $event->id_eve]) }}">
                                     <img src="{{ $event->preview_img_url }}" alt="{{ $event->tit_eve }}">
-                                </div>
-                            </div>
-                            <div class="event-one__content">
-                                <p class="event-one__date">{{ \Carbon\Carbon::parse($event->fec_eve)->format('d M, Y') }}</p>
-                                <h3 class="event-one__title">
-                                    <a href="{{ route('event.show', ['id' => $event->id_eve]) }}">
-                                        {{ $event->tit_eve }}
-                                    </a>
-                                </h3>
+                                </a>
                             </div>
                         </div>
+                        <div class="event-one__content">
+                            <p class="event-one__date">
+                                {{ \Carbon\Carbon::parse($event->fec_ini_eve)->format('d M, Y') }}
+                            </p>
+            
+                            <h3 class="event-one__title">
+                                <a href="{{ route('event.show', ['id' => $event->id_eve]) }}">
+                                    {{ $event->tit_eve }}
+                                </a>
+                            </h3>
+            
+                            <!-- Dirección del evento -->
+                            <p class="event-one__location">
+                                {{ $event->dir_eve ?? 'Ubicación no disponible' }}
+                            </p>
+                            <ul class="sidebar__tags-list">
+                                @foreach(explode(',', $event->tag_eve) as $index => $tag)
+                                    @if($index < 3) <!-- Limitar a 3 tags -->
+                                        <li class="sidebar__tags-list-item">
+                                            <a href="{{ route('events.searchByTag', ['tag' => trim($tag)]) }}">
+                                                {{ trim($tag) }}
+                                            </a>
+                                        </li>
+                                    @else
+                                        @break
+                                    @endif
+                                @endforeach                            
+                                <!--        
+                                @if(count(explode(',', $event->tag_eve)) > 3)
+                                    <li class="sidebar__tags-list-item">
+                                        <a href="#" onclick="showAllTags(event)">Ver más...</a>
+                                    </li>
+                                @endif
+                                -->
+                            </ul>
+                        </div>
                     </div>
-                @empty
-                    <p class="text-center">Aún no existen eventos asignados.</p>
-                @endforelse
-            </div>
+                </div>
+            @empty
+                <p class="text-center">No hay eventos que coincidan con la búsqueda.</p>
+            @endforelse
+            
+            </div>            
             
             @php
                 $currentPage = $events->currentPage();
@@ -108,7 +174,6 @@
             <!-- /.post-pagination -->
         </div>
     </section><!-- /.event-one -->
-
 
 
 @endsection
