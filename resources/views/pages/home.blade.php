@@ -17,12 +17,10 @@
         <div class="container">
             <div class="block-title text-center">
 
-                <h2 class="block-title__title">Somos el Partido ..</h2><!-- /.block-title__title -->
+                <h2 class="block-title__title">Trabajemos Juntos Por Una Mejor Universidad Técnica De Ambato</h2>
+                <!-- /.block-title__title -->
             </div><!-- /.block-title -->
-            <p class="about-one__text text-center m-0" style="font-size: 30px;">There are many variations of passages of
-                available but the majority
-                have suffered alteration in some <br> form, by injected humou or randomised words. Proin ac lobortis arcu, a
-                vestibulum aug ipsum neque, <br> facilisis vel mollis vitae. Quisque aliquam dictum condim.</p>
+
             <div class="block-title text-center">
                 <img src="{{ asset('assets/images/logo_without_background.png') }}" alt="Awesome Image" class="wow zoomIn"
                     data-wow-duration="1500ms">
@@ -46,25 +44,25 @@
                     <div class="about-three__content">
                         <div class="block-title text-left">
 
-                            <h2 class="block-title__title">Mission and Vision</h2><!-- /.block-title__title -->
+                            <h2 class="block-title__title">Msión y Visión</h2><!-- /.block-title__title -->
                         </div><!-- /.block-title -->
                         <div class="about-three__box-wrap">
                             <div class="about-three__box">
                                 <i class="potisen-icon-bid"></i>
-                                <h4 class="about-three__box-title">Civil Rights <br> Attorney</h4>
-                                <!-- /.about-three__box-title -->
+                                <h4 class="about-three__box-title">Excelencia Académica
+                                    <!-- /.about-three__box-title -->
                             </div><!-- /.about-three__box -->
                             <div class="about-three__box">
                                 <i class="potisen-icon-work"></i>
-                                <h4 class="about-three__box-title">Majored in <br> Political</h4>
-                                <!-- /.about-three__box-title -->
+                                <h4 class="about-three__box-title">Formación Integral
+                                    <!-- /.about-three__box-title -->
                             </div><!-- /.about-three__box -->
                             <div class="about-three__box">
                                 <i class="potisen-icon-politics"></i>
-                                <h4 class="about-three__box-title">Political <br> Solutions</h4>
+                                <h4 class="about-three__box-title">Compromiso <br> Social y Ético</h4>
                                 <!-- /.about-three__box-title -->
                             </div><!-- /.about-three__box -->
-                        </div><!-- /.about-three__box-wrap -->
+                        </div>
                         <p class="about-three__text">There are many variations of passages of Lorem Ipsum available, but the
                             majority have suffered alteration in some form, by injected humour, or randomised words which
                             don't look even slightly believable.</p><!-- /.about-three__text -->
@@ -94,7 +92,7 @@
         <div class="container">
             <div class="block-title text-center">
 
-                <h2 class="block-title__title">Principales Propuestas</h2><!-- /.block-title__title -->
+                <h2 class="block-title__title">Propuestas</h2><!-- /.block-title__title -->
             </div><!-- /.block-title -->
             <div class="row">
                 <div class="col-lg-12">
@@ -176,7 +174,8 @@
                             </div>
                             <div class="event-one__content">
                                 <p class="event-one__date">{{ $event->formatted_start_date }}</p>
-                                <h3 class="event-one__title"><a href="#">{{ $event->tit_eve }}</a></h3>
+                                <h3 class="event-one__title"> <a
+                                        href="{{ url('/event/' . $event->id_eve) }}">{{ $event->tit_eve }}</a></h3>
                             </div>
                         </div>
                     </div>
@@ -185,8 +184,8 @@
                 @endforelse
             </div>
         </div>
-    </section> 
-    
+    </section>
+
     <section class="countdown-one thm-gray-bg countdown-one__home-one" style="   padding-top: 50px;padding-bottom: 50px;">
         <div class="container">
             <div class="inner-container">
@@ -194,8 +193,7 @@
                     <div class="col-xl-6">
                         <h3 class="countdown-one__title">Las votaciones empiezan en:</h3><!-- /.countdown-one__title -->
                     </div><!-- /.col-lg-6 -->
-                    <div
-                        class="col-xl-6 d-flex justify-content-xl-end justify-content-lg-center justify-content-sm-center">
+                    <div class="col-xl-6 d-flex justify-content-xl-end justify-content-lg-center justify-content-sm-center">
                         <div class="countdown-one__right">
                             <ul class="countdown-one__list list-unstyled">
                                 <!-- content loading via js -->

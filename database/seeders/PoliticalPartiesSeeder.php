@@ -16,11 +16,13 @@ class PoliticalPartiesSeeder extends Seeder
         PoliticalParty::create([
             'nom_lis' => 'Lista A',
             'des_lis' => 'Descripción de la lista A',
+            'mis_vis_lis' => 'Transformar la Universidad Técnica de Ambato en un referente de excelencia académica y de investigación, promoviendo un ambiente inclusivo y participativo que potencie el desarrollo integral de nuestros estudiantes, docentes y la comunidad. Aspiramos a construir una UTA moderna, comprometida con la calidad educativa, la innovación y la responsabilidad social, formando profesionales competentes y éticos que enfrenten los desafíos del mundo actual y contribuyan al desarrollo sostenible del país.'
         ]);
 
         PoliticalParty::create([
             'nom_lis' => 'Lista B',
             'des_lis' => 'Descripción de la lista B',
+            'mis_vis_lis' => null
         ]);
     }
 }
