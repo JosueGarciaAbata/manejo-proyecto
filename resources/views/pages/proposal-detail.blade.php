@@ -49,11 +49,11 @@
     <section class="event-details-box">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 wow fadeInLeft animated same-height"
+                <div class="col-lg-6 wow fadeInLeft animated same-height"
                     style="visibility: visible; animation-name: fadeInLeft;">
                     <div class="event-details-box__single thm-base-bg">
                         <h3 class="event-details-box__title">Tags</h3>
-                        <p class="event-details-box__text">Etiquetas para esta propuestas. Descubre contenido similar.
+                        <p class="event-details-box__text">Descubre contenido similar.
                         </p>
                         <ul class="sidebar__tags-list">
                             @foreach (explode(',', $proposal->tags_pro) as $tag)
@@ -64,13 +64,13 @@
                             @endforeach
                         </ul>
                     </div><!-- /.proposal-details-box__single -->
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-4 wow fadeInRight animated same-height"
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6 wow fadeInRight animated same-height"
                     style="visibility: visible; animation-name: fadeInRight;">
                     <div class="event-details-box__single thm-base-bg-2">
                         <h3 class="event-details-box__title">Venue</h3>
                         <p class="event-details-box__text">
-                            ¡Te invitamos a formar parte de este proposalo único! Tu presencia marcará la diferencia.
+                            ¡Apoya esta propuesta y contribuye con la universidad!
                         </p>
                         <ul class="list-unstyled event-details-box__list">
                             <!-- Fecha del evento -->
