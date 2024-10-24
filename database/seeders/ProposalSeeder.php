@@ -29,6 +29,7 @@ class ProposalSeeder extends Seeder
             'des_pro' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ipsam nobis magnam eos, ut ipsum? Accusantium, eum eius! Ipsum nihil nemo ipsa culpa sunt? Magni repellendus soluta enim labore ipsum!',
             'fec_inc_pro' => '2024-10-01',
             'tags_pro' => 'Administración, Eficiencia',
+            'img_pro'=> 'prop_img.jpg',
             'id_can_pro' => $juan->id_can,
         ]);
 
@@ -37,6 +38,7 @@ class ProposalSeeder extends Seeder
             'des_pro' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ipsam nobis magnam eos, ut ipsum? Accusantium, eum eius! Ipsum nihil nemo ipsa culpa sunt? Magni repellendus soluta enim labore ipsum!',
             'fec_inc_pro' => '2024-09-15',
             'tags_pro' => 'Educación, Innovación',
+            'img_pro'=> 'prop_img.jpg',
             'id_can_pro' => $maria->id_can,
         ]);
 
@@ -45,6 +47,7 @@ class ProposalSeeder extends Seeder
             'des_pro' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ipsam nobis magnam eos, ut ipsum? Accusantium, eum eius! Ipsum nihil nemo ipsa culpa sunt? Magni repellendus soluta enim labore ipsum!',
             'fec_inc_pro' => '2024-08-30',
             'tags_pro' => 'Investigación, Ciencias',
+            'img_pro'=> 'prop_img.jpg',
             'id_can_pro' => $carlos->id_can,
         ]);
 
@@ -53,6 +56,7 @@ class ProposalSeeder extends Seeder
             'des_pro' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ipsam nobis magnam eos, ut ipsum? Accusantium, eum eius! Ipsum nihil nemo ipsa culpa sunt? Magni repellendus soluta enim labore ipsum!',
             'fec_inc_pro' => '2024-07-20',
             'tags_pro' => 'Finanzas, Gestión',
+            'img_pro'=> 'prop_img.jpg',
             'id_can_pro' => $ana->id_can,
         ]);
 
@@ -61,6 +65,7 @@ class ProposalSeeder extends Seeder
             'des_pro' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ipsam nobis magnam eos, ut ipsum? Accusantium, eum eius! Ipsum nihil nemo ipsa culpa sunt? Magni repellendus soluta enim labore ipsum!',
             'fec_inc_pro' => '2024-06-10',
             'tags_pro' => 'Derecho, Reforma',
+            'img_pro'=> 'prop_img.jpg',
             'id_can_pro' => $pedro->id_can,
         ]);
     }

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('tit_pro', 255);
             $table->text('des_pro'); 
             $table->date('fec_inc_pro'); 
-            $table->string('tags_pro', 500); 
+            $table->string('tags_pro', 500);
+            $table->string('img_pro')->nullable();
             $table->foreignId('id_can_pro')
                   ->constrained('candidates', 'id_can')
                   ->onDelete('cascade');
