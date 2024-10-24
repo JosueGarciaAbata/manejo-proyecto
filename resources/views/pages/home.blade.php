@@ -106,7 +106,6 @@
                             <div class="history-one__content">
                                 <h3 class="history-one__title">
                                     {{ $proposal->tit_pro }}
-
                                 </h3>
                                 <p class="history-one__text">
                                     {{ $proposal->des_pro }}
