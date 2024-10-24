@@ -22,7 +22,7 @@
                 </div><!-- /.col-lg-5 -->
                 <div class="col-lg-10">
                     <form method="GET" action="{{ route('proposals.search') }}" class="mailchimp-one__form row" novalidate="true">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <input type="date" id="date" name="date" class="form-control" value="{{ request('date') }}">
                         </div>
                         <div class="form-group col-md-6">
