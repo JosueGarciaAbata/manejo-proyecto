@@ -30,17 +30,17 @@ class ProposalController extends Controller
         $query = Proposal::query();
 
         if ($request->filled('date')) {
-            $query->whereDate('fec_ini_pro', $request->input('date'));
+            $query->whereDate('fec_inc_pro', $request->input('date'));
         }
 
         if ($request->filled('query')) {
             $query->where(function ($q) use ($request) {
                 $q->where('tit_pro', 'LIKE', "%{$request->input('query')}%")
-                    ->orWhere('tag_pro', 'LIKE', "%{$request->input('query')}%");
+                    ->orWhere('tags_pro', 'LIKE', "%{$request->input('query')}%");
             });
         }
 
-        $Proposals = $query->paginate(6);
+        $proposals = $query->paginate(6);
 
         return view('pages.proposals', compact('proposals'));
     }
@@ -51,7 +51,7 @@ class ProposalController extends Controller
             'date' => 'required|date',
         ]);
 
-        $proposals = Proposal::whereDate('fec_ini_pro', $request->date)->paginate(6);
+        $proposals = Proposal::whereDate('fec_inc_pro', $request->date)->paginate(6);
         return view('pages.proposals', compact('proposals'));
     }
 
@@ -61,13 +61,13 @@ class ProposalController extends Controller
             'tag' => 'required|string',
         ]);
 
-        $proposals = Proposal::where('tag_pro', 'LIKE', "%{$request->tag}%")->paginate(6);
+        $proposals = Proposal::where('tags_pro', 'LIKE', "%{$request->tag}%")->paginate(6);
         return view('pages.proposals', compact('proposals'));
     }
 
     public function latestProposals()
     {
-        return Proposal::orderBy('fec_ini_pro', 'desc')->take(3)->get();
+        return Proposal::orderBy('fec_inc_pro', 'desc')->take(3)->get();
     }
 
 }
