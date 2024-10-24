@@ -9,7 +9,7 @@
             <h2 class="inner-banner__title">Propuestas</h2><!-- /.inner-banner__title -->
             <ul class="list-unstyled thm-breadcrumb">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('proposals') }}">proposals</a></li>
+                <li><a href="{{ route('proposals') }}">Proposals</a></li>
             </ul><!-- /.list-unstyled -->
         </div><!-- /.container -->
     </section><!-- /.inner-banner -->
@@ -75,7 +75,7 @@
                         <div class="proposal-one__image">
                             <div class="proposal-one__image-inner">
                                 <a href="{{ route('proposal.show', ['id' => $proposal->id_pro]) }}">
-                                    <img src="{{ $proposal->preview_img_url }}" alt="{{ $proposal->tit_pro }}">
+                                    <img src="{{ asset('assets/images/resources/' . $proposal->img_pro) }}" alt="{{ $proposal->tit_pro }}">
                                 </a>
                             </div>
                         </div>
