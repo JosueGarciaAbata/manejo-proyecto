@@ -1703,7 +1703,7 @@ h6 {
     background-position: center center;
     background-size: cover;
     position: relative;
-    padding-top: 120px;
+    padding-top: 10px;
 }
 
 .site-footer .list-unstyled {
@@ -1859,7 +1859,7 @@ h6 {
 
 .site-footer__upper {
     padding-top: 100px;
-    padding-bottom: 75px;
+    padding-bottom: 15px;
 }
 
 .site-footer__bottom .container {
