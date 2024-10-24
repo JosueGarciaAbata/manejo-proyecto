@@ -16,23 +16,33 @@
     </section><!-- /.inner-banner -->
 
 
-<!--No hace falta un nuevo estilo para las propuestas-->
+    <!--No hace falta un nuevo estilo para las propuestas-->
     <section class="event-details">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
+            @if ($proposal->img_pro != null)
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="event-details__content">
+                            <h3 class="event-details__title">{{ $proposal->tit_pro }}</h3>
+                            <p class="event-details__text">{{ $proposal->des_pro }}</p>
+                        </div><!-- /.proposal-details__content -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="event-details__image wow fadeInRight animated"
+                            style="visibility: visible; animation-name: fadeInRight;">
+                            <img src="{{ asset('assets/images/resources/' . $proposal->img_pro) }}" alt="proposal image"
+                                class="img-fluid">
+                        </div><!-- /.proposal-details__image -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            @else
+                <div class="row">
                     <div class="event-details__content">
                         <h3 class="event-details__title">{{ $proposal->tit_pro }}</h3>
                         <p class="event-details__text">{{ $proposal->des_pro }}</p>
-                    </div><!-- /.proposal-details__content -->
-                </div><!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="event-details__image wow fadeInRight animated"
-                        style="visibility: visible; animation-name: fadeInRight;">
-                        <img src="{{ $proposal->resource_img_url }}" alt="proposal image" class="img-fluid">
-                    </div><!-- /.proposal-details__image -->
-                </div><!-- /.col-lg-6 -->
-            </div><!-- /.row -->
+                    </div>
+                </div>
+            @endif
         </div><!-- /.container -->
     </section>
 
