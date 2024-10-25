@@ -13,6 +13,8 @@ Route::get('/', function () {
 
 Route::get('/candidates', [CandidateController::class, 'show']);
 
+Route::post('/candidates',[VoterController::class,'vote'])->name('vote.store');
+
 Route::get('/eventsAndNews', [EventController::class, 'index'])->name('events');
 
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');

@@ -20,3 +20,4 @@
 <!-- Template scripts -->
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 <script src="{{ asset('assets/js/suggestions.js') }}"></script>
+<script src="{{ asset('assets/js/candidates.js') }}"></script>
