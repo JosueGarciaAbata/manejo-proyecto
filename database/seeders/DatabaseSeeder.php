@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             VoterSeeder::class,
             SuggestionSeeder::class,
             EventsSeeder::class,
+            IconSeeder::class,
+            SocialLinkSeeder::class,
         ]);
 
         // User::factory(10)->create();

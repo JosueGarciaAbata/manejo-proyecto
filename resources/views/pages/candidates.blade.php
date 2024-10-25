@@ -6,10 +6,10 @@
     <!-- Breadcrumb Section Begin -->
     <section class="inner-banner">
         <div class="container">
-            <h2 class="inner-banner__title">All candidates</h2><!-- /.inner-banner_title -->
+            <h2 class="inner-banner__title">Nuestros candidatos</h2><!-- /.inner-banner_title -->
             <ul class="list-unstyled thm-breadcrumb">
-                <li><a href="{{ route('home') }}">Home</a></li>
-                <li>Events</li>
+                <li><a href="{{ route('home') }}">Inicio</a></li>
+                <li>Candidatos</li>
             </ul><!-- /.list-unstyled -->
         </div><!-- /.container -->
     </section><!-- /.inner-banner -->
@@ -37,7 +37,11 @@
                                     <div class="col-lg-6">
                                         <div class="cd-text">
                                             <div class="cd-title">
-                                                <h4>{{ $candidate->nom_can }}, {{ $candidate->ape_can }}</h4>
+                                                <h4>
+                                                    <a href="{{ route('candidate', ['id' => $candidate->id_can]) }}">
+                                                        {{ $candidate->nom_can }}, {{ $candidate->ape_can }}
+                                                    </a>
+                                                </h4>
                                                 <span>{{ $candidate->car_can }}</span>
                                                 <span>{{ $candidate->tit_can }}</span>
                                                 <span>{{ $candidate->fec_ing_can }}</span>

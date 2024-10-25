@@ -15,7 +15,7 @@ class CandidateController extends Controller
 
     public function candidate($id)
     {
-        $candidate = Candidate::find($id);
+        $candidate = Candidate::with('socialLinks.icon')->find($id);
         return view('pages.candidate', compact('candidate'));
     }
 }

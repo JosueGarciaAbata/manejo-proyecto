@@ -1,43 +1,74 @@
+/* Candidates section */
+
 .candidate {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 8rem;
+    gap: 3rem;
     padding-top: 120px;
     padding-bottom: 120px;
     padding-left: 50px;
     padding-right: 50px;
 }
 
-.candidate .candidate-content h1 {
-    font-size: 50px;
-    font-weight: 700;
-    line-height: 1.3;
-}
-
-span {
-    color: #b74b4b;
+.candidate-content h1 {
+    font-size: 40px;
 }
 
 .candidate-content h3 {
     font-size: 30px;
+    margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+span {
+    color: blue;
 }
 
 .candidate-content p {
     font-size: 15px;
-}
-
-.candidate-img {
-    border-radius: 50%;
+    letter-spacing: 1.3px;
 }
 
 .candidate-img img {
-    position: relative;
     width: 32vw;
     border-radius: 50%;
-    box-shadow: 0 0 25px solid #b74b4b;
     cursor: pointer;
-    transition: 0.2s linear;
+    transition: transform 0.3s ease;
+}
+
+.candidate-img img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .candidate {
+        flex-direction: column;
+    }
+    .candidate-img img {
+        width: 70vw; /* Cambiar el tamaño de la imagen en pantallas pequeñas */
+    }
+}
+
+/* Social icons section */
+
+.social-icons {
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.social-icons img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.social-icons a {
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
 }

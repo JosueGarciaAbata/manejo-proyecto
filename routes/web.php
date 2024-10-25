@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
-Route::get('/candidates', [CandidateController::class, 'show']);
-Route::get('/candidate/{id}', [CandidateController::class, 'candidate']);
+Route::get('/candidates', [CandidateController::class, 'show'])->name('candidatos');
+Route::get('/candidate/{id}', [CandidateController::class, 'candidate'])->name('candidate');
 
 Route::get('/eventsAndNews', [EventController::class, 'index'])->name('events');
 Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
