@@ -75,22 +75,5 @@ class SocialLinkSeeder extends Seeder
             'platform_soc' => 'Instagram',
             'url_soc' => 'https://www.instagram.com/sandra_villacis_v/?hl=es',
         ]);
-
-
-        // El ultimo registro que no esta asociado a nada, pero si lo borro tambien toca cambiar 
-        // otras partes de sus codigos
-        SocialLink::create([
-            'id_can_soc' => 5,
-            'id_icon_soc' => 1,
-            'platform_soc' => 'Facebook',
-            'url_soc' => 'https://www.facebook.com/sandra.v.valencia.73?locale=es_LA',
-        ]);
-
-        SocialLink::create([
-            'id_can_soc' => 5,
-            'id_icon_soc' => 2,
-            'platform_soc' => 'Instagram',
-            'url_soc' => 'https://www.instagram.com/sandra_villacis_v/?hl=es',
-        ]);
     }
 }
