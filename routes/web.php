@@ -39,4 +39,4 @@ Route::get('/voters/complete-register',[VoterController::class,'create'])->name(
 
 Route::post('/voters/complete-register',[VoterController::class,'store'])->name('voters.register');
 
-Route::get('/vote', [VoteController::class, 'show']);
+Route::get('/poll', [VoteController::class, 'show'])->name('poll');
