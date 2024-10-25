@@ -27,18 +27,21 @@ class VoteController extends Controller
     public function getAllVotes()
     {
         $parties = $this->getAllLists();
-        $votes = [];
+        $data = [];
         foreach ($parties as $party) {
             $voteCount = $this->countVotesForList($party->id_lis);
-            $votes[] = [
+            $data[] = [
                 'party' => $party->nom_lis,
                 'votes' => $voteCount
             ];
         }
-        $data = [
-            'numVotes' => $this->getAllVoters(),
-            'partyVotes' => $votes
-        ];
         return $data;
+    }
+
+    public function show(){
+        return view('pages.poll',[
+            'totVotes' => $this->getAllVoters(),
+            'partyVotes' => $this->getAllVotes()
+        ]);
     }
 }
