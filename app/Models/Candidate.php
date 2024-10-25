@@ -19,6 +19,7 @@ class Candidate extends Model
         'car_can',
         'tit_can',
         'fec_ing_can',
+        'descrip_can',
         'id_pol_par_bel',
     ];
 
