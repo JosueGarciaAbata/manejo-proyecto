@@ -26,7 +26,9 @@ class VoterController extends Controller
         // verifiar que exista
         $idCan=Candidate::where("id_can", $data["id_can"]);
         $idVot=Voter::where("ema_vot", $data["ema_vot"]);
-
+        if(!$idVot){
+            Voter::create()
+        }
         if(!$idCan){
             # redirigir al home
         }
