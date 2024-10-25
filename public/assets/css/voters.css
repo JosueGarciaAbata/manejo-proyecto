@@ -1,0 +1,33 @@
+.voter-register-container{
+    width: 50vw;
+    margin: 0 auto;
+}
+
+.voter-register-form{
+    display: flex;
+    flex-direction: column;
+}
+.voter-register-form > *{
+    width: 15vw;
+    padding: 1rem;
+}
+
+
+.voter-register-form button{
+    width: 8em;
+    height: 4em;
+    padding: 0.5rem 2rem 1rem 2rem;
+    top: 1rem;
+    left: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    color: #eee;
+}
+
+
+.voter-register-form button:hover{
+    background-color: #d41e44;
+}
