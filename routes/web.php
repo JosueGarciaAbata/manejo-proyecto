@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
-Route::get('/candidates', [CandidateController::class, 'show'])->name('candidates');
-
-Route::post('/candidates',[VoterController::class,'vote'])->name('vote.store');
+Route::get('/candidates', [CandidateController::class, 'show'])->name('candidatos');
+Route::get('/candidate/{id}', [CandidateController::class, 'candidate'])->name('candidate');
 
 Route::get('/eventsAndNews', [EventController::class, 'index'])->name('events');
 Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
@@ -40,4 +39,4 @@ Route::get('/voters/complete-register',[VoterController::class,'create'])->name(
 
 Route::post('/voters/complete-register',[VoterController::class,'store'])->name('voters.register');
 
-Route::get('/vote', [VoteController::class,'show']);
+Route::get('/vote', [VoteController::class, 'show']);

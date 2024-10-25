@@ -14,7 +14,7 @@
 /* Candidates section */
 
 .candidates-section {
-    margin-top: 30px;
+    padding-top: 120px;
 }
 
 .candidate-item {
@@ -22,17 +22,24 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .candidate-item .cd-pic img {
-    max-width: 100px;
+    max-width: 100%;
     min-width: 100%;
-    height: auto;
+    height: 216px;
     border-radius: 2px;
+    object-fit: cover;
+}
+
+.candidate-item .cd-text {
+    padding: 0 10px;
 }
 
 .candidate-item .cd-text .cd-title {
     margin-bottom: 28px;
+    margin-top: 10px;
 }
 
 .candidate-item .cd-text .cd-title h4 {
