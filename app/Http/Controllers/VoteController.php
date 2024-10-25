@@ -20,8 +20,8 @@ class VoteController extends Controller
         return Voter::where('id_lis_vot', $listId)->count();
     }
 
-    public function getAllVoters() {
-        return Voter::all()->count();
+    public function getApoliticalVoters() {
+        return Voter::where('id_lis_vot',null);
     }
 
     public function getAllVotes()
@@ -43,7 +43,7 @@ class VoteController extends Controller
 
     public function show(){
         return view('pages.poll',[
-            'totVotes' => $this->getAllVoters(),
+            'nullVotes' => $this->getApoliticalVoters(),
             'partyVotes' => $this->getAllVotes()
         ]);
     }
