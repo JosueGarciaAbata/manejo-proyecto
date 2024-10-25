@@ -10,6 +10,7 @@
                     <li><a href="{{ url('/eventsAndNews') }}">Eventos y Noticias</a></li>
                     <li><a href="{{ url('/proposals') }}">Propuestas</a></li>
                     <li><a href="{{ url('/suggestions') }}">Sugerencias</a></li>
+                    <li><a href="{{ url('/vote') }}">Vota Ahora!</a></li>
                 </ul>
             </div>
 
