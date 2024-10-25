@@ -6,7 +6,7 @@
 
     <section class="inner-banner">
         <div class="container">
-            <h2 class="inner-banner__title">Candidate {{ $candidate->nom_can }}</h2><!-- /.inner-banner_title -->
+            <h2 class="inner-banner__title">Candidato {{ $candidate->nom_can }}</h2><!-- /.inner-banner_title -->
             <ul class="list-unstyled thm-breadcrumb">
                 <li><a href="{{ route('candidatos') }}">Candidatos</a></li>
                 <li>Candidato</li>
