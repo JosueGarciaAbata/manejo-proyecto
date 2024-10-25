@@ -27,14 +27,17 @@ class VoteController extends Controller
     public function getAllVotes()
     {
         $parties = $this->getAllLists();
-        $data = [];
+        $lists = [];
+        $votes = [];
         foreach ($parties as $party) {
             $voteCount = $this->countVotesForList($party->id_lis);
-            $data[] = [
-                'party' => $party->nom_lis,
-                'votes' => $voteCount
-            ];
+            $lists[] = $party->nom_lis;
+            $votes[] = $voteCount;
         }
+        $data = [
+            'parties' => $lists,
+            'votes' => $votes
+        ];
         return $data;
     }
 
