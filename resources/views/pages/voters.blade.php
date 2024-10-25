@@ -3,6 +3,8 @@
 @section('title', 'Voters Register')
 
 @section('content')
+    <h1>Completa tu registro</h1>
+    <p>Tus datos personales pueden mostrarse al dar una sugerencia.</p>
     <section class="voter-register-container" >
         <form action="{{ route('voters.register') }}" method="POST" class="voter-register-form add-suggestion">
             @csrf
@@ -12,4 +14,5 @@
             <button type="submit">Enviar</button>
         </form>
     </section>
+
 @endsection

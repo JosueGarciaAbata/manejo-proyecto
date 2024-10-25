@@ -116,4 +116,6 @@
         <!-- /.post-pagination -->
     </div>
     </section><!-- /.event-one -->
+    <script src="{{ asset('assets/js/suggestions.js') }}"></script>
+
 @endsection

@@ -11,7 +11,7 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-Route::get('/candidates', [CandidateController::class, 'show']);
+Route::get('/candidates', [CandidateController::class, 'show'])->name('candidates');
 
 Route::post('/candidates',[VoterController::class,'vote'])->name('vote.store');
 

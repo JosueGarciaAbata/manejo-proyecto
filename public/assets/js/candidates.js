@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     candidates.forEach(candidate => {
         candidate.addEventListener("click", () =>modal.style.display = "block");
+        const candidateId = candidate.querySelector(".cd-pic").id;
+        document.getElementById("id_can").value = candidateId;
     });
 
     window.addEventListener("click", (event) => {

@@ -27,7 +27,7 @@
                         <div class="candidate-item">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="cd-pic" id="{{$candidate->id_can}}">
+                                    <div class="cd-pic" id="{{ $candidate->id_can }}">
                                         <img class="rounded" src="{{ asset('assets/images/candidates/candidate.jpg') }}"
                                             alt="{{ $candidate->car_can }}">
                                         <div class="overlay">
@@ -69,7 +69,7 @@
                         <form action="{{ route('vote.store') }}" method="POST" class="mailchimp-one__form add-vote">
                             @csrf
                             <input type="hidden" name='id_can' id="id_can" value="">
-                            <input type="text" name='ema_sug' placeholder="Email">
+                            <input type="text" name='ema_vot' placeholder="Email">
                             <button type="submit" class="thm-btn mailchimp-one__form-btn">Enviar</button>
                         </form>
                     </div>
@@ -79,4 +79,5 @@
 
         </article>
     </section>
+    <script src="{{ asset('assets/js/candidates.js') }}"></script>
 @endsection
