@@ -4,6 +4,7 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,3 +31,5 @@ Route::get('/proposal/{id}', [ProposalController::class, 'show'])->name('proposa
 Route::get('/suggestions', function () {
     return view('pages.suggestions');
 });
+
+Route::get('/vote', [VoteController::class,'show']);
