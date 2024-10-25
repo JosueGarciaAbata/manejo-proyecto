@@ -1,0 +1,106 @@
+.suggestion-details {
+    display: none;
+}
+
+.suggestion {
+    padding: 1rem;
+}
+#add-suggestion:hover {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 12.5rem;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Se activará el scroll si es necesario */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contenido-modal {
+    position: relative; /* Relativo con respecto al contenedor -modal- */
+    background-color: white;
+    margin: auto; /* Centrada */
+    padding: 1.25rem;
+    width: 60%;
+    -webkit-animation-name: animarsuperior;
+    -webkit-animation-duration: 0.5s;
+    animation-name: animarsuperior;
+    animation-duration: 0.5s;
+}
+
+/* Animación */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes animarsuperior {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+/* Botón cerrar */
+.close {
+    color: black;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add-suggestion {
+    display: flexbox;
+    flex-direction: column;
+}
+
+.add-suggestion input,
+textarea {
+    background-color: rgb(238, 241, 246);
+    color: #0c1a3c;
+    border: thin solid #333;
+    margin-bottom: 0.25rem;
+    margin-left: 1rem;
+    width: 50vw;
+    padding: 1rem;
+}
+
+.add-suggestion button {
+    background-color: #222;
+    position: relative;
+    bottom: 3rem;
+    left: 32vw;
+    width: auto;
+}
+.add-suggestion button:hover{
+    background-color: #d41e44;
+    color: #fff;
+}
+
+textarea {
+    height: 8rem;
+}

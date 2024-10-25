@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\VoterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\VoteController;
@@ -28,8 +30,12 @@ Route::get('/proposals/search/date', [ProposalController::class, 'searchByDate']
 
 Route::get('/proposal/{id}', [ProposalController::class, 'show'])->name('proposal.show');
 
-Route::get('/suggestions', function () {
-    return view('pages.suggestions');
-});
+Route::get('/suggestions', [SuggestionController::class,'index'])->name('suggestions.index');
+
+Route::post('/suggestions',[SuggestionController::class,'store'])->name('suggestions.store');
+
+Route::get('/voters/complete-register',[VoterController::class,'create'])->name('voters.complete-register');
+
+Route::post('/voters/complete-register',[VoterController::class,'store'])->name('voters.register');
 
 Route::get('/vote', [VoteController::class,'show']);
