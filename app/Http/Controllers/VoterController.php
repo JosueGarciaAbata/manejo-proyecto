@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreVoterDataRequest;
 use App\Models\Candidate;
 use App\Models\Voter;
+use App\Models\PoliticalParty;
 use Illuminate\Http\Request;
 
 class VoterController extends Controller
@@ -47,6 +48,39 @@ class VoterController extends Controller
         }
 
         return redirect()->route('candidates')->with('success', 'Registro completado exitosamente.');
+    }
+
+    public function voteParty(Request $request) {
+        $validatedData = $request->validate([
+            "id_lis" => "required|integer", 
+            "ema_vot" => "required|email",
+        ]);
+
+        $party = PoliticalParty::find($validatedData["id_lis"]);
+
+        if (!$party) {
+            return redirect()->route('home')->with('fail', 'La lista no se encuentra registrada');
+        }
+
+        $voter = Voter::where("ema_vot", $validatedData["ema_vot"])->first();
+        $isNewVoter = !$voter;
+
+        if ($isNewVoter) {
+            $voter = Voter::create([
+                'ema_vot' => $validatedData['ema_vot'],  
+            ]);
+        }
+
+        $voter->update([
+            "id_lis_vot" => $$party->id_lis,
+        ]);
+
+        if ($isNewVoter) {
+            return redirect()->route('voters.complete-register', ['email' => $validatedData['ema_vot']])
+                ->with('success', 'Correo electrónico registrado correctamente, completa tus datos personales.');
+        }
+
+        return redirect()->route('vote')->with('success', 'Registro completado exitosamente.');
     }
 
     public function store(StoreVoterDataRequest $request)
