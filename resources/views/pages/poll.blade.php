@@ -25,7 +25,9 @@
             <div class="row">
                 <form action="{{ route('home') }}" method="GET">
                     @foreach($partyVotes['parties'] as $party)
-                    
+                        <p>
+                            {{ $party }}
+                        </p>
                     @endforeach
                 </form>
             </div>
@@ -67,7 +69,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-9">
-                        <form action="{{ route('vote.store') }}" method="POST" class="mailchimp-one__form add-vote">
+                        <form action="{{ route('home') }}" method="GET" class="mailchimp-one__form add-vote">
                             @csrf
                             <input type="hidden" name="id_can" id="id_can" value="">
                             <input type="text" name="ema_vot" placeholder="Email" required>
