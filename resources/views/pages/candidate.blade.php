@@ -8,7 +8,7 @@
         <div class="container">
             <h2 class="inner-banner__title">Candidato {{ $candidate->nom_can }}</h2><!-- /.inner-banner_title -->
             <ul class="list-unstyled thm-breadcrumb">
-                <li><a href="{{ route('candidatos') }}">Candidatos</a></li>
+                <li><a href="{{ route('candidates') }}">Candidatos</a></li>
                 <li>Candidato</li>
             </ul><!-- /.list-unstyled -->
         </div><!-- /.container -->
