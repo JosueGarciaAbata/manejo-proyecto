@@ -12,6 +12,7 @@
     </div>
     <div id="form-add-suggestion" class="modal">
         <div class="contenido-modal">
+            <span class="cerrar">&times;</span>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -35,7 +36,6 @@
                     </div>
                 </div>
             </div>
-            <span class="cerrar">&times;</span>
 
         </div>
     </div>

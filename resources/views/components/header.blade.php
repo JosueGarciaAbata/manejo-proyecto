@@ -10,11 +10,8 @@
                     <li><a href="{{ url('/eventsAndNews') }}">Eventos y Noticias</a></li>
                     <li><a href="{{ url('/proposals') }}">Propuestas</a></li>
                     <li><a href="{{ url('/suggestions') }}">Sugerencias</a></li>
-<<<<<<< HEAD
                     <li><a href="{{ url('/voters/statistics') }}">Estadisticas</a></li>
-=======
-                    <li><a href="{{ url('/vote') }}">Vota Ahora!</a></li>
->>>>>>> eb4f041e4f8f935df05fba8963f7ac27c7e0f690
+                    {{-- <li><a href="{{ url('/vote') }}">Vota Ahora!</a></li> Ni idea, pero da error al encontrar la pagina--}}
                 </ul>
             </div>
 
@@ -22,10 +19,8 @@
                 <div class="header-social">
                     <a href="https://www.facebook.com/profile.php?id=61565950187878" class="fa fa-facebook-square"></a>
                     <a href="https://www.instagram.com/marycruzlascano/" class="fa fa-instagram"></a>
-
-
-                </div><!-- /.header-social -->
-            </div><!-- /.right-side-box -->
+                </div>
+            </div>
         </div>
     </nav>
 </header>

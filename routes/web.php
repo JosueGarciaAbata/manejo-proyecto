@@ -27,8 +27,11 @@ Route::get('/events/search/date', [EventController::class, 'searchByDate'])->nam
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
 Route::get('/proposals', [ProposalController::class, 'index'])->name('proposals');
+
 Route::get('/proposals/search', [ProposalController::class, 'search'])->name('proposals.search');
+
 Route::get('/proposals/search/tag', [ProposalController::class, 'searchByTag'])->name('proposals.searchByTag');
+
 Route::get('/proposals/search/date', [ProposalController::class, 'searchByDate'])->name('proposals.searchByDate');
 
 Route::get('/proposal/{id}', [ProposalController::class, 'show'])->name('proposal.show');

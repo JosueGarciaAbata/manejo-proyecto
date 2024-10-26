@@ -41,8 +41,8 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="cd-pic" id="{{ $candidate->id_can }}">
-                                            <img class="rounded" src="{{ asset('assets/images/candidates/candidate.jpg') }}"
-                                                alt="{{ $candidate->car_can }}">
+                                            <img src="{{ asset($candidate->ruta_can) }}" 
+                                            alt="{{ $candidate->car_can }}">
                                             <div class="overlay">
                                                 Votar
                                             </div>
@@ -74,6 +74,7 @@
     </section>
     <section id="container-add-vote" class="modal">
         <article class="contenido-modal">
+            <span class="cerrar">&times;</span>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -94,7 +95,6 @@
                     </div>
                 </div>
             </div>
-            <span class="cerrar">&times;</span>
 
         </article>
     </section>
