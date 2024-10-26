@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             ProposalSeeder::class,
             VoterSeeder::class,
             SuggestionSeeder::class,
-            // EventsSeeder::class,
+            EventsSeeder::class,
+            IconSeeder::class,
+            SocialLinkSeeder::class,
         ]);
 
         // User::factory(10)->create();

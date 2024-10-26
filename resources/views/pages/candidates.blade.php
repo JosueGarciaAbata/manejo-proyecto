@@ -2,6 +2,7 @@
 
 @section('title', 'Candidates')
 
+
 @section('content')
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section">
@@ -16,40 +17,58 @@
         </div>
     </section>
 
-    <!-- Breadcrumb Section End -->
+    <section class="inner-banner">
+        <div class="container">
+            <h2 class="inner-banner__title">Nuestros candidatos</h2>
+            <ul class="list-unstyled thm-breadcrumb">
+                <li><a href="{{ route('home') }}">Inicio</a></li>
+                <li>Candidatos</li>
+            </ul>
+        </div>
+    </section>
 
-    <!-- Candidates Section Begin -->
     <section class="candidates-section">
         <div class="container">
             <div class="row">
-                @foreach ($candidates as $candidate)
-                    <div class="col-sm-6">
-                        <div class="candidate-item">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="cd-pic" id="{{ $candidate->id_can }}">
-                                        <img class="rounded" src="{{ asset('assets/images/candidates/candidate.jpg') }}"
-                                            alt="{{ $candidate->car_can }}">
-                                        <div class="overlay">
-                                            Votar
+                @if ($candidates->isEmpty())
+                    <div class="col-12">
+                        <p class="text-center">No hay candidatos por el momento.</p>
+                    </div>
+                @else
+                    @foreach ($candidates as $candidate)
+                        <div class="col-sm-6">
+                            <div class="candidate-item">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="cd-pic" id="{{ $candidate->id_can }}">
+                                            <img class="rounded" src="{{ asset('assets/images/candidates/candidate.jpg') }}"
+                                                alt="{{ $candidate->car_can }}">
+                                            <div class="overlay">
+                                                Votar
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="cd-text">
-                                        <div class="cd-title">
-                                            <h4>{{ $candidate->nom_can }}, {{ $candidate->ape_can }}</h4>
-                                            <span>{{ $candidate->car_can }}</span>
-                                            <span>{{ $candidate->tit_can }}</span>
-                                            <span>{{ $candidate->fec_ing_can }}</span>
+                                    <div class="col-lg-6">
+                                        <div class="cd-text">
+                                            <div class="cd-title">
+                                                <h4>
+                                                    <a href="{{ route('candidate', ['id' => $candidate->id_can]) }}">
+                                                        {{ $candidate->nom_can }}, {{ $candidate->ape_can }}
+                                                    </a>
+                                                </h4>
+                                                <span>{{ $candidate->car_can }}</span>
+                                                <span>{{ $candidate->tit_can }}</span>
+                                                <span>{{ $candidate->fec_ing_can }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
+        </div>
         </div>
         </div>
     </section>

@@ -23,3 +23,4 @@
 <link rel="stylesheet" href="{{ asset('assets/css/candidates.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/suggestions.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/voters.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/candidate.css') }}">

@@ -15,9 +15,12 @@ class Candidate extends Model
     protected $fillable = [
         'nom_can',
         'ape_can',
+        'ruta_can',
         'car_can',
         'tit_can',
         'fec_ing_can',
+        'descrip_can',
+        'id_can_soc',
         'id_pol_par_bel',
     ];
 
@@ -45,6 +48,11 @@ class Candidate extends Model
 
     public function proposals()
     {
-        return $this->hasMany(Proposal::class, 'id_can');
+        return $this->hasMany(Proposal::class, 'id_can_pro');
+    }
+
+    public function socialLinks()
+    {
+        return $this->hasMany(SocialLink::class, 'id_can_soc');
     }
 }

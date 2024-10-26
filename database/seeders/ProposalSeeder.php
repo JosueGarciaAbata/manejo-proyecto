@@ -14,16 +14,15 @@ class ProposalSeeder extends Seeder
      */
     public function run(): void
     {
-        $juan = Candidate::where('nom_can', 'Juan')->first();
-        $maria = Candidate::where('nom_can', 'María')->first();
-        $carlos = Candidate::where('nom_can', 'Carlos')->first();
-        $ana = Candidate::where('nom_can', 'Ana')->first();
-        $pedro = Candidate::where('nom_can', 'Pedro')->first();
+        $juan = Candidate::where('nom_can', 'Mary')->first();
+        $maria = Candidate::where('nom_can', 'Vinicio')->first();
+        $carlos = Candidate::where('nom_can', 'Juan')->first();
+        $ana = Candidate::where('nom_can', 'Sandra')->first();
 
-        if (!($juan && $maria && $carlos && $ana && $pedro)) {
+        if (!($juan && $maria && $carlos && $ana)) {
             throw new \Exception("No se encontraron todos los candidatos necesarios.");
         }
-        
+
         Proposal::create([
             'tit_pro' => 'Mejora en Procesos Administrativos',
             'des_pro' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ipsam nobis magnam eos, ut ipsum? Accusantium, eum eius! Ipsum nihil nemo ipsa culpa sunt? Magni repellendus soluta enim labore ipsum!',
@@ -54,14 +53,6 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => '2024-07-20',
             'tags_pro' => 'Finanzas, Gestión',
             'id_can_pro' => $ana->id_can,
-        ]);
-
-        Proposal::create([
-            'tit_pro' => 'Reforma Jurídica Institucional',
-            'des_pro' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ipsam nobis magnam eos, ut ipsum? Accusantium, eum eius! Ipsum nihil nemo ipsa culpa sunt? Magni repellendus soluta enim labore ipsum!',
-            'fec_inc_pro' => '2024-06-10',
-            'tags_pro' => 'Derecho, Reforma',
-            'id_can_pro' => $pedro->id_can,
         ]);
     }
 }
