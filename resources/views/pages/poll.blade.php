@@ -28,11 +28,10 @@
                         <div class="party-item">
                             <div class="row">
                                 <div class="col-lg-10">
-                                    <div class="cd-text">
+                                    <div class="campaing-one__single">
                                         <div class="party-id" id="{{ $partyVotes['ids'][$i] }}">
                                             <div class="cd-title">
-                                                <h3>{{ $partyVotes['names'][$i] }}</h3>
-                                                <span>{{ $partyVotes['votes'][$i] }}</span>
+                                                <h3 class="campaing-one__title">{{ $partyVotes['names'][$i] }}</h3>
                                             </div>
                                         </div>
                                     </div>
