@@ -16,7 +16,7 @@ class VoterController extends Controller
         return view('pages.voters');
     }
 
-    public function vote(Request $request)
+    public function voteCandidate(Request $request)
     {
         $validatedData = $request->validate([
             "id_can" => "required|integer",
