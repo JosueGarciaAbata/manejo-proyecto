@@ -34,9 +34,13 @@ class EventController extends Controller
         }
 
         if ($request->filled('query')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('tit_eve', 'LIKE', "%{$request->input('query')}%")
-                    ->orWhere('tag_eve', 'LIKE', "%{$request->input('query')}%");
+            $keywords = explode(',', $request->input('query'));
+            
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $keyword) {
+                    $q->orWhere('tit_eve', 'LIKE', '%' . trim($keyword) . '%')
+                      ->orWhere('tag_eve', 'LIKE', '%' . trim($keyword) . '%');
+                }
             });
         }
 
