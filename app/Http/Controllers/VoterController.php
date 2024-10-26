@@ -61,7 +61,9 @@ class VoterController extends Controller
         $isNewVoter = !$voter->exists;
 
         if ($isNewVoter) {
-            $voter->save();
+            $voter = Voter::create([
+                'ema_vot' => $validatedData['ema_vot'],
+            ]);
         }
 
         $voter->update([
