@@ -19,26 +19,34 @@
         </div>
     </section>
 
-    <!-- Reuso de CSS -->
+    <!---->
     <section class="event-details">
         <div class="container">
             <div class="row">
-                <form action="{{ route('home') }}" method="GET">
-                    @foreach($partyVotes['parties'] as $party)
-                        <p>
-                            {{ $party }}
-                        </p>
-                    @endforeach
-                </form>
+                @for ($i = 0; $i < count($partyVotes) - 1; $i++)
+                    <div class="col-sm-6">
+                        <div class="party-item">
+                            <div class="row">
+                                <div class="col-lg-2">
+                                    <div class="cd-text">
+                                        <div class="cd-title">
+                                            <h4>{{ $partyVotes['names'][$i] }}</h4>
+                                            <span>{{ $partyVotes['votes'][$i] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
             </div>
-        </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('polls');
         const datos = {
-            labels: {!! json_encode($partyVotes['parties']) !!},
+            labels: {!! json_encode($partyVotes['names']) !!},
             datasets: [{
                 label: 'Votos',
                 data: {!! json_encode($partyVotes['votes']) !!},
@@ -46,7 +54,7 @@
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
                 ],
-                hoverOffset: 4
+                hovesrOffset: 4
             }]
         };
         const chart = new Chart(ctx, {
@@ -81,35 +89,4 @@
             <span class="cerrar">&times;</span>
         </article>
     </section>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const modal = document.getElementById("container-add-vote");
-            const closeBtn = document.querySelector(".cerrar");
-            const formModal = document.getElementById("form-add-vote");
-
-            const candidates = document.querySelectorAll(".candidate-item");
-
-            const closeModal = modalContainer => {
-                if (modalContainer) modalContainer.style.display = "none";
-            };
-
-            closeBtn.addEventListener("click", (e) => {
-                const modalContainer = closeBtn.closest(".modal");
-                closeModal(modalContainer);
-            });
-
-            candidates.forEach(candidate => {
-                candidate.addEventListener("click", () => modal.style.display = "block");
-                const candidateId = candidate.querySelector(".cd-pic").id;
-                document.getElementById("id_can").value = candidateId;
-            });
-
-            window.addEventListener("click", (event) => {
-                if (event.target.classList.contains("modal")) {
-                    const modals = document.querySelectorAll(".modal");
-                    modals.forEach(modal => closeModal(modal));
-                }
-            });
-        });
-    </script>
 @endsection
