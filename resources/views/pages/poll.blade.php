@@ -79,7 +79,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-9">
-                        <form action="{{ route('vote.store') }}" method="POST" class="mailchimp-one__form add-vote">
+                        <form action="{{ route('vote.party') }}" method="POST" class="mailchimp-one__form add-vote">
                             @csrf
                             <input type="hidden" name='id_lis' id="id_lis" value="">
                             <input type="text" name='ema_vot' placeholder="Email">
