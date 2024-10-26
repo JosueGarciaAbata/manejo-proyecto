@@ -19,7 +19,7 @@ class VoterController extends Controller
     public function vote(Request $request)
     {
         $validatedData = $request->validate([
-            "id_can" => "required|integer", 
+            "id_can" => "required|integer",
             "ema_vot" => "required|email",
         ]);
 
@@ -34,7 +34,7 @@ class VoterController extends Controller
 
         if ($isNewVoter) {
             $voter = Voter::create([
-                'ema_vot' => $validatedData['ema_vot'],  
+                'ema_vot' => $validatedData['ema_vot'],
             ]);
         }
 
@@ -50,37 +50,31 @@ class VoterController extends Controller
         return redirect()->route('candidates')->with('success', 'Registro completado exitosamente.');
     }
 
-    public function voteParty(Request $request) {
+    public function voteParty(Request $request)
+    {
         $validatedData = $request->validate([
-            "id_lis" => "required|integer", 
+            "id_lis" => "required|integer",
             "ema_vot" => "required|email",
         ]);
 
-        $party = PoliticalParty::find($validatedData["id_lis"]);
-
-        if (!$party) {
-            return redirect()->route('home')->with('fail', 'La lista no se encuentra registrada');
-        }
-
-        $voter = Voter::where("ema_vot", $validatedData["ema_vot"])->first();
-        $isNewVoter = !$voter;
+        $voter = Voter::firstOrNew(['ema_vot' => $validatedData['ema_vot']]);
+        $isNewVoter = !$voter->exists;
 
         if ($isNewVoter) {
-            $voter = Voter::create([
-                'ema_vot' => $validatedData['ema_vot'],  
-            ]);
+            $voter->save();
         }
 
         $voter->update([
-            "id_lis_vot" => $$party->id_lis,
+            "id_lis_vot" => $validatedData['id_lis'],
         ]);
+
 
         if ($isNewVoter) {
             return redirect()->route('voters.complete-register', ['email' => $validatedData['ema_vot']])
                 ->with('success', 'Correo electrónico registrado correctamente, completa tus datos personales.');
         }
 
-        return redirect()->route('vote')->with('success', 'Registro completado exitosamente.');
+        return redirect()->route('poll')->with('success', 'Voto registrado');
     }
 
     public function store(StoreVoterDataRequest $request)
@@ -94,7 +88,6 @@ class VoterController extends Controller
             'ape_vot' => $validatedData['ape_vot'],
         ]);
 
-        return redirect()->route('home')->with('success', 'Registro completado exitosamente.');
+        return redirect()->route('poll')->with('success', 'Registro completado exitosamente.');
     }
-
 }
