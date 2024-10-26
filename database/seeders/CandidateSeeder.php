@@ -28,7 +28,7 @@ class CandidateSeeder extends Seeder
         $sandraVillacis = "Profesional de la salud con una amplia trayectoria académica y de servicio a la comunidad. Se graduó como la mejor médica cirujana de la Universidad de Guayaquil y ha sido docente universitaria.";
 
         Candidate::create(attributes: [
-            'nom_can' => 'Juan',
+            'nom_can' => 'Mary',
             'ape_can' => 'Cruz Lascano',
             'ruta_can' => 'assets/images/candidates/Mary.jpg',
             'car_can' => 'Rector',
@@ -39,7 +39,7 @@ class CandidateSeeder extends Seeder
         ]);
 
         Candidate::create([
-            'nom_can' => 'María',
+            'nom_can' => 'Vinicio',
             'ape_can' => 'Mejía Vayas',
             'ruta_can' => 'assets/images/candidates/Vinicio.jpg',
             'car_can' => 'Vicerrector Académico',
@@ -50,7 +50,7 @@ class CandidateSeeder extends Seeder
         ]);
 
         Candidate::create([
-            'nom_can' => 'Carlos',
+            'nom_can' => 'Juan',
             'ape_can' => 'Paredes Salinas',
             'ruta_can' => 'assets/images/candidates/Juan.jpg',
             'car_can' => 'Vicerrector de Investigación',
@@ -61,18 +61,7 @@ class CandidateSeeder extends Seeder
         ]);
 
         Candidate::create([
-            'nom_can' => 'Ana',
-            'ape_can' => 'Villacis Valencia',
-            'ruta_can' => 'assets/images/candidates/Sandra.jpg',
-            'car_can' => 'Vicerrector Administrativo',
-            'tit_can' => 'Maestría en Administración',
-            'fec_ing_can' => now(),
-            'descrip_can' => $sandraVillacis,
-            'id_pol_par_bel' => $partyA->id_lis,
-        ]);
-
-        Candidate::create([
-            'nom_can' => 'Pedro',
+            'nom_can' => 'Sandra',
             'ape_can' => 'Villacis Valencia',
             'ruta_can' => 'assets/images/candidates/Sandra.jpg',
             'car_can' => 'Vicerrector Administrativo',

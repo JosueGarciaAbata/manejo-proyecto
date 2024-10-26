@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
-Route::get('/candidates', [CandidateController::class, 'show'])->name('candidatos');
+Route::get('/candidates', [CandidateController::class, 'show'])->name('candidates');
 Route::get('/candidate/{id}', [CandidateController::class, 'candidate'])->name('candidate');
 Route::post('/candidates',[VoterController::class,'vote'])->name('vote.store');
 
