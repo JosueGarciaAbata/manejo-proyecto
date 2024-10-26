@@ -20,20 +20,16 @@
     </section>
 
     <!---->
-    <section class="event-details">
+    <section class="about-two">
         <div class="container">
             <div class="row">
                 @for ($i = 0; $i < count($partyVotes) - 1; $i++)
                     <div class="col-sm-6">
                         <div class="party-item">
-                            <div class="row">
-                                <div class="col-lg-10">
-                                    <div class="campaing-one__single">
-                                        <div class="party-id" id="{{ $partyVotes['ids'][$i] }}">
-                                            <div class="cd-title">
-                                                <h3 class="campaing-one__title">{{ $partyVotes['names'][$i] }}</h3>
-                                            </div>
-                                        </div>
+                            <div class="campaing-one__single">
+                                <div class="party-id" id="{{ $partyVotes['ids'][$i] }}">
+                                    <div class="cd-title">
+                                        <h3 class="campaing-one__title">{{ $partyVotes['names'][$i] }}</h3>
                                     </div>
                                 </div>
                             </div>
