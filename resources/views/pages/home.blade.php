@@ -77,7 +77,7 @@
         <div class="container text-center">
             <img src="assets/images/resources/decor-star-1-1.png" class="fact-one__star-1" alt="">
             <h3 class="fact-one__title counter" style="color:#0C1B3C">{{ $voteCount }}</h3>
-            <p class="fact-one__text">Gente que se ha unido a la campaña</p>
+            <p class="fact-one__text">Personas apoyan la candidatura</p>
             <img src="assets/images/resources/decor-star-1-1.png" class="fact-one__star-2" alt="">
         </div><!-- /.container -->
     </section><!-- /.fact-one -->
