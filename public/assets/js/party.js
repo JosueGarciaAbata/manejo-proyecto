@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("container-add-vote");
     const closeBtn = document.querySelector(".cerrar");
     const formModal = document.getElementById("form-add-vote");
-    
+
     const parties = document.querySelectorAll(".party-item");
 
     const closeModal = modalContainer => {
@@ -15,9 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     parties.forEach(party => {
-        party.addEventListener("click", () =>modal.style.display = "block");
-        const partyId = party.querySelector(".party-id").id;
-        document.getElementById("id_lis").value = partyId;
+        party.addEventListener("click", () => {
+            modal.style.display = "block";
+            const partyId = party.querySelector(".party-id").id;
+            console.log(party);
+            document.getElementById("id_lis").value = partyId;
+        });
     });
 
     window.addEventListener("click", (event) => {
