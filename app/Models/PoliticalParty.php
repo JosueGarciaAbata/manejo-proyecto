@@ -35,7 +35,11 @@ class PoliticalParty extends Model
     }
 
     public function candidates()
+{
+    return $this->hasMany(Candidate::class, 'id_pol_par_bel', 'id_lis');
+}
+    public function voters()
     {
-        return $this->hasMany(Candidate::class, 'id_lis');
+        return $this->hasMany(Voter::class, 'id_lis_vot', 'id_lis');
     }
 }

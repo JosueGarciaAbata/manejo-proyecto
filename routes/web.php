@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\VoterController;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,7 @@ Route::post('/suggestions',[SuggestionController::class,'store'])->name('suggest
 Route::get('/voters/complete-register',[VoterController::class,'create'])->name('voters.complete-register');
 
 Route::post('/voters/complete-register',[VoterController::class,'store'])->name('voters.register');
+
+Route::get('/voters/statistics', function () {
+    return view('pages.statistics');
+})->name('statistics');
