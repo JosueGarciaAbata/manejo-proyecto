@@ -27,11 +27,13 @@
                     <div class="col-sm-6">
                         <div class="party-item">
                             <div class="row">
-                                <div class="col-lg-2">
+                                <div class="col-lg-10">
                                     <div class="cd-text">
-                                        <div class="cd-title">
-                                            <h4>{{ $partyVotes['names'][$i] }}</h4>
-                                            <span>{{ $partyVotes['votes'][$i] }}</span>
+                                        <div class="party-id" id="{{ $partyVotes['ids'][$i] }}">
+                                            <div class="cd-title">
+                                                <h3>{{ $partyVotes['names'][$i] }}</h3>
+                                                <span>{{ $partyVotes['votes'][$i] }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -77,16 +79,18 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-9">
-                        <form action="{{ route('home') }}" method="GET" class="mailchimp-one__form add-vote">
+                        <form action="{{ route('vote.store') }}" method="POST" class="mailchimp-one__form add-vote">
                             @csrf
-                            <input type="hidden" name="id_can" id="id_can" value="">
-                            <input type="text" name="ema_vot" placeholder="Email" required>
+                            <input type="hidden" name='id_lis' id="id_lis" value="">
+                            <input type="text" name='ema_vot' placeholder="Email">
                             <button type="submit" class="thm-btn mailchimp-one__form-btn">Enviar</button>
                         </form>
                     </div>
                 </div>
             </div>
             <span class="cerrar">&times;</span>
+
         </article>
     </section>
+    <script src="{{ asset('assets/js/party.js') }}"></script>
 @endsection
