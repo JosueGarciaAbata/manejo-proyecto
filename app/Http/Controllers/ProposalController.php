@@ -17,7 +17,7 @@ class ProposalController extends Controller
 
     public function show($id)
     {
-        $proposal = Proposal::findOrFail($id);
+        $proposal = Proposal::with('candidate')->findOrFail($id);
         return view('pages.proposal-detail', compact('proposal'));
     }
 
@@ -70,11 +70,4 @@ class ProposalController extends Controller
     {
         return Proposal::orderBy('fec_inc_pro', 'desc')->take(3)->get();
     }
-    
-    public function getCandidate($id) {
-        $proposal = Proposal::findOrFail($id);
-        $candidate = Candidate::where('id_can',$proposal->id_can_pro);
-        return view('pages.candidate', compact($candidate));
-    }
-
 }
