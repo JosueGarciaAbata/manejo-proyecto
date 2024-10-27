@@ -18,7 +18,8 @@
                 <div class="header-social">
                     <a href="https://www.facebook.com/profile.php?id=61565950187878" class="fa fa-facebook-square"></a>
                     <a href="https://www.instagram.com/marycruzlascano/" class="fa fa-instagram"></a>
-
+                    {{-- <a href="https://play.google.com/store/apps/details?id=app_id" class="fa fa-android"></a>
+                    <a href="https://apps.apple.com/app/id/app_id" class="fa fa-apple"></a> --}}
 
                 </div><!-- /.header-social -->
             </div><!-- /.right-side-box -->
