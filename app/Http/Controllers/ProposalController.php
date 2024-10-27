@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 use App\Models\Proposal;
 
@@ -68,6 +69,12 @@ class ProposalController extends Controller
     public function latestProposals()
     {
         return Proposal::orderBy('fec_inc_pro', 'desc')->take(3)->get();
+    }
+    
+    public function getCandidate($id) {
+        $proposal = Proposal::findOrFail($id);
+        $candidate = Candidate::where('id_can',$proposal->id_can_pro);
+        return view('pages.candidate', compact($candidate));
     }
 
 }
