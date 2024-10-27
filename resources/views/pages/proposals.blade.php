@@ -13,7 +13,7 @@
             </ul><!-- /.list-unstyled -->
         </div><!-- /.container -->
     </section><!-- /.inner-banner -->
-    
+
     <section class="mailchimp-one">
         <div class="container">
             <div class="row align-items-center">
@@ -21,150 +21,149 @@
                     <h3 class="mailchimp-one__title">Personaliza tú busqueda:</h3><!-- /.mailchimp-one__title -->
                 </div><!-- /.col-lg-5 -->
                 <div class="col-lg-10">
-                    <form method="GET" action="{{ route('proposals.search') }}" class="mailchimp-one__form row" novalidate="true">
+                    <form method="GET" action="{{ route('proposals.search') }}" class="mailchimp-one__form row"
+                        novalidate="true">
                         <div class="form-group col-md-5">
-                            <input type="date" id="date" name="date" class="form-control" value="{{ request('date') }}">
+                            <input type="date" id="date" name="date" class="form-control"
+                                value="{{ request('date') }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="text" id="query" name="query" class="form-control" placeholder="Buscar por título, tag..." value="{{ request('query') }}">
+                            <input type="text" id="query" name="query" class="form-control"
+                                placeholder="Buscar por título, tag..." value="{{ request('query') }}">
                         </div>
-                        
+
                         <button type="submit" class="thm-btn mailchimp-one__form-btn">Aplicar</button>
-                        
+
                     </form>
                 </div><!-- /.col-lg-7 -->
             </div>
         </div><!-- /.container -->
     </section>
-    
+
     <section class="campaing-one">
         <div class="block-title text-center">
             <p class="block-title__tag-line">Descubre nuevas Propuestas</p>
             <h2 class="block-title__title">Esperamos contar contigo!</h2><!-- /.block-title__title -->
         </div>
-        
+
         <div class="container">
-            @if(request()->has('tag'))
-            @php
-                $tags = explode(',', request('tag'));
-            @endphp
-        
-            <div class="row align-items-center" style="padding: 20px 0;">
-                <div class="col-lg-3">
-                    <p class="block-title__tag-line">Tags Seleccionados:</p>
-                </div><!-- /.col-lg-3 -->
-                <div class="col-lg-8">
-                    <ul class="sidebar__tags-list" style="padding-left: 15px;">
-                        @foreach($tags as $tag)
-                            <li class="sidebar__tags-list-item" style="display: inline-block; margin-right: 10px;">
-                                <a href="{{ route('proposals.searchByTag', ['tag' => trim($tag)]) }}">
-                                    {{ trim($tag) }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>                                                               
-                </div><!-- /.col-lg-8 -->
-            </div><!-- /.row -->
-        @endif
-        
+            @if (request()->has('tag'))
+                @php
+                    $tags = explode(',', request('tag'));
+                @endphp
+
+                <div class="row align-items-center" style="padding: 20px 0;">
+                    <div class="col-lg-3">
+                        <p class="block-title__tag-line">Tags Seleccionados:</p>
+                    </div><!-- /.col-lg-3 -->
+                    <div class="col-lg-8">
+                        <ul class="sidebar__tags-list" style="padding-left: 15px;">
+                            @foreach ($tags as $tag)
+                                <li class="sidebar__tags-list-item" style="display: inline-block; margin-right: 10px;">
+                                    <a href="{{ route('proposals.searchByTag', ['tag' => trim($tag)]) }}">
+                                        {{ trim($tag) }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div><!-- /.col-lg-8 -->
+                </div><!-- /.row -->
+            @endif
+
 
             <div class="row">
                 @forelse ($proposals as $proposal)
-                <div class="column-5">
-                    <div class="campaing-one__single">
-                        <div class="event-one__content">
-                            <i class="potisen-icon-mortarboard"></i>
-                            <p class="event-one__date">
-                                {{ \Carbon\Carbon::parse($proposal->fec_ini_pro)->format('d M, Y') }}
-                            </p>
-            
-                            <h3 class="campaing-one__title">
-                                <a href="{{ route('proposal.show', ['id' => $proposal->id_pro]) }}">
-                                    {{ $proposal->tit_pro }}
-                                </a>
-                            </h3>
-            
-                            <!-- Dirección del proposalo -->
-                            <ul class="sidebar__tags-list">
-                                @foreach(explode(',', $proposal->tag_pro) as $index => $tag)
-                                    @if($index < 3) <!-- Limitar a 3 tags -->
-                                        <li class="sidebar__tags-list-item">
+                    <div class="column-5">
+                        <div class="campaing-one__single">
+                            <div class="campaing-one__content">
+                                <h3 class="campaing-one__title" style="font-family: 'Courier New', Courier, monospace; font-size: 15px !important">
+                                    {{ \Carbon\Carbon::parse($proposal->fec_ini_pro)->format('d M, Y') }}
+                                </h3>
+                                <i class="potisen-icon-mortarboard"></i>
+                                <h3 class="campaing-one__title" style="font-family: 'Courier New', Courier, monospace; font-size: 15px !important">
+                                    <a href="{{ route('candidate', ['id' => $proposal->id_can_pro]) }}">
+                                        {{ $proposal->candidate->nom_can }}
+                                        {{ $proposal->candidate->ape_can }}
+                                    </a>
+                                </h3>
+                                <h3 class="campaing-one__title">
+                                    <a href="{{ route('proposal.show', ['id' => $proposal->id_pro]) }}">
+                                        {{ $proposal->tit_pro }}
+                                    </a>
+                                </h3>
+                                @foreach (explode(',', $proposal->tags_pro) as $index => $tag)
+                                    @if ($index < 3)
+                                        <!-- Limitar a 3 tags -->
+                                        <h3 class="campaing-one__title" style="font-size: 10px !important">
                                             <a href="{{ route('proposals.searchByTag', ['tag' => trim($tag)]) }}">
                                                 {{ trim($tag) }}
                                             </a>
-                                        </li>
+                                        </h3>
                                     @else
                                         @break
                                     @endif
-                                @endforeach                            
-                                <!--        
-                                @if(count(explode(',', $proposal->tag_pro)) > 3)
-                                    <li class="sidebar__tags-list-item">
-                                        <a href="#" onclick="showAllTags(proposal)">Ver más...</a>
-                                    </li>
-                                @endif
-                                -->
-                            </ul>
+                                @endforeach
+                            </div>
                         </div>
+                        <ul class="sidebar__tags-list">
+                        </ul>
                     </div>
-                </div>
-            @empty
-                <p class="text-center">No hay Propuestas que coincidan con la búsqueda.</p>
-            @endforelse
-            
-            </div>            
-            
-            @php
-                $currentPage = $proposals->currentPage();
-                $lastPage = $proposals->lastPage();
-                $startPage = max(1, $currentPage - 2);
-                $endPage = min($lastPage, $currentPage + 2);
-            @endphp
+                @empty
+                    <p class="text-center">No hay Propuestas que coincidan con la búsqueda.</p>
+                @endforelse
 
-            <div class="post-pagination">
-                {{-- Botón para la página anterior (<<) --}}
-                @if ($proposals->onFirstPage())
-                    <a class="disabled" aria-disabled="true"><i class="fa fa-angle-double-left"></i></a>
-                @else
-                    <a href="{{ $proposals->previousPageUrl() }}"><i class="fa fa-angle-double-left"></i></a>
-                @endif
-
-                {{-- Enlace para la primera página --}}
-                @if ($currentPage > 3)
-                    <a href="{{ $proposals->url(1) }}">01</a>
-                    @if ($currentPage > 4)
-                        <a class="disabled" aria-disabled="true">...</a>
-                    @endif
-                @endif
-
-                {{-- Enlaces de las páginas cercanas --}}
-                @foreach (range($startPage, $endPage) as $page)
-                    @if ($page == $currentPage)
-                        <a href="{{ $proposals->url($page) }}" class="active">{{ sprintf('%02d', $page) }}</a>
-                    @else
-                        <a href="{{ $proposals->url($page) }}">{{ sprintf('%02d', $page) }}</a>
-                    @endif
-                @endforeach
-
-                {{-- Enlace para la última página --}}
-                @if ($currentPage < $lastPage - 2)
-                    @if ($currentPage < $lastPage - 3)
-                        <a class="disabled" aria-disabled="true">...</a>
-                    @endif
-                    <a href="{{ $proposals->url($lastPage) }}">{{ sprintf('%02d', $lastPage) }}</a>
-                @endif
-
-                {{-- Botón para la página siguiente (>>) --}}
-                @if ($proposals->hasMorePages())
-                    <a href="{{ $proposals->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
-                @else
-                    <a class="disabled" aria-disabled="true"><i class="fa fa-angle-double-right"></i></a>
-                @endif
             </div>
+        @php
+            $currentPage = $proposals->currentPage();
+            $lastPage = $proposals->lastPage();
+            $startPage = max(1, $currentPage - 2);
+            $endPage = min($lastPage, $currentPage + 2);
+        @endphp
 
-            <!-- /.post-pagination -->
+        <div class="post-pagination">
+            {{-- Botón para la página anterior (<<) --}}
+            @if ($proposals->onFirstPage())
+                <a class="disabled" aria-disabled="true"><i class="fa fa-angle-double-left"></i></a>
+            @else
+                <a href="{{ $proposals->previousPageUrl() }}"><i class="fa fa-angle-double-left"></i></a>
+            @endif
+
+            {{-- Enlace para la primera página --}}
+            @if ($currentPage > 3)
+                <a href="{{ $proposals->url(1) }}">01</a>
+                @if ($currentPage > 4)
+                    <a class="disabled" aria-disabled="true">...</a>
+                @endif
+            @endif
+
+            {{-- Enlaces de las páginas cercanas --}}
+            @foreach (range($startPage, $endPage) as $page)
+                @if ($page == $currentPage)
+                    <a href="{{ $proposals->url($page) }}" class="active">{{ sprintf('%02d', $page) }}</a>
+                @else
+                    <a href="{{ $proposals->url($page) }}">{{ sprintf('%02d', $page) }}</a>
+                @endif
+            @endforeach
+
+            {{-- Enlace para la última página --}}
+            @if ($currentPage < $lastPage - 2)
+                @if ($currentPage < $lastPage - 3)
+                    <a class="disabled" aria-disabled="true">...</a>
+                @endif
+                <a href="{{ $proposals->url($lastPage) }}">{{ sprintf('%02d', $lastPage) }}</a>
+            @endif
+
+            {{-- Botón para la página siguiente (>>) --}}
+            @if ($proposals->hasMorePages())
+                <a href="{{ $proposals->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+            @else
+                <a class="disabled" aria-disabled="true"><i class="fa fa-angle-double-right"></i></a>
+            @endif
         </div>
-    </section><!-- /.proposal-one -->
+
+        <!-- /.post-pagination -->
+    </div>
+</section><!-- /.proposal-one -->
 
 
 @endsection
