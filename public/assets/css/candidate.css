@@ -90,7 +90,7 @@ span {
 .candidate-form__educational__content,
 .candidate-form__professional__content {
     overflow-y: auto;
-    scrollbar-width: thin;
+    scrollbar-width: thick;
 }
 
 /* Medias */
@@ -101,7 +101,7 @@ span {
     }
 
     .candidate-img img {
-        width: 70vw; /* Cambiar el tamaño de la imagen en pantallas pequeñas */
+        width: 70vw;
     }
 
     .candidate-form {
