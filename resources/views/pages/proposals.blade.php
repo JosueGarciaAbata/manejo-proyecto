@@ -37,9 +37,9 @@
         </div><!-- /.container -->
     </section>
     
-    <section class="proposal-one">
+    <section class="campaing-one">
         <div class="block-title text-center">
-            <p class="block-title__tag-line">Descubre nuevos Propuestas</p>
+            <p class="block-title__tag-line">Descubre nuevas Propuestas</p>
             <h2 class="block-title__title">Esperamos contar contigo!</h2><!-- /.block-title__title -->
         </div>
         
@@ -70,21 +70,15 @@
 
             <div class="row">
                 @forelse ($proposals as $proposal)
-                <div class="col-lg-6">
-                    <div class="proposal-one__single">
-                        <div class="proposal-one__image">
-                            <div class="proposal-one__image-inner">
-                                <a href="{{ route('proposal.show', ['id' => $proposal->id_pro]) }}">
-                                    <img src="{{ asset('assets/images/resources/' . $proposal->img_pro) }}" alt="{{ $proposal->tit_pro }}">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="proposal-one__content">
-                            <p class="proposal-one__date">
+                <div class="column-5">
+                    <div class="campaing-one__single">
+                        <div class="event-one__content">
+                            <i class="potisen-icon-mortarboard"></i>
+                            <p class="event-one__date">
                                 {{ \Carbon\Carbon::parse($proposal->fec_ini_pro)->format('d M, Y') }}
                             </p>
             
-                            <h3 class="proposal-one__title">
+                            <h3 class="campaing-one__title">
                                 <a href="{{ route('proposal.show', ['id' => $proposal->id_pro]) }}">
                                     {{ $proposal->tit_pro }}
                                 </a>

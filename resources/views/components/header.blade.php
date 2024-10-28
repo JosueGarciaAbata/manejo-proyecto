@@ -7,10 +7,12 @@
                 <ul class="navigation-box">
                     <li class="current"><a href="{{ url('/') }}">Inicio</a></li>
                     <li><a href="{{ url('/candidates') }}">Candidatos</a></li>
-                    <li><a href="{{ url('/eventsAndNews') }}">Eventos y Noticias</a></li>
+                    <li><a href="{{ url('/events') }}">Eventos</a></li>
+                    <li><a href="{{ url('/news') }}">Noticias</a></li>
                     <li><a href="{{ url('/proposals') }}">Propuestas</a></li>
                     <li><a href="{{ url('/suggestions') }}">Sugerencias</a></li>
-                    <li><a href="{{ url('/vote') }}">Vota Ahora!</a></li>
+                    <li><a href="{{ url('/voters/statistics') }}">Estadisticas</a></li>
+                    {{-- <li><a href="{{ url('/vote') }}">Vota Ahora!</a></li> Ni idea, pero da error al encontrar la pagina --}}
                 </ul>
             </div>
 
