@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Candidate;
 use App\Models\Proposal;
 use Faker\Factory as Faker;
+use Nette\Utils\Random;
 
 class ProposalSeeder extends Seeder
 {
@@ -21,7 +22,13 @@ class ProposalSeeder extends Seeder
         $sandra = Candidate::where('nom_can', 'Sandra')->first();
         $faker = Faker::create();
         $date = now();
-
+        //Este método da asco
+        $images = [
+            'ACREDITACIÓN_Y_MEJORA_CONTINUA.png',
+            'FOMENTO_A_LA_INVESTIGACIÓN.png',
+            'INFRAESTRUCTURA_Y_TECNOLOGÍA.png',
+            'PLANIFICACIÓN_ESTRATEGICA.png'
+        ];
         if (!($juan && $mari && $vini && $sandra)) {
             throw new \Exception("No se encontraron todos los candidatos necesarios.");
         }
@@ -31,8 +38,8 @@ class ProposalSeeder extends Seeder
             'des_pro' => 'Mary Cruz propone actualizar el Plan Estratégico de Desarrollo Institucional (PEDI) para alinearlo con las demandas actuales y los Objetivos de Desarrollo Sostenible (ODS). Su enfoque es claro: metas concretas que abarcan los ámbitos académico, de investigación e innovación, y vinculación con la sociedad. Además, busca fortalecer el presupuesto a través de una autogestión responsable.',
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Gestión, Vinculación, Innovación, Investigación, ODS, PEDI',
-            'img_pro' => 'prop_1.jpg',
             'id_can_pro' => $mari->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -41,6 +48,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Docentes, Estudiantes, Gestión, Investigación, Convenios, Rankings',
             'id_can_pro' => $mari->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -49,6 +57,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Docentes, Academia, Gestión, Fortalecimiento, Formación, Internacionalización',
             'id_can_pro' => $vini->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -57,6 +66,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Innovación, Academia, Docentes, Estudiantes, Educación virtual, Oferta académica',
             'id_can_pro' => $vini->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -65,6 +75,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Docentes, Estudiantes, Academia, Innovación, Acreditación, Mejora, Autoevaluación',
             'id_can_pro' => $vini->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -73,6 +84,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Fortalecimmiento, Investigación, Interdisciplinarias, Internacionalización, Docentes, Gestión',
             'id_can_pro' => $juan->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -81,6 +93,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Innovación, Tecnología, Progreso, Investigación, Internacionalización, Docentes, Gestión',
             'id_can_pro' => $juan->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -89,6 +102,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Vinculación, Estudiantes, Sociedad, Sostenibilidad, Docentes, Gestión',
             'id_can_pro' => $juan->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -97,6 +111,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Gestión, Administrativa, Procesos, Tecnología, Gestión, Infraestructura',
             'id_can_pro' => $sandra->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -105,6 +120,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Mejoramiento, Bienestar, Compromiso, Tecnología, Innovación, Academia, Investigación, Infraestructura, Sostenibilidad',
             'id_can_pro' => $sandra->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
 
         Proposal::create([
@@ -113,6 +129,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Remuneraciones, Responsabilidades, Crecimiento profesional, Tecnología, Personal Administrativo, Gestión',
             'id_can_pro' => $sandra->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
         
         Proposal::create([
@@ -121,6 +138,7 @@ class ProposalSeeder extends Seeder
             'fec_inc_pro' => $faker->dateTimeBetween($date,'+5 years'),
             'tags_pro' => 'Armonía, Unión y paz, Transparencia, Docentes, Estudiantes, Personal Administrativo, Gestión',
             'id_can_pro' => $mari->id_can,
+            'img_pro' => $images[rand(0, count($images)-1)]
         ]);
     }
 }
