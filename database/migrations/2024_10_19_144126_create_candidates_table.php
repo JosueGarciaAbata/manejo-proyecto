@@ -18,7 +18,6 @@ return new class extends Migration {
             $validPositions = ['Rector', 'Vicerrector Académico', 'Vicerrector de Investigación', 'Vicerrector Administrativo'];
             $table->enum('car_can', $validPositions)->notNullable();
 
-            $table->string('tit_can', 150)->notNullable();
             $table->date('fec_ing_can')->notNullable();
 
             $table->unsignedBigInteger('id_pol_par_bel')->notNullable();

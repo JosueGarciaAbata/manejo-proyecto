@@ -55,4 +55,15 @@ class Candidate extends Model
     {
         return $this->hasMany(SocialLink::class, 'id_can_soc');
     }
+
+    public function educationalBackgrounds()
+    {
+        return $this->hasMany(EducationalBackground::class, 'id_can_edu');
+    }
+
+    public function professionalExperiences()
+    {
+        return $this->hasMany(ProfessionalExperience::class, 'id_can_exp');
+    }
+
 }

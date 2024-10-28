@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             IconSeeder::class,
             SocialLinkSeeder::class,
             NewsSeeder::class,
+            EducationalBackgroundSeeder::class,
+            ProfessionalExperienceSeeder::class,
         ]);
 
         // User::factory(10)->create();
