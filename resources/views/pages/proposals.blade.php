@@ -40,7 +40,7 @@
         </div><!-- /.container -->
     </section>
 
-    <section class="campaing-one">
+    <section class="campaing-two">
         <div class="block-title text-center">
             <p class="block-title__tag-line">Descubre nuevas Propuestas</p>
             <h2 class="block-title__title">Esperamos contar contigo!</h2><!-- /.block-title__title -->
@@ -73,46 +73,43 @@
 
             <div class="row">
                 @forelse ($proposals as $proposal)
-                    <div class="column-5">
-                        <div class="campaing-one__single">
-                            <div class="campaing-one__content">
-                                <h3 class="campaing-one__title" style="font-family: 'Courier New', Courier, monospace; font-size: 15px !important">
-                                    {{ \Carbon\Carbon::parse($proposal->fec_ini_pro)->format('d M, Y') }}
-                                </h3>
-                                <i class="potisen-icon-mortarboard"></i>
-                                <h3 class="campaing-one__title" style="font-family: 'Courier New', Courier, monospace; font-size: 15px !important">
-                                    <a href="{{ route('candidate', ['id' => $proposal->id_can_pro]) }}">
-                                        {{ $proposal->candidate->nom_can }}
-                                        {{ $proposal->candidate->ape_can }}
+                    <div class="col-lg-3 col-md-6 wow fadeInUp animated" data-wow-delay="000ms" data-wow-duration="1500ms"
+                        style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                        <div class="campaing-two__single text-center">
+                            <p class="campaing-two__text">
+                                {{ \Carbon\Carbon::parse($proposal->fec_ini_pro)->format('d M, Y') }}
+                            </p>
+                            <i class="potisen-icon-mortarboard"></i>
+                            <br>
+                            <a href="{{ route('candidate', ['id' => $proposal->id_can_pro]) }}" class="campaing-two__text">
+                                {{ $proposal->candidate->nom_can }}
+                                {{ $proposal->candidate->ape_can }}
+                            </a>
+                            <h3 class="campaing-two__title">
+                                <a href="{{ route('proposal.show', ['id' => $proposal->id_pro]) }}">
+                                    {{ $proposal->tit_pro }}
+                                </a>
+                            </h3>
+                            @foreach (explode(',', $proposal->tags_pro) as $index => $tag)
+                                @if ($index < 3)
+                                    <!-- Limitar a 3 tags -->
+                                    <a href="{{ route('proposals.searchByTag', ['tag' => trim($tag)]) }}" class="campaing-two__text">
+                                        {{ trim($tag) }}
                                     </a>
-                                </h3>
-                                <h3 class="campaing-one__title">
-                                    <a href="{{ route('proposal.show', ['id' => $proposal->id_pro]) }}">
-                                        {{ $proposal->tit_pro }}
-                                    </a>
-                                </h3>
-                                @foreach (explode(',', $proposal->tags_pro) as $index => $tag)
-                                    @if ($index < 3)
-                                        <!-- Limitar a 3 tags -->
-                                        <h3 class="campaing-one__title" style="font-size: 10px !important">
-                                            <a href="{{ route('proposals.searchByTag', ['tag' => trim($tag)]) }}">
-                                                {{ trim($tag) }}
-                                            </a>
-                                        </h3>
-                                    @else
-                                        @break
-                                    @endif
-                                @endforeach
-                            </div>
+                                    <br>
+                                @else
+                                    @break
+                                @endif
+                            @endforeach
                         </div>
                         <ul class="sidebar__tags-list">
                         </ul>
                     </div>
-                @empty
-                    <p class="text-center">No hay Propuestas que coincidan con la búsqueda.</p>
-                @endforelse
+            @empty
+                <p class="text-center">No hay Propuestas que coincidan con la búsqueda.</p>
+            @endforelse
 
-            </div>
+        </div>
         @php
             $currentPage = $proposals->currentPage();
             $lastPage = $proposals->lastPage();
