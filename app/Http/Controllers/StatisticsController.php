@@ -13,7 +13,7 @@ class StatisticsController extends Controller
     {
         $parties = PoliticalParty::with(['candidates', 'voters'])->get(['id_lis', 'nom_lis', 'des_lis', 'img_pol_par']);
 
-        $nullVotes = VoteController::getApoliticalVoters()->count();
+        // $nullVotes = VoteController::getPoliticalVoters()->count();
 
         // Generar estadísticas de cada lista política
         $statistics = $parties->map(function ($party) {
@@ -35,7 +35,7 @@ class StatisticsController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'nullVotes' => $nullVotes,
+            // 'nullVotes' => $nullVotes,
             'parties' => $statistics
         ]);
     }

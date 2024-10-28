@@ -14,7 +14,7 @@ class VoteController extends Controller
         return Voter::where('id_lis_vot', $listId)->count();
     }
 
-    public function getApoliticalVoters()
+    public function getPoliticalVoters()
     {
         return Voter::where('id_lis_vot', null);
     }

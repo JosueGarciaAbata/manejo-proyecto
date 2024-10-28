@@ -42,4 +42,10 @@ class Voter extends Model
         return $this->hasMany(Suggestion::class, 'id_vot_sug');
     }
 
+
+    public static function countPoliticalVoters()
+    {
+        return self::where('id_lis_vot', null)->count();
+    }
+    
 }
