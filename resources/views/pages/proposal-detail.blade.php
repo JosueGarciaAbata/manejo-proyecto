@@ -56,7 +56,11 @@
                             <img src="{{ asset($proposal->candidate->ruta_can) }}" alt="candidate image">
                         </div>
                         <div class="blog-details__author-content">
-                            <h3>{{ $proposal->candidate->nom_can }} {{  $proposal->candidate->ape_can  }}</h3>
+                            <h3>
+                                <a href="{{ route('candidate', ['id' => $proposal->id_can_pro]) }}">
+                                    {{ $proposal->candidate->nom_can }} {{  $proposal->candidate->ape_can  }}
+                                </a>
+                            </h3>
                             <p>
                                 {{ $proposal->candidate->descrip_can }}
                             </p>
