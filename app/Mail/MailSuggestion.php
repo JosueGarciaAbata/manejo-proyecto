@@ -16,11 +16,19 @@ class MailSuggestion extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $voter;
+
+    public function __construct($voter)
     {
-        //
+        $this->voter = $voter;
     }
 
+    /**Build mail */
+
+    public function build() {
+        return $this->subject('Aceptamos tu sugerencia')
+                    ->view('mail.verify');
+    }
     /**
      * Get the message envelope.
      */
