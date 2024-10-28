@@ -13,14 +13,15 @@ class Icon extends Model
     protected $primaryKey = 'id_icon';
 
     protected $fillable = [
-        'name',
+        'id_icon',
+        'name_icon',
         'path_icon',
     ];
 
 
     public function socialLink()
     {
-        return $this->hasOne(SocialLink::class, 'id_icon_soc');
+        return $this->hasOne(SocialLink::class, 'id_icon_soc', 'id_icon');
     }
 
 }
