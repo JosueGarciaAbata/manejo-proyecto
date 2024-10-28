@@ -23,7 +23,7 @@
                     <div class="blog-one__single">
                         @if(($proposal->img_pro) != null)
                             <div class="blog-one__image">
-                                <img src="{{ asset('assets/images/resources/' . $proposal->img_pro) }}" alt="proposal image">
+                                <img src="{{ asset('assets/images/proposals/' . $proposal->img_pro) }}" alt="proposal image">
                             </div>
                         @endif
                         <div class="blog-one__content">
