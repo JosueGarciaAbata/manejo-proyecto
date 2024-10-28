@@ -16,19 +16,19 @@
     </div>
 </section>
 
+<section class="representant-parties candidate-item">
+    <div class="container col-12">
+        <div class="row" id="party-list">
+        </div>
+    </div>
+</section>
+
 <section class="voting-results">
     <div class="container">
         <canvas id="votes-statistics"></canvas>
     </div>
 </section>
 
-<section class="about-two">
-    <div class="container">
-        <div class="row" id="party-list">
-            
-        </div>
-    </div>
-</section>
 
 <section id="container-add-vote" class="modal">
     <span class="cerrar">&times;</span>
@@ -56,7 +56,6 @@
     </article>
 </section>
 <!-- de momento -->
-<script src="{{ asset('assets/js/party.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>

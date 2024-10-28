@@ -17,9 +17,9 @@ const setChartjs = data => {
         return;
     }
 
-    const totalVotes = data.data.reduce((acc, item) => acc + item.total_votes, 0);
-    const partyNames = data.data.map(item => item.party_name);
-    const votePercentages = data.data.map(item => item.total_votes);
+    const totalVotes = data.parties.reduce((acc, item) => acc + item.total_votes, 0);
+    const partyNames = data.parties.map(item => item.party_name);
+    const votePercentages = data.parties.map(item => item.total_votes);
 
     const datos = {
         labels: partyNames,
@@ -60,7 +60,7 @@ const setChartjs = data => {
                         label: function (tooltipItem) {
                             const index = tooltipItem.dataIndex;
                             const percentage = ((votePercentages[index] / totalVotes) * 100).toFixed(2);
-                            const candidates = data.data[index].candidates
+                            const candidates = data.parties[index].candidates
                                 .map(candidate => candidate.name)
                                 .join(', ');
                             return `${partyNames[index]}: ${votePercentages[index]} votos (${percentage}%)\nCandidatos: ${candidates}`;
@@ -92,54 +92,43 @@ const createContainers = data => {
     if (data.status === 'success') {
         const partyList = document.getElementById('party-list');
 
-        data.data.forEach(party => {
-            const partyElement = document.createElement('div');
-            partyElement.classList.add('col-sm-6');
+        data.parties.forEach(party => {
+            const container = document.createElement('div');
+            container.classList.add('col-sm-6', 'mb-4');
 
-            const cdPic = document.createElement('div');
-            cdPic.classList.add('cd-pic');
-            cdPic.id = party.id;
-
+            const card = document.createElement('div');
+            card.classList.add('card', "cd-pic");
+        
             const img = document.createElement('img');
             img.src = party.image || '/images/default.jpg';
             img.alt = party.description;
+            img.classList.add("card-img-top")
 
-            const overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            overlay.textContent = 'Votar';
+            const overlay=document.createElement("div");
+            overlay.classList.add("overlay");
+            overlay.textContent='Votar';
 
-            cdPic.appendChild(img);
-            cdPic.appendChild(overlay);
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('card-body', 'text-center');
+            cardBody.id = party.id;
 
-            const partyItem = document.createElement('div');
-            partyItem.classList.add('party-item');
 
-            const campaingSingle = document.createElement('div');
-            campaingSingle.classList.add('campaing-one__single');
 
-            const partyId = document.createElement('div');
-            partyId.classList.add('party-id');
-            partyId.id = party.id;
-
-            const cdTitle = document.createElement('div');
-            cdTitle.classList.add('cd-title');
 
             const title = document.createElement('h3');
-            title.classList.add('campaing-one__title');
-            title.textContent = party.party_name;
+            title.classList.add('card-title');
+            title.textContent=party.party_name;
+            const paragraph = document.createElement('p');
+            paragraph.classList.add("card-text");
+            paragraph.textContent=party.description;
 
-            const description = document.createElement('p');
-            description.textContent = party.description;
-
-            cdTitle.appendChild(title);
-            partyId.appendChild(cdTitle);
-            partyId.appendChild(description);
-            campaingSingle.appendChild(partyId);
-            partyItem.appendChild(campaingSingle);
-            
-            partyElement.appendChild(cdPic);
-            partyElement.appendChild(partyItem);
-            partyList.appendChild(partyElement);
+            cardBody.appendChild(title);
+            cardBody.appendChild(paragraph);
+           
+            card.appendChild(img);
+            card.appendChild(cardBody);
+            container.appendChild(card);
+            partyList.appendChild(container);
         });
     }
 };
