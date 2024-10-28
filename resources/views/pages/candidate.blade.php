@@ -69,6 +69,4 @@
             </div>
         </div>
     </div>
-
-    {{-- <script src="{{ asset('assets/js/candidate.js') }}"></script> --}}
 @endsection
