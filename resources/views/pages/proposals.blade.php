@@ -90,20 +90,7 @@
                                     {{ $proposal->tit_pro }}
                                 </a>
                             </h3>
-                            @foreach (explode(',', $proposal->tags_pro) as $index => $tag)
-                                @if ($index < 3)
-                                    <!-- Limitar a 3 tags -->
-                                    <a href="{{ route('proposals.searchByTag', ['tag' => trim($tag)]) }}" class="campaing-two__text">
-                                        {{ trim($tag) }}
-                                    </a>
-                                    <br>
-                                @else
-                                    @break
-                                @endif
-                            @endforeach
                         </div>
-                        <ul class="sidebar__tags-list">
-                        </ul>
                     </div>
             @empty
                 <p class="text-center">No hay Propuestas que coincidan con la búsqueda.</p>
