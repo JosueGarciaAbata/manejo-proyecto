@@ -43,4 +43,8 @@ class PoliticalParty extends Model
         return $this->hasMany(Voter::class, 'id_lis_vot', 'id_lis');
     }
 
+    public function getAllLists()
+    {
+        return PoliticalParty::select('id_lis', 'nom_lis')->get();
+    }
 }
