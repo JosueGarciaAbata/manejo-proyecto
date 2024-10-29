@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSuggestionRequest;
+use App\Mail\MailSuggestion;
 use App\Models\Suggestion;
 use App\Models\Voter;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class SuggestionController extends Controller
 {
@@ -15,7 +16,7 @@ class SuggestionController extends Controller
      */
     public function index()
     {
-        $suggestions= Suggestion::paginate(16);
+        $suggestions= Suggestion::with('voter')->paginate(16);
         return view('pages.suggestions', compact('suggestions'));
     }
 
@@ -52,7 +53,6 @@ class SuggestionController extends Controller
             'id_vot_sug' => $voter->id_vot, // Usar el ID del votante
         ]);
         Mail::to($voter->ema_vot)->send(new MailSuggestion($voter, $validatedData['tit_sug']));
-
         // Redirigir con un mensaje de éxito
         return redirect()->route('home')->with('success', 'Sugerencia enviada con éxito.');
     }

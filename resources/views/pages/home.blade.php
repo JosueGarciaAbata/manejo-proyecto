@@ -90,7 +90,7 @@
         <div class="container">
             <div class="block-title text-center">
 
-                <h2 class="block-title__title">Propuestas</h2><!-- /.block-title__title -->
+            <h2 class="block-title__title">Principales Propuestas</h2><!-- /.block-title__title -->
             </div><!-- /.block-title -->
             <div class="row">
                 <div class="col-lg-12">
@@ -98,14 +98,14 @@
                         <div class="history-one__single wow fadeInUp">
 
                             <div class="campaing-one__single">
-                                <i class="potisen-icon-sprout"></i>
+                            <i class="potisen-icon-mortarboard"></i>
                                 <h3 class="campaing-one__title"></h3>
                                 <!-- /.campaing-one__title -->
                             </div><!-- /.campaing-one__single -->
 
                             <div class="history-one__content">
                                 <h3 class="history-one__title">
-                                    {{ $proposal->tit_pro }}
+                                     <a href="{{ url('/proposal/' . $proposal->id_pro) }}">{{ $proposal->tit_pro }}</a>
                                 </h3>
                                 <p class="history-one__text">
                                     {{ $proposal->des_pro }}
