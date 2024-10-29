@@ -54,7 +54,7 @@ class SuggestionController extends Controller
         ]);
 
         //Send Mail
-        Mail::to($voter->ema_vot)->send(new MailSuggestion($voter,'Sigma'));
+        Mail::to($voter->ema_vot)->send(new MailSuggestion($voter, $validatedData['tit_sug']));
         // Redirigir con un mensaje de éxito
         return redirect()->route('home')->with('success', 'Sugerencia enviada con éxito.');
     }
