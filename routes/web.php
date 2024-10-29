@@ -4,7 +4,6 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\VoterController;
@@ -44,6 +43,3 @@ Route::post('/voters/complete-register',[VoterController::class,'store'])->name(
 Route::get('/voters/statistics', function () {
     return view('pages.statistics');
 })->name('statistics');
-
-//Check this
-Route::get('/send-mail',[MailController::class,'sendEmail']);
