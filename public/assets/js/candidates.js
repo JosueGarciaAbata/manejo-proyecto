@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("container-add-vote");
     const closeBtn = document.querySelector(".cerrar");
-    const formModal = document.getElementById("form-add-vote");
-    
+
     const candidates = document.querySelectorAll(".candidate-item");
 
-    const closeModal = modalContainer => {
+    const closeModal = (modalContainer) => {
         if (modalContainer) modalContainer.style.display = "none";
     };
 
@@ -14,8 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
         closeModal(modalContainer);
     });
 
-    candidates.forEach(candidate => {
-        candidate.addEventListener("click", () =>modal.style.display = "block");
+    candidates.forEach((candidate) => {
+        candidate.addEventListener(
+            "click",
+            () => (modal.style.display = "block")
+        );
         const candidateId = candidate.querySelector(".cd-pic").id;
         document.getElementById("id_can").value = candidateId;
     });
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("click", (event) => {
         if (event.target.classList.contains("modal")) {
             const modals = document.querySelectorAll(".modal");
-            modals.forEach(modal => closeModal(modal));
+            modals.forEach((modal) => closeModal(modal));
         }
     });
 });

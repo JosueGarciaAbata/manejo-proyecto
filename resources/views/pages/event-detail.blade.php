@@ -23,7 +23,9 @@
             <div class="col-lg-6">
                 <div class="event-details__content">
                     <h3 class="event-details__title">{{ $event->tit_eve }}</h3>
-                    <p class="event-details__text">{{ $event->des_eve }}</p>
+                    @foreach ($event->paragraphs as $paragraph)
+                        <p class="event-details__text">{{ trim($paragraph) }}</p>
+                    @endforeach
                 </div><!-- /.event-details__content -->
             </div><!-- /.col-lg-6 -->
             <div class="col-lg-6">

@@ -29,22 +29,26 @@ class Event extends Model
     
     public function getPreviewImgUrlAttribute()
     {
-        $path = public_path($this->pre_img);
-        if (file_exists($path)) return asset($this->pre_img);
-
-        return asset('assets/images/event/example_preview_event.jpg');
+        $basePath = 'assets/images/event/preview/';
+        $imagePath = $basePath . $this->pre_img;
+        
+        if (file_exists(public_path($imagePath))) {
+            return asset($imagePath);
+        }
+        return asset('assets/images/event/preview/example_preview_event.jpg');
     }
     
     public function getResourceImgUrlAttribute()
     {
-        $path = public_path($this->res_img);
+        $basePath = 'assets/images/event/';
+        $imagePath = $basePath . $this->res_img;
         
-        if (file_exists($path)) {
-            return asset($this->res_img);
+        if (file_exists(public_path($imagePath))) {
+            return asset($imagePath);
         }
-        
-        return asset('assets/images/resources/example_event.jpg');
+        return asset('assets/images/event/example_event.jpg');
     }
+    
     
     public function getFormattedStartDateAttribute()
     {
@@ -64,5 +68,11 @@ class Event extends Model
     public function getEndTimeAttribute()
     {
         return Carbon::parse($this->fec_fin_eve)->format('h:i A');
+    }
+
+    public function getParagraphsAttribute()
+    {
+        $content = str_replace('<br>', "\n", $this->des_eve);
+        return preg_split("/\r\n|\n|\r/", $content);
     }
 }

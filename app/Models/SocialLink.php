@@ -16,6 +16,7 @@ class SocialLink extends Model
 
     protected $fillable = [
         'id_can_soc',
+        'id_icon_soc',
         'platform',
         'url_sco'
     ];
@@ -27,7 +28,7 @@ class SocialLink extends Model
 
     public function icon()
     {
-        return $this->belongsTo(Icon::class, 'id_icon_soc');
+        return $this->belongsTo(Icon::class, 'id_icon_soc', 'id_icon');
     }
 
 }

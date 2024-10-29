@@ -54,7 +54,7 @@
                     <p class="block-title__tag-line">Tags Seleccionados:</p>
                 </div><!-- /.col-lg-3 -->
                 <div class="col-lg-8">
-                    <ul class="sidebar__tags-list" style="padding-left: 15px;">
+                    <ul class="sidebar__tags-list" style="padding-left: 0px;">
                         @foreach($tags as $tag)
                             <li class="sidebar__tags-list-item" style="display: inline-block; margin-right: 10px;">
                                 <a href="{{ route('events.searchByTag', ['tag' => trim($tag)]) }}">
@@ -65,9 +65,8 @@
                     </ul>                                                               
                 </div><!-- /.col-lg-8 -->
             </div><!-- /.row -->
-        @endif
+            @endif
         
-
             <div class="row">
                 @forelse ($events as $event)
                 <div class="col-lg-6">
@@ -120,7 +119,6 @@
             @empty
                 <p class="text-center">No hay eventos que coincidan con la búsqueda.</p>
             @endforelse
-            
             </div>            
             
             @php
