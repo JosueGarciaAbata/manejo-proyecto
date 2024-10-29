@@ -27,7 +27,8 @@ class HomeController extends Controller
             ->with('proposals')
             ->get()
             ->pluck('proposals')
-            ->flatten();
+            ->flatten()
+            ->take(4);
 
         $voteCount = $this->countVotesForList(1);
 
