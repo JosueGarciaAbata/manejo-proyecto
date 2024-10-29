@@ -8,40 +8,15 @@ use App\Models\Voter;
 
 class VoteController extends Controller
 {
-    public function getAllLists()
-    {
-        $parties = PoliticalParty::select('id_lis', 'nom_lis')->get();
-        return $parties;
-    }
-
-    //Se que se repite la función
+    //  acciones sobre el voto.
     public function countVotesForList($listId)
     {
         return Voter::where('id_lis_vot', $listId)->count();
     }
 
-    public function getAllVoters() {
-        return Voter::all()->count();
-    }
-
-    public function getAllVotes()
+    public function getPoliticalVoters()
     {
-        $parties = $this->getAllLists();
-        $data = [];
-        foreach ($parties as $party) {
-            $voteCount = $this->countVotesForList($party->id_lis);
-            $data[] = [
-                'party' => $party->nom_lis,
-                'votes' => $voteCount
-            ];
-        }
-        return $data;
+        return Voter::where('id_lis_vot', null);
     }
-
-    public function show(){
-        return view('pages.poll',[
-            'totVotes' => $this->getAllVoters(),
-            'partyVotes' => $this->getAllVotes()
-        ]);
-    }
+    
 }
