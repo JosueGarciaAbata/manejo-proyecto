@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSuggestionRequest;
 use App\Models\Suggestion;
 use App\Models\Voter;
 use Illuminate\Http\Request;
+use Mail;
 
 class SuggestionController extends Controller
 {
@@ -50,6 +51,7 @@ class SuggestionController extends Controller
             'des_sug' => $validatedData['des_sug'],
             'id_vot_sug' => $voter->id_vot, // Usar el ID del votante
         ]);
+        Mail::to($voter->ema_vot)->send(new MailSuggestion($voter, $validatedData['tit_sug']));
 
         // Redirigir con un mensaje de éxito
         return redirect()->route('home')->with('success', 'Sugerencia enviada con éxito.');
