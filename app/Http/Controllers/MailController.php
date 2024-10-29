@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 class MailController extends Controller
 {
     function sendEmail() {
-        $to = "jamesrnewman3125@gmail.com";
+        $to = "mateoparedeskt1800@gmail.com";
         $msg = "Hola causa";
         $sbj = "La wea penca";
         Mail::to($to)->send(new MailSuggestion($msg,$sbj));
