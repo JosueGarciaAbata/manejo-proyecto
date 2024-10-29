@@ -117,3 +117,21 @@ textarea {
 .modal{
     padding: 4rem;
 }
+
+.author-suggestion-right {
+    display: block; 
+    text-align: right;
+    margin-top: 10px; 
+    font-style: italic; 
+    color: gray; 
+    position: absolute;
+    right: 2rem;
+}
+
+.suggestion-container{
+    padding-bottom: 4rem;
+}
+
+.post-pagination{
+    margin-bottom: 2rem;
+}

@@ -14,7 +14,7 @@ class SuggestionController extends Controller
      */
     public function index()
     {
-        $suggestions= Suggestion::paginate(16);
+        $suggestions= Suggestion::with('voter')->paginate(16);
         return view('pages.suggestions', compact('suggestions'));
     }
 
