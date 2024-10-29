@@ -18,13 +18,12 @@ class MailSuggestion extends Mailable
      * Create a new message instance.
      */
     public $voter;
-    public $msg;
     public $sbj;
 
-    public function __construct($msg,$sbj)
+    public function __construct($voter, $subject)
     {
-        $this->msg = $msg;
-        $this->sbj = $sbj;
+        $this->voter = $voter;
+        $this->sbj = $subject;
     }
 
    /**
