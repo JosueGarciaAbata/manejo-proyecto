@@ -8,6 +8,7 @@
             <span class="cerrar">&times;</span>
             <h2 id="title"></h2>
             <p id="description"></p>
+            <span id="author-suggestion"></span>
         </div>
     </div>
     <div id="form-add-suggestion" class="modal">
@@ -18,9 +19,7 @@
                     <div class="col-lg-12">
                         <div class="section-title">
                             <h2>Tus sugerencias son valiosos para un mejor futuro</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quam molestias
-                                voluptatibus dicta provident quasi? Unde distinctio rerum explicabo doloribus atque?
-                                Adipisci fugiat in odio autem laborum doloremque dolorum quas..</p>
+                            <p>Tu opinión es clave para construir un mejor futuro. Cada sugerencia nos ayuda a mejorar y a crear una comunidad más fuerte y participativa. ¡Gracias por compartir tus ideas!.</p>
                         </div>
                     </div>
                 </div>
@@ -45,8 +44,8 @@
 
         <div class="row">
             @forelse ($suggestions as $suggestion)
-                <div class="col-lg-6 ">
-                    <div class="event-one__single">
+                <div class="col-lg-6">
+                    <div class="event-one__single suggestion-container" >
                         <div class="event-one__content suggestion">
                             <p class="event-one__date">
                                 {{ \Carbon\Carbon::parse($suggestion->updated_at)->format('d M, Y') }}
@@ -55,8 +54,13 @@
                                 {{ $suggestion->tit_sug }}
                             </h3>
                             <p class="suggestion-details">
-                                {{ $suggestion->des_sug }}
+                                {{ $suggestion->des_sug }}.
                             </p>
+                            <span class="author-suggestion-right">
+                                @if($suggestion->voter && $suggestion->voter->nom_vot)
+                                    [{{ $suggestion->voter->nom_vot }} {{ $suggestion->voter->ape_vot }}]
+                                @endif
+                            </span>
                         </div>
                     </div>
                 </div>
