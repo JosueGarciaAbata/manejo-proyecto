@@ -17,7 +17,7 @@
 </section>
 
 <section class="representant-parties candidate-item">
-    <div class="container col-12">
+    <div class="container col-12 card-container">
         <div class="row" id="party-list">
         </div>
     </div>
@@ -29,6 +29,7 @@
     </div>
 </section>
 
+<div id="successMessage" class="success-message"></div>
 
 <section id="container-add-vote" class="modal">
     <span class="cerrar">&times;</span>
@@ -42,20 +43,20 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-9">
-                    <form action="" method="POST" class="mailchimp-one__form add-vote">
+            <div class="row ">
+                <div class="col-lg-9 container-add-vote">
+                    <form id="voterForm" action="{{ route('voters.register') }}" method="POST" class="mailchimp-one__form add-vote">
                         @csrf
-                        <input type="hidden" name='id_lis' id="id_lis" value="">
-                        <input type="text" name='ema_vot' placeholder="Email">
+                        <input type="hidden" name="id_lis" id="id_lis" value="">
+                        <input type="text" name="ema_vot" placeholder="Email" required>
                         <button type="submit" class="thm-btn mailchimp-one__form-btn">Enviar</button>
                     </form>
+
                 </div>
             </div>
         </div>
     </article>
 </section>
-<!-- de momento -->
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>

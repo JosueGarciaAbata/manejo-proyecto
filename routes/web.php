@@ -42,8 +42,6 @@ Route::post('/suggestions',[SuggestionController::class,'store'])->name('suggest
 
 Route::get('/voters/complete-register',[VoterController::class,'create'])->name('voters.complete-register');
 
-Route::post('/voters/complete-register',[VoterController::class,'store'])->name('voters.register');
-
 Route::get('/voters/statistics', function () {
     return view('pages.statistics');
 })->name('statistics');

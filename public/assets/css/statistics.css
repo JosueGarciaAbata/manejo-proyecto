@@ -1,3 +1,103 @@
-.representation .container{
+/* Estilo personalizado para la imagen con efecto de escala */
+.custom-card-img {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .custom-card-img {
+    transform: scale(1.1);
+}
+
+/* Estilo para el overlay */
+.custom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
     
+    flex-direction: column; /* Cambia a columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+/* Al hacer hover, mostrar el overlay */
+.card:hover .custom-overlay {
+    opacity: 1;
+}
+
+/* Ajuste de altura máxima de la imagen */
+.custom-card-img {
+    max-height: 35rem; 
+    object-fit: cover; 
+    transition: transform 0.3s ease;
+}
+
+/* Escala al pasar el mouse */
+.card:hover .custom-card-img {
+    transform: scale(1.1);
+}
+
+.voting-results{
+    width: 50vw;
+    height: 70vh;
+    margin: 0 auto;
+    margin-bottom: 35vh;
+}
+
+.voting-results canvas{
+    height: 100%;
+}
+
+
+.contenido-modal{
+    top: 30vh;
+}
+
+.card.position-relative{
+    height: 60vh;
+}
+
+.card.position-relative img{
+    width: 100%; 
+    height: auto; 
+    object-fit: cover;
+}
+
+
+
+
+
+
+
+
+
+
+.success-message {
+    position: fixed;
+    top: 20px; /* Ajusta la posición según sea necesario */
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease;
+    opacity: 1; /* Iniciar opacidad en 1 */
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+}
+
+.success {
+    background-color: #28a745; /* Color de fondo verde */
+    color: white; /* Color del texto */
+}
+
+.error {
+    background-color: #dc3545; /* Color de fondo rojo */
+    color: white; /* Color del texto */
 }
