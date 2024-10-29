@@ -12,9 +12,11 @@
     </h1>
     <p>
         Agradecemos mucho tu apoyo {{ $voter->nom_vot }} {{ $voter->ape_vot }}
+        <br>
+        Tu propuesta de {{ $sugestion }} es muy importante para nostros
     </p>
-    <p>
-        Vota por nuestra lista e infórmate más en <a href="{{ route('home') }}"></a>
-    </p>
+    <h2>
+        Vota por nuestra lista e infórmate más en <a href="{{ route('home') }}">nuestra página</a>
+    </h2>
 </body>
 </html>
