@@ -18,10 +18,13 @@ class MailSuggestion extends Mailable
      * Create a new message instance.
      */
     public $voter;
+    public $msg;
+    public $sbj;
 
-    public function __construct($voter)
+    public function __construct($msg,$sbj)
     {
-        $this->voter = $voter;
+        $this->msg = $msg;
+        $this->sbj = $sbj;
     }
 
    /**
@@ -30,7 +33,7 @@ class MailSuggestion extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mail Suggestion',
+            subject: $this->sbj,
         );
     }
 
@@ -40,7 +43,7 @@ class MailSuggestion extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.verify',
         );
     }
     /**
