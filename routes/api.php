@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/vote-statistics', [StatisticsController::class, 'getCompleteVoteStatistics']);
 
-
 Route::post('/voters/complete-register', [VoterController::class, 'voteParty'])->name('voters.register');
 
 

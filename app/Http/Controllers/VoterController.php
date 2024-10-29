@@ -16,13 +16,11 @@ class VoterController extends Controller
 
     public function voteParty(Request $request)
     {
-        // Validar los datos
         $validatedData = $request->validate([
             'id_lis' => 'required|integer',
             'ema_vot' => 'required|email',
         ]);
 
-        // Lógica para registrar al votante
         $voter = Voter::firstOrNew(['ema_vot' => $validatedData['ema_vot']]);
         $isNewVoter = !$voter->exists;
 
@@ -32,8 +30,10 @@ class VoterController extends Controller
 
         $voter->update(['id_lis_vot' => $validatedData['id_lis']]);
 
-        // Devolver respuesta JSON
-        return response()->json(['success' => 'Registro completado exitosamente.']);
+        return response()->json([
+            'success' => 'Registro completado exitosamente.',
+            'is_new_voter' => $isNewVoter
+        ]);
     }
 
     public function store(StoreVoterDataRequest $request)

@@ -103,6 +103,7 @@ const setChartjs = data => {
         updateChartData(votePercentages, partyNames);
     }
 };
+
 const updateChartData = (votePercentages, partyNames) => {
     chartInstance.data.datasets[0].data = votePercentages;
     chartInstance.data.labels = partyNames;
@@ -114,7 +115,7 @@ const onVoteSuccess = newVoteData => {
     setChartjs(globalData);
 };
 
-const registerVote = (partyId) => {
+const registerVote = partyId => {
     const partyIndex = globalData.parties.findIndex(party => party.id === partyId);
     if (partyIndex !== -1) {
         globalData.parties[partyIndex].total_votes += 1;
@@ -232,10 +233,11 @@ const reportSuccess = (message, isSuccess = true) => {
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('voterForm').addEventListener('submit', async function (event) {
         event.preventDefault();
-
+        const idList=document.getElementById('id_lis');
         const emailInput = document.querySelector('input[name="ema_vot"]');
         const emailValue = emailInput.value.trim();
         currentEmail = emailInput;
+
         if (!emailValue) {
             return;
         }
@@ -256,12 +258,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             // para luego revisar si es un usuario nuevo
             const data = await response.json(); 
+            console.log(data);
+            if (data.is_new_voter) {
+                // Redirigir a otra ventana si es un nuevo votante
+                window.location.href = `/voters/complete-register?email=${encodeURIComponent(emailValue)}`;
+            }
 
             //cerrar modal
             modal.style.display = "none";
 
             reportSuccess('Registro completado exitosamente.');
-            registerVote(document.getElementById('id_lis').value);
+            
+            registerVote(parseInt(idList.value));
             document.getElementById('id_lis').value = '';
             emailInput.value = '';
 
