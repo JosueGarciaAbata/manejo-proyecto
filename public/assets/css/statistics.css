@@ -81,6 +81,7 @@
 
 
 .success-message {
+    display: none;
     position: fixed;
     top: 20px; /* Ajusta la posición según sea necesario */
     right: 20px;

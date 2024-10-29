@@ -2,7 +2,9 @@ const modal = document.getElementById("container-add-vote");
 const closeBtn = document.querySelector(".cerrar");
 const formModal = document.getElementById("form-add-vote");
 const candidates = document.querySelectorAll(".candidate-item");
-let currentEmail="";
+let currentEmail = "";
+let globalData = null;
+let chartInstance;
 
 const getData = async () => {
     try {
@@ -10,12 +12,15 @@ const getData = async () => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return await response.json();
+        globalData = await response.json();
+        return globalData;
     } catch (error) {
         console.error('Error fetching data:', error);
         return null;
     }
 };
+
+
 
 const setChartjs = data => {
     if (data.status !== 'success') {
@@ -53,55 +58,76 @@ const setChartjs = data => {
     };
 
     const ctx = document.getElementById('votes-statistics').getContext('2d');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: datos,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                    labels: {
-                        color: 'black',
-                        font: { size: 14 }
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (tooltipItem) {
-                            const index = tooltipItem.dataIndex;
-                            const percentage = ((votePercentages[index] / totalVotes) * 100).toFixed(2);
-                            const candidates = data.parties[index].candidates
-                                .map(candidate => candidate.name)
-                                .join(', ');
-                            return `${partyNames[index]}: ${votePercentages[index]} votos (${percentage}%)\nCandidatos: ${candidates}`;
+    if (!chartInstance) {
+        chartInstance = new Chart(ctx, {
+            type: 'doughnut',
+            data: datos,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: 'black',
+                            font: { size: 14 }
                         }
-                    }
-                },
-                datalabels: {
-                    color: '#000',
-                    formatter: (value, context) => {
-                        const percentage = ((value / totalVotes) * 100).toFixed(2);
-                        return `${percentage}%`;
                     },
-                    font: { weight: 'bold', size: 12 },
-                    anchor: 'center',
-                    align: 'center',
-                    offset: -10
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                const index = tooltipItem.dataIndex;
+                                const percentage = ((votePercentages[index] / totalVotes) * 100).toFixed(2);
+                                const candidates = data.parties[index].candidates
+                                    .map(candidate => candidate.name)
+                                    .join(', ');
+                                return `${partyNames[index]}: ${votePercentages[index]} votos (${percentage}%)\nCandidatos: ${candidates}`;
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: '#000',
+                        formatter: (value, context) => {
+                            const percentage = ((value / totalVotes) * 100).toFixed(2);
+                            return `${percentage}%`;
+                        },
+                        font: { weight: 'bold', size: 12 },
+                        anchor: 'center',
+                        align: 'center',
+                        offset: -10
+                    }
                 }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
+            },
+            plugins: [ChartDataLabels]
+        });
+    } else {
+        updateChartData(votePercentages, partyNames);
+    }
+};
+const updateChartData = (votePercentages, partyNames) => {
+    chartInstance.data.datasets[0].data = votePercentages;
+    chartInstance.data.labels = partyNames;
+    chartInstance.update();
+};
+// proximo a eliminacion
+const onVoteSuccess = newVoteData => {
+    globalData = newVoteData;
+    setChartjs(globalData);
 };
 
-const voteHandler=(event,listId)=>{
-    console.log(event);
-    console.log(listId);
+const registerVote = (partyId) => {
+    const partyIndex = globalData.parties.findIndex(party => party.id === partyId);
+    if (partyIndex !== -1) {
+        globalData.parties[partyIndex].total_votes += 1;
+        setChartjs(globalData);
+    } else {
+        console.error('Party not found in globalData');
+    }
+};
 
+
+const voteHandler = (event, listId) => {
     modal.style.display = "block";
-    document.getElementById("id_lis").value=listId;
-
+    document.getElementById("id_lis").value = listId;
 }
 
 const createContainers = (data) => {
@@ -144,9 +170,8 @@ const createContainers = (data) => {
             container.appendChild(card);
             partyList.appendChild(container);
 
-            // Evento al hacer clic en la imagen
             cardBody.addEventListener('click', event => {
-                voteHandler(event,party.id);
+                voteHandler(event, party.id);
             });
         });
     }
@@ -183,93 +208,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const reportSuccess = (message, isSuccess = true) => {
     const successMessageDiv = document.getElementById('successMessage');
-    successMessageDiv.innerText = message; // Establecer el mensaje
+    successMessageDiv.innerText = message; 
 
-    // Cambiar la clase según el resultado
     if (isSuccess) {
-        successMessageDiv.className = 'success-message success'; // Mensaje de éxito
+        successMessageDiv.className = 'success-message success';
     } else {
-        successMessageDiv.className = 'success-message error'; // Mensaje de error
+        successMessageDiv.className = 'success-message error';
     }
 
-    successMessageDiv.style.display = 'block'; // Mostrar la tarjeta
-    successMessageDiv.style.opacity = 1; // Asegúrate de que la opacidad esté en 1
+    successMessageDiv.style.display = 'block'; 
+    successMessageDiv.style.opacity = 1;
 
     setTimeout(() => {
-        successMessageDiv.style.opacity = 0; 
+        successMessageDiv.style.opacity = 0;
         // Hacer que la tarjeta se vuelva transparente
         // Ocultar la tarjeta después de la transición
         setTimeout(() => {
             successMessageDiv.style.display = 'none'; // Ocultar el div
         }, 500); // Tiempo de espera para ocultar después de la animación
-    }, 3000); 
+    }, 3000);
 };
 
-// Asegúrate de que el evento DOMContentLoaded esté en su lugar
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('voterForm').addEventListener('submit', async function (event) {
-        event.preventDefault(); 
-        const formData = new FormData(this); // Captura los datos del formulario
+        event.preventDefault();
 
+        const emailInput = document.querySelector('input[name="ema_vot"]');
+        const emailValue = emailInput.value.trim();
+        currentEmail = emailInput;
+        if (!emailValue) {
+            return;
+        }
+
+        const formData = new FormData(this); 
+        console.log(formData);
         try {
             const response = await fetch(this.action, {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-Requested-With': 'XMLHttpRequest', // Indica que es una solicitud AJAX
+                    'X-Requested-With': 'XMLHttpRequest',
                 },
             });
 
             if (!response.ok) {
                 reportSuccess('Error al registrar: ' + error.message, false);
             }
-
+            // para luego revisar si es un usuario nuevo
             const data = await response.json(); 
+
+            //cerrar modal
+            modal.style.display = "none";
+
             reportSuccess('Registro completado exitosamente.');
-
-            document.getElementById('id_lis').value = ''; 
-
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Error al registrar: ' + error.message);
-        }
-    });
-});
-
-
-
-document.addEventListener('DOMContentLoaded', function() { 
-    document.getElementById('voterForm').addEventListener('submit', async function(event) {
-        event.preventDefault(); 
-        
-        const emailInput = document.querySelector('input[name="ema_vot"]');
-        const emailValue = emailInput.value.trim();
-        currentEmail=emailInput;
-        if (!emailValue) {
-            return;
-        }
-
-        const formData = new FormData(this); 
-        
-        try {
-            const response = await fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest', 
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json(); 
-
+            registerVote(document.getElementById('id_lis').value);
+            document.getElementById('id_lis').value = '';
             emailInput.value = '';
 
-            // alert('Registro exitoso: ' + data.success);
-            reportSuccess('Registro completado exitosamente.');
+            const updatedData = await getData();
+            if (updatedData) {
+                setChartjs(updatedData);
+            }
+
         } catch (error) {
             console.error('Error:', error);
             alert('Error al registrar: ' + error.message);
