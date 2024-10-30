@@ -272,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const updatedData = await getData();
                 if (updatedData) setChartjs(updatedData);
             } catch (error) {
+                console.log("Something went wrong")
                 console.error("Error:", error);
                 alert("Error al registrar: " + error.message);
             }
