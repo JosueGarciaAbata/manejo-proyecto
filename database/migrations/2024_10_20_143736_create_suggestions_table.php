@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('suggestions', function (Blueprint $table) {
             $table->id('id_sug');
-            $table->string('tit_sug', 50);
-            $table->string('des_sug', 150);
+            $table->string('tit_sug', 60);
+            $table->string('des_sug', 250);
             $table->foreignId('id_vot_sug')
                   ->constrained('voters', 'id_vot')
                   ->onDelete("cascade");

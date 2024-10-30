@@ -27,7 +27,8 @@ class StatisticsController extends Controller
                 'total_votes' => $totalVotes,
                 'candidates' => $party->candidates->map(function ($candidate) {
                     return [
-                        'name' => "$candidate->nom_can $candidate->ape_can"
+                        'name' => "$candidate->nom_can $candidate->ape_can",
+                        'position' => "$candidate->car_can"
                     ];
                 }),
             ];

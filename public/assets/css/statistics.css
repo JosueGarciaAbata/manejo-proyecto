@@ -102,3 +102,7 @@
     background-color: #dc3545; /* Color de fondo rojo */
     color: white; /* Color del texto */
 }
+
+.banner-statistics{
+    margin-bottom: 2rem;
+}
