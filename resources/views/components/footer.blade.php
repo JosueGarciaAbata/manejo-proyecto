@@ -23,7 +23,8 @@
                         <ul class="list-unstyled footer-widget__links-list">
                             <li><a href="{{ url('/') }}">Inicio</a></li>
                             <li><a href="{{ url('/candidates') }}">Candidatos</a></li>
-                            <li><a href="{{ url('/eventsAndNews') }}">Eventos y Noticias</a></li>
+                            <li><a href="{{ url('/events') }}">Eventos</a></li>
+                            <li><a href="{{ url('/news') }}">Noticias</a></li>
                             <li><a href="{{ url('/proposals') }}">Propuestas</a></li>
                             <li><a href="{{ url('/suggestions') }}">Sugerencias</a></li>
                         </ul><!-- /.list-unstyled footer-widget__links-list -->

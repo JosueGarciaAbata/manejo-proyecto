@@ -24,11 +24,11 @@ class HomeController extends Controller
         $missionVision = PoliticalParty::where('id_lis', 1)->value('mis_vis_lis');
 
         $proposals = Candidate::where('id_pol_par_bel', 1)
-        ->with('proposals')
-        ->get()
-        ->pluck('proposals')
-        ->flatten()
-        ->take(4);
+            ->with('proposals')
+            ->get()
+            ->pluck('proposals')
+            ->flatten()
+            ->take(4);
 
         $voteCount = $this->countVotesForList(1);
 
