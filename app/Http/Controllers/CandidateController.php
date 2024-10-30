@@ -9,7 +9,7 @@ class CandidateController extends Controller
 {
     public function show()
     {
-        $candidates = Candidate::all();
+        $candidates = Candidate::where('id_pol_par_bel', 1)->get();
         return view('pages.candidates', compact('candidates'));
     }
 
