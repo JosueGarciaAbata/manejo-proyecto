@@ -6,7 +6,7 @@
 
 <h1></h1>
 
-<section class="inner-banner">
+<section class="inner-banner banner-statistics">
     <div class="container">
         <h2 class="inner-banner__title">Votaciones 2024-2028</h2>
         <ul class="list-unstyled thm-breadcrumb">

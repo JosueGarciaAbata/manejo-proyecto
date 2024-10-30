@@ -3,7 +3,6 @@ const closeBtn = document.querySelector(".cerrar");
 const formModal = document.getElementById("form-add-vote");
 const candidates = document.querySelectorAll(".candidate-item");
 let currentEmail = "";
-let globalData = null;
 let chartInstance;
 
 const getData = async () => {
@@ -12,8 +11,7 @@ const getData = async () => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        globalData = await response.json();
-        return globalData;
+        return await response.json();
     } catch (error) {
         console.error('Error fetching data:', error);
         return null;
@@ -22,21 +20,24 @@ const getData = async () => {
 
 
 
-const setChartjs = data => {
+const setChartjs = (data) => {
     if (data.status !== 'success') {
         console.error('Failed to fetch data:', data.message);
         return;
     }
 
     const totalVotes = data.parties.reduce((acc, item) => acc + item.total_votes, 0);
-    const partyNames = data.parties.map(item => item.candidates.find(candidate=>candidate.position==='Rector') );
-    const votePercentages = data.parties.map(item => item.total_votes);
+    const partyNames = data.parties.map(item => {
+        const candidate = item.candidates.find(candidate => candidate.position === 'Rector');
+        return candidate ? candidate.name : null;
+    }).filter(name => name !== null);
+    const voteCounts = data.parties.map(item => item.total_votes);
 
     const datos = {
         labels: partyNames,
         datasets: [{
             label: 'Votos',
-            data: votePercentages,
+            data: voteCounts, // Usamos votos absolutos
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
@@ -58,69 +59,53 @@ const setChartjs = data => {
     };
 
     const ctx = document.getElementById('votes-statistics').getContext('2d');
-    if (!chartInstance) {
-        chartInstance = new Chart(ctx, {
-            type: 'doughnut',
-            data: datos,
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        labels: {
-                            color: 'black',
-                            font: { size: 14 }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                const index = tooltipItem.dataIndex;
-                                const percentage = ((votePercentages[index] / totalVotes) * 100).toFixed(2);
-                                const candidates = data.parties[index].candidates
-                                    .map(candidate => candidate.name)
-                                    .join(', ');
-                                return `${partyNames[index]}: ${votePercentages[index]} votos (${percentage}%)\nCandidatos: ${candidates}`;
-                            }
-                        }
-                    },
-                    datalabels: {
-                        color: '#000',
-                        formatter: (value, context) => {
-                            const percentage = ((value / totalVotes) * 100).toFixed(2);
-                            return `${percentage}%`;
-                        },
-                        font: { weight: 'bold', size: 12 },
-                        anchor: 'center',
-                        align: 'center',
-                        offset: -10
+    
+    // Destruir la instancia de la gráfica si ya existe
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+
+    // Crear una nueva instancia de la gráfica
+    chartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: datos,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: 'black',
+                        font: { size: 14 }
                     }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            const index = tooltipItem.dataIndex;
+                            const voteCount = tooltipItem.dataset.data[index];
+                            const votePercent = ((voteCount / totalVotes) * 100).toFixed(2);
+                            const partyName = tooltipItem.chart.data.labels[index];
+                            return `${partyName}: ${voteCount} votos (${votePercent}%)`;
+                        }
+                    }
+                },
+                datalabels: {
+                    color: '#000',
+                    formatter: (value, context) => {
+                        const percentage = ((value / totalVotes) * 100).toFixed(2);
+                        return `${percentage}%`;
+                    },
+                    font: { weight: 'bold', size: 12 },
+                    anchor: 'center',
+                    align: 'center',
+                    offset: -10
                 }
-            },
-            plugins: [ChartDataLabels]
-        });
-    } else {
-        updateChartData(votePercentages, partyNames);
-    }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
 };
-
-const updateChartData = (votePercentages, partyNames) => {
-    chartInstance.data.datasets[0].data = votePercentages;
-    chartInstance.data.labels = partyNames;
-    chartInstance.update();
-    console.log(globalData);
-};
-
-const registerVote = partyId => {
-    const partyIndex = globalData.parties.findIndex(party => party.id === partyId);
-    if (partyIndex !== -1) {
-        globalData.parties[partyIndex].total_votes += 1;
-        setChartjs(globalData);
-    } else {
-        console.error('Party not found in globalData');
-    }
-};
-
 
 const voteHandler = (event, listId) => {
     modal.style.display = "block";
@@ -150,7 +135,7 @@ const createContainers = (data) => {
             const cardBody = document.createElement('div');
             cardBody.classList.add('card-body', 'text-center', 'custom-overlay');
             cardBody.id = party.id;
-
+            /*
             const title = document.createElement('h3');
             title.classList.add('card-title');
             title.textContent = party.party_name;
@@ -158,10 +143,15 @@ const createContainers = (data) => {
             const paragraph = document.createElement('p');
             paragraph.classList.add('card-text');
             paragraph.textContent = party.description;
-
-            // Construcción de la estructura
+            
             cardBody.appendChild(title);
             cardBody.appendChild(paragraph);
+            */
+
+           // Construcción de la estructura
+            const voteMessage=document.createElement('h2');
+            voteMessage.textContent="Votar";
+            cardBody.appendChild(voteMessage);
             card.appendChild(img);
             card.appendChild(cardBody);
             container.appendChild(card);
@@ -252,27 +242,18 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!response.ok) {
                 reportSuccess('Error al registrar: ' + error.message, false);
             }
-            // para luego revisar si es un usuario nuevo
+                        
             const data = await response.json(); 
-            console.log(data);
-            // if (data.is_new_voter) {
-            //     // Redirigir a otra ventana si es un nuevo votante
-            //     window.location.href = `/voters/complete-register?email=${encodeURIComponent(emailValue)}`;
-            // }
 
-            //cerrar modal
             modal.style.display = "none";
 
             reportSuccess('Registro completado exitosamente.');
-            
-            registerVote(parseInt(idList.value));
             document.getElementById('id_lis').value = '';
             emailInput.value = '';
 
             const updatedData = await getData();
-            if (updatedData) {
+            if (updatedData)
                 setChartjs(updatedData);
-            }
 
         } catch (error) {
             console.error('Error:', error);
