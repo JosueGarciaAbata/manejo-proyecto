@@ -25,4 +25,42 @@ class CandidateController extends Controller
 
         return view('pages.candidate', compact('candidate'));
     }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+
+        $candidates = Candidate::all();
+
+        return response()->json(['candidates' => $candidates]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        // Somenthing...
+    }
+
+    // The show method needs to be refactored
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        // Somenthing...
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Request $request, string $id)
+    {
+        // Somenthing...
+    }
+
 }
