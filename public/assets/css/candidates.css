@@ -65,3 +65,15 @@
     bottom: 0;
     opacity: 1;
 }
+
+.add-candidate-btn {
+    padding: 0 100px;
+}
+
+.container-admin {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}

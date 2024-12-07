@@ -7,6 +7,13 @@ use App\Models\Candidate;
 
 class CandidateController extends Controller
 {
+
+    public function admin()
+    {
+        $candidates = Candidate::where('id_pol_par_bel', 1)->paginate(10);
+        return view('pages.candidates.back.candidates-back', compact('candidates'));
+    }
+
     public function candidates()
     {
         $candidates = Candidate::where('id_pol_par_bel', 1)->paginate(10);
@@ -26,12 +33,6 @@ class CandidateController extends Controller
         return view('pages.candidates.candidate', compact('candidate'));
     }
 
-    public function index()
-    {
-        $candidates = Candidate::all();
-        return response()->json(['candidates' => $candidates]);
-    }
-
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -48,7 +49,7 @@ class CandidateController extends Controller
 
         $candidate = Candidate::create($validated);
 
-        return response()->json(['success' => true, 'candidate' => $candidate]);
+        return redirect()->route('admin.candidates.index')->with('success', 'Candidato creado con éxito');
     }
 
     public function update(Request $request, string $id)
