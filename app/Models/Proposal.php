@@ -18,6 +18,7 @@ class Proposal extends Model
         'tit_pro',
         'des_pro',
         'fec_inc_pro',
+        'visible',
         'tags_pro',
         'id_can_pro',
     ];
