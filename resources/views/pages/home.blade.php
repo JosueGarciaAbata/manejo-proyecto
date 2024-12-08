@@ -179,13 +179,6 @@
     <div>
 
 
-        <!-- Seccion del video de presentacion-->
 
-        <div>
-            <video controls class="video_presentation ">
-                <source src="{{ asset('assets/videos/video_presentation.mp4') }}" type="video/mp4">
-
-            </video>
-        </div>
 
     @endsection
