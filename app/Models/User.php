@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'picture',
+        'type',
+        'remember_token',
     ];
 
     /**
@@ -41,8 +45,29 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function userType()
+    {
+        return $this->belongsTo(Type::class, 'type', 'id');
+    }
+
+    public function getPictureAttribute($value)
+    {
+        if ($value) {
+            return asset('back/dist/img/authors/' . $value);
+        } else {
+            return asset('back/dist/img/authors/default-img.jpg');
+        }
+    }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('name', 'like', $term)
+                ->orWhere('email', 'like', $term);
+        });
     }
 }
