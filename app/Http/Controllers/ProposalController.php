@@ -71,6 +71,11 @@ class ProposalController extends Controller
         return Proposal::orderBy('fec_inc_pro', 'desc')->take(3)->get();
     }
 
+    public function all() {
+        $proposals = Proposal::paginate(6);
+        return view('pages.proposals.all', compact('proposals'));
+    }
+
     public function create(Request $request) {
         $request->validate([
             'tit_pro' => 'required',
@@ -98,5 +103,52 @@ class ProposalController extends Controller
                 'msg' => 'Problema al registrar la propuesta'
             ]);
         }
+    }
+
+    public function delete(Request $request) {
+        
+    }
+
+    public function edit(Request $request) {
+        if (!request()->id_pro) {
+            return abort(404);
+        }
+        $prop = Proposal::find(request()->id_pro);
+        $data = [
+            'prop' => $prop,
+            'title' => 'Edit Post'
+        ];
+        return view('pages.proposals.edit-proposal',$data);
+    }
+
+    public function update(Request $request) {
+        $request->validate([
+            'tit_pro' => 'required',
+            'des_pro' => 'required',
+            'fec_inc_pro' => 'required',
+            'id_can' => 'required'
+        ]);
+
+        $prop = Proposal::find($request->id_pro);
+
+        $prop->id_can_pro = $request->id_can;
+        $prop->tit_pro = $request->tit_pro;
+        $prop->des_pro = $request->des_pro;
+        $prop->fec_inc_pro = $request->fec_inc_pro;
+        $prop->tags_pro = $request->tags_pro;
+                
+        if ($prop->save()) {
+            return response()->json([
+                'msg' => 'Propuesta registrada'
+            ]);
+        } else {
+            return response()->json([
+                'msg' => 'Problema al registrar la propuesta'
+            ]);
+        }
+    }
+
+    public function hide(Request $request) {
+        
     }
 }
