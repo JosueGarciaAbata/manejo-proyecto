@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\NewsController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\VoterController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\isAdmin;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
@@ -47,3 +48,41 @@ Route::post('/voters/complete-register', [VoterController::class, 'store'])->nam
 Route::get('/voters/statistics', function () {
     return view('pages.statistics');
 })->name('statistics');
+
+
+Route::get('/login', function () {
+    return view('back.pages.auth.login');
+})->name('login');
+
+
+
+
+//Nota: aun me falta realizar algunos cambios y cambiar el nombre de unas variables de unos archivos que tiene tipo  author en vez de admin.
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::middleware(['guest:web'])->group(function () {
+        Route::view('/login', 'back.pages.auth.login')->name('login');
+    });
+
+    Route::view('/front', 'front.pages.home')->name('front');
+
+
+    Route::post('/change-profile-picture', [AuthorController::class, 'changeProfilePicture'])->name('change-profile-picture');
+    Route::view('/settings', 'back.pages.settings')->name('settings');
+    Route::view('/categories', 'back.pages.categories')->name('categories');
+    Route::middleware(['auth:web'])->group(function () {
+        Route::get('/home', [AuthorController::class, 'index'])->name('home');
+        Route::view('/authors', 'back.pages.authors')->name('authors');
+        Route::post('/logout', [AuthorController::class, 'logout'])->name('logout');
+        Route::view('/profile', 'back.pages.profile')->name('profile');
+
+    });
+
+    Route::middleware([isAdmin::class])->group(function () {
+        Route::view('/authors', 'back.pages.authors')->name('authors');
+        Route::post('/change-profile-picture', [AuthorController::class, 'changeProfilePicture'])->name('change-profile-picture');
+        Route::view('/settings', 'back.pages.settings')->name('settings');
+    });
+
+});
