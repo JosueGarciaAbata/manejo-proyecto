@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProposalController;
 
+//TODO: Poner aquí un middleware
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('proposals')->name('proposals.')->group(function () {
         Route::get('/search', [ProposalController::class, 'searchAdmin'])->name('proposals.search');
