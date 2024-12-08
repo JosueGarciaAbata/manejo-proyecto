@@ -19,8 +19,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('candidates')->name('candidates.')->group(function () {
-        Route::get('/show', [CandidateController::class, 'admin']);
-        Route::post('/store', [CandidateController::class, 'store']);
+
+        Route::get('/create', [CandidateController::class, 'create'])->name('create');
+        Route::get('/show', [CandidateController::class, 'admin'])->name('show');
+        Route::post('/store', [CandidateController::class, 'store'])->name('store');
         Route::put('/update', [CandidateController::class, 'update']);
         Route::put('/destroy', [CandidateController::class, 'destroy']);
     });

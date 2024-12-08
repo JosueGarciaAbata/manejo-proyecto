@@ -9,8 +9,8 @@
             <div class="row align-items-center">
                 <h1>Registrar un nuevo candidato</h1>
             </div>
-            <form action="{{ route('admin.candidates.create') }}" method="post" id="add-candidate"
-                enctype="multipart/form-data" class="mailchimp-one__form add-candidate">
+            <form action="{{ route('admin.candidates.store') }}" method="post" id="add-candidate" enctype="multipart/form-data"
+                class="mailchimp-one__form add-candidate">
                 @csrf
                 <div class="row">
                     <input type="text" name="nombre" id="nombre" placeholder="Nombre del candidato" required>

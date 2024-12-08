@@ -8,6 +8,12 @@ use App\Models\Candidate;
 class CandidateController extends Controller
 {
 
+    public function create()
+    {
+        return view('pages.candidates.add-candidate');
+    }
+
+
     public function admin()
     {
         $candidates = Candidate::where('id_pol_par_bel', 1)->paginate(10);
@@ -49,7 +55,7 @@ class CandidateController extends Controller
 
         $candidate = Candidate::create($validated);
 
-        return redirect()->route('admin.candidates.index')->with('success', 'Candidato creado con éxito');
+        return redirect()->route('admin.candidates.show')->with('success', 'Candidato creado con éxito');
     }
 
     public function update(Request $request, string $id)

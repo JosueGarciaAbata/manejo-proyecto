@@ -20,7 +20,7 @@
             <!-- Botón para agregar un nuevo candidato -->
             <div class="row mb-3">
                 <div class="col-12 text-end">
-                    <a href="{{ route('admin.candidates.store') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.candidates.create') }}" class="btn btn-primary">
                         Agregar Nuevo Candidato
                     </a>
                 </div>
