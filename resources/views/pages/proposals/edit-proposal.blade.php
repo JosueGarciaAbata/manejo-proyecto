@@ -9,7 +9,7 @@
             <div class="row align-items-center">
                 <h1>Edite la nueva propuesta</h1>
             </div>
-            <form action="{{ route('admin.proposals.update') }}" method="post" id="addProposal" enctype="multipart/form-data" class="mailchimp-one__form add-suggestion">
+            <form action="{{ route('admin.proposals.update', ['id' => $prop->id_pro]) }}" method="post" id="addProposal" enctype="multipart/form-data" class="mailchimp-one__form add-suggestion">
                 @csrf
                 <div class="row">
                     <input type="text" name="tit_pro" id="tit_pro" value="{{ $prop->tit_pro }}">

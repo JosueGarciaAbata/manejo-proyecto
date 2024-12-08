@@ -116,23 +116,27 @@ class ProposalController extends Controller
         $prop = Proposal::find(request()->id_pro);
         $data = [
             'prop' => $prop,
-            'title' => 'Edit Post'
+            'title' => 'Edit Proposal'
         ];
         return view('pages.proposals.edit-proposal',$data);
     }
 
     public function update(Request $request) {
         $request->validate([
+            'id' => 'required',
             'tit_pro' => 'required',
             'des_pro' => 'required',
             'fec_inc_pro' => 'required',
             'id_can' => 'required'
         ]);
 
-        $prop = Proposal::find($request->id_pro);
+        $prop = Proposal::find($request->id);
 
-        $prop->id_can_pro = $request->id_can;
+        if ($prop == null) {
+            abort(404);
+        }
         $prop->tit_pro = $request->tit_pro;
+        $prop->id_can_pro = $request->id_can;
         $prop->des_pro = $request->des_pro;
         $prop->fec_inc_pro = $request->fec_inc_pro;
         $prop->tags_pro = $request->tags_pro;
