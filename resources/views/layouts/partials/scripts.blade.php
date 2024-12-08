@@ -19,7 +19,3 @@
 <script src="{{ asset('assets/js/startCountDown.js') }}"></script>
 <!-- Template scripts -->
 <script src="{{ asset('assets/js/theme.js') }}"></script>
-
-<!--Tagify Scripts-->
-<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
