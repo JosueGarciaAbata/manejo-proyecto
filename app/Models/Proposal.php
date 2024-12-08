@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Proposal extends Model
 {
     use SoftDeletes;
-    use HasFactory;
 
     protected $table = 'proposals';
     protected $primaryKey = 'id_pro'; 
@@ -18,7 +16,6 @@ class Proposal extends Model
         'tit_pro',
         'des_pro',
         'fec_inc_pro',
-        'visible',
         'tags_pro',
         'id_can_pro',
     ];
