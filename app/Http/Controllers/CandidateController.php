@@ -8,15 +8,10 @@ use App\Models\Candidate;
 class CandidateController extends Controller
 {
 
-    public function create()
-    {
-        return view('pages.candidates.add-candidate');
-    }
-
-
     public function admin()
     {
         $candidates = Candidate::where('id_pol_par_bel', 1)->paginate(10);
+
         return view('pages.candidates.all', compact('candidates'));
     }
 

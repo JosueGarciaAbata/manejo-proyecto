@@ -17,14 +17,7 @@
     <section class="candidates-section">
         <div class="container">
 
-            <!-- Botón para agregar un nuevo candidato -->
-            <div class="row mb-3">
-                <div class="col-12 text-end">
-                    <a href="{{ route('admin.candidates.create') }}" class="btn btn-primary">
-                        Agregar Nuevo Candidato
-                    </a>
-                </div>
-            </div>
+            @livewire('create-candidate')
 
             <div class="row">
                 @forelse ($candidates as $candidate)
