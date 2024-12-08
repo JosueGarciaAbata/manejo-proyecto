@@ -25,3 +25,6 @@
 <link rel="stylesheet" href="{{ asset('assets/css/voters.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/candidate.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/statistics.css') }}">
+
+<!--Tagify scripts-->
+<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
