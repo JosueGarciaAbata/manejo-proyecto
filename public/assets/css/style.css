@@ -76,6 +76,10 @@ h6 {
     background-color: #eef1f6;
 }
 
+.thm-white-bg {
+    background-color: #fefefe;
+}
+
 @keyframes bgSlide {
     0% {
         background-position: 0 0;
