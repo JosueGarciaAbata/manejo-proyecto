@@ -93,6 +93,7 @@ class ProposalController extends Controller
         $propuesta->des_pro = $request->des_pro;
         $propuesta->fec_inc_pro = $request->fec_inc_pro;
         $propuesta->tags_pro = $request->tags_pro;
+        $propuesta->visible = 1;
                 
         if ($propuesta->save()) {
             return response()->json([
@@ -140,6 +141,7 @@ class ProposalController extends Controller
         $prop->des_pro = $request->des_pro;
         $prop->fec_inc_pro = $request->fec_inc_pro;
         $prop->tags_pro = $request->tags_pro;
+        $prop->visible = $request->has('visible') ? 1 : 0;
                 
         if ($prop->save()) {
             return response()->json([

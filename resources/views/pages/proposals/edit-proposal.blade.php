@@ -37,6 +37,8 @@
                         @endforeach
                     </select>
                 </div>
+                <label for="visible">¿Quiere que el elemento sea visible?</label>
+                <input type="checkbox" name="visible" id="visible" value="1" {{ !($prop->visible == 0) ? 'checked' : '' }}>
                 <div class="row">
                     <button type="submit" class="thm-btn mailchimp-one__form-btn">
                         Registrar propuesta

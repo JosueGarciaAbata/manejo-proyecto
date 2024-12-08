@@ -9,7 +9,7 @@
             <div class="row align-items-center">
                 <h1>Cree una nueva propuesta</h1>
             </div>
-            <form action="{{ route('admin.proposals.create') }}" method="post" id="addProposal" enctype="multipart/form-data" class="mailchimp-one__form add-suggestion">
+            <form action="{{ route('admin.proposals.create') }}" method="post" id="add-proposal" enctype="multipart/form-data" class="mailchimp-one__form add-suggestion">
                 @csrf
                 <div class="row">
                     <input type="text" name="tit_pro" id="tit_pro" placeholder="Titulo de la propuesta">
@@ -43,6 +43,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             const input = document.getElementById('tags_pro')
             const tagify = new Tagify(input)
+            const form = document.getElementById('add-proposal');
+            form.addEventListener('submit', (event) => {
+                input.value = tagify.value.map(tag => tag.value).join(','); // Convierte a una cadena separada por comas
+            });        
         });
     </script>
 @endsection
