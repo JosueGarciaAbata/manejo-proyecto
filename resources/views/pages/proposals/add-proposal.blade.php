@@ -18,7 +18,7 @@
                     <input type="date" name="fec_inc_pro" id="fec_inc_pro" >
                 </div>
                 <div class="row">
-                    <textarea maxlength="150" name="des_pro" id="des_pro" placeholder="Descripcion"></textarea>
+                    <textarea maxlength="500" name="des_pro" id="des_pro" placeholder="Descripcion"></textarea>
                 </div>
                 <br>
                 <div class="row">
