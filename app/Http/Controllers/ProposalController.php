@@ -71,21 +71,25 @@ class ProposalController extends Controller
         return Proposal::orderBy('fec_inc_pro', 'desc')->take(3)->get();
     }
 
-    public function create(Request $request, $candidateId) {
-        $candidate = Candidate::findOrFail($candidateId);
-        
+    public function create(Request $request) {
         $request->validate([
             'tit_pro' => 'required',
             'des_pro' => 'required',
-            'fec_inc_pro' => 'required'
+            'fec_inc_pro' => 'required',
+            'id_can' => 'required'
         ]);
+        
+        $candidateId = $request->id_can;
+        $candidate = Candidate::findOrFail($candidateId);
 
         $propuesta = new Proposal();
+        $propuesta->id_can_pro = $request->id_can;
         $propuesta->tit_pro = $request->tit_pro;
         $propuesta->des_pro = $request->des_pro;
         $propuesta->fec_inc_pro = $request->fec_inc_pro;
-
-        if ($candidate->proposals()->save($propuesta)) {
+        $propuesta->tags_pro = $request->tags_pro;
+                
+        if ($propuesta->save()) {
             return response()->json([
                 'msg' => 'Propuesta registrada'
             ]);
