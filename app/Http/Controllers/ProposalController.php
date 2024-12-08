@@ -11,7 +11,7 @@ class ProposalController extends Controller
     public $numProposal = 5;
     public function index()
     {
-        $proposals = Proposal::paginate(6);
+        $proposals = Proposal::where('visible', 1)->paginate(6);
         return view('pages.proposals', compact('proposals'));
     }
 
