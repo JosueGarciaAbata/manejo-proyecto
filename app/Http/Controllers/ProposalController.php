@@ -17,7 +17,7 @@ class ProposalController extends Controller
 
     public function show($id)
     {
-        $proposal = Proposal::with('candidate')->findOrFail($id);
+        $proposal = Proposal::where('visible',1)->with('candidate')->findOrFail($id);
         return view('pages.proposal-detail', compact('proposal'));
     }
 
@@ -28,7 +28,7 @@ class ProposalController extends Controller
             'query' => 'nullable|string',
         ]);
 
-        $query = Proposal::query();
+        $query = Proposal::where('visible',1);
 
         if ($request->filled('date')) {
             $query->whereDate('fec_inc_pro', $request->input('date'));
@@ -41,7 +41,7 @@ class ProposalController extends Controller
             });
         }
 
-        $proposals = $query->paginate(6);
+        $proposals = $query->paginate(4);
 
         return view('pages.proposals', compact('proposals'));
     }
@@ -52,7 +52,8 @@ class ProposalController extends Controller
             'date' => 'required|date',
         ]);
 
-        $proposals = Proposal::whereDate('fec_inc_pro', $request->date)->paginate(6);
+        $proposals = Proposal::where('visible',1)
+                            ->whereDate('fec_inc_pro', $request->date)->paginate(4);
         return view('pages.proposals', compact('proposals'));
     }
 
@@ -62,14 +63,17 @@ class ProposalController extends Controller
             'tag' => 'required|string',
         ]);
 
-        $proposals = Proposal::where('tags_pro', 'LIKE', "%{$request->tag}%")->paginate(6);
+        $proposals = Proposal::where('visible',1)
+                            ->where('tags_pro', 'LIKE', "%{$request->tag}%")->paginate(4);
         return view('pages.proposals', compact('proposals'));
     }
 
     public function latestProposals()
     {
-        return Proposal::orderBy('fec_inc_pro', 'desc')->take(3)->get();
+        return Proposal::where('visible',1)->orderBy('fec_inc_pro', 'desc')->take(3)->get();
     }
+
+    //Funciones de admin/superadmin
 
     public function all() {
         $proposals = Proposal::paginate(4);
@@ -104,10 +108,6 @@ class ProposalController extends Controller
                 'msg' => 'Problema al registrar la propuesta'
             ]);
         }
-    }
-
-    public function delete(Request $request) {
-        
     }
 
     public function edit(Request $request) {
@@ -154,7 +154,54 @@ class ProposalController extends Controller
         }
     }
 
-    public function hide(Request $request) {
-        
+    public function showAdmin($id)
+    {
+        $proposal = Proposal::with('candidate')->findOrFail($id);
+        return view('pages.proposal-detail', compact('proposal'));
+    }
+
+    public function searchAdmin(Request $request)
+    {
+        $request->validate([
+            'date' => 'nullable|date',
+            'query' => 'nullable|string',
+        ]);
+
+        $query = Proposal::query();
+
+        if ($request->filled('date')) {
+            $query->whereDate('fec_inc_pro', $request->input('date'));
+        }
+
+        if ($request->filled('query')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('tit_pro', 'LIKE', "%{$request->input('query')}%")
+                    ->orWhere('tags_pro', 'LIKE', "%{$request->input('query')}%");
+            });
+        }
+
+        $proposals = $query->paginate(4);
+
+        return view('pages.proposals', compact('proposals'));
+    }
+
+    public function searchByDateAdmin(Request $request)
+    {
+        $request->validate([
+            'date' => 'required|date',
+        ]);
+
+        $proposals = Proposal::whereDate('fec_inc_pro', $request->date)->paginate(4);
+        return view('pages.proposals', compact('proposals'));
+    }
+
+    public function searchByTagAdmin(Request $request)
+    {
+        $request->validate([
+            'tag' => 'required|string',
+        ]);
+
+        $proposals = Proposal::where('tags_pro', 'LIKE', "%{$request->tag}%")->paginate(4);
+        return view('pages.proposals', compact('proposals'));
     }
 }
