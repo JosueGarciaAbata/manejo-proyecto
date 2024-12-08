@@ -26,7 +26,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <select class="form-select form-select-lg mb-3" name="id_can" id="id_can">
+                    <select class="form-select" name="id_can" id="id_can">
                         <option selected>Seleccione un candidato</option>
                         @foreach(\App\Models\Candidate::all() as $candidate)
                         <option value="{{ $candidate->id_can }}">{{ $candidate->nom_can }} {{ $candidate->ape_can }}</option>
