@@ -11,7 +11,7 @@ class ProposalController extends Controller
     public $numProposal = 5;
     public function index()
     {
-        $proposals = Proposal::where('visible', 1)->paginate(6);
+        $proposals = Proposal::where('visible', 1)->paginate(4);
         return view('pages.proposals', compact('proposals'));
     }
 
@@ -72,7 +72,7 @@ class ProposalController extends Controller
     }
 
     public function all() {
-        $proposals = Proposal::paginate(6);
+        $proposals = Proposal::paginate(4);
         return view('pages.proposals.all', compact('proposals'));
     }
 
