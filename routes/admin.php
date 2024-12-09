@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\PageController;
 
 //TODO: Poner aquí un middleware
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -24,5 +25,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store', [CandidateController::class, 'store'])->name('store');
         Route::put('/update', [CandidateController::class, 'update']);
         Route::put('/destroy', [CandidateController::class, 'destroy']);
+    });
+
+    Route::prefix('custom-page')->name('custom-page.')->group(function () {
+
+        Route::get('/show', [PageController::class, 'show'])->name('show');
+        Route::get('/eslogan-and-icon', [PageController::class, 'ourSlogan'])->name('show');
+        Route::get('/organization', [PageController::class, 'aboutOrganization'])->name('show');
+        Route::get('/footer', [PageController::class, 'watchFooter'])->name('show');
+
     });
 });
