@@ -82,7 +82,7 @@ class EventController extends Controller
     {
         $request->validate(
             [
-                'tit_eve' => 'required|unique:events,tit_eve|max:50',
+                'tit_eve' => 'required|unique:events,tit_eve|max:45',
                 'des_eve' => 'required',
                 'fec_ini_eve' => 'required|date|after_or_equal:today',
                 'fec_fin_eve' => 'required|date|after:fec_ini_eve',
@@ -91,9 +91,10 @@ class EventController extends Controller
                 'dir_eve' => 'required|max:255',
             ],
             [
+                
                 'tit_eve.required' => 'El título del evento es obligatorio.',
                 'tit_eve.unique' => 'Ya existe un evento con este título. Por favor, elige otro.',
-                'tit_eve.max' => 'El título no puede tener más de 50 caracteres.',
+                'tit_eve.max' => 'El título no puede tener más de 45 caracteres.',
                 
                 'des_eve.required' => 'La descripción del evento es obligatoria.',
                 
