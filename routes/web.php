@@ -13,7 +13,7 @@ use App\Http\Middleware\isAdmin;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
-Route::get('/candidates', [CandidateController::class, 'candidates'])->name('candidates');
+Route::get('/candidates', [CandidateController::class, 'showUsers'])->name('candidates');
 Route::get('/candidate/{id}', [CandidateController::class, 'candidate'])->name('candidate');
 Route::post('/candidates', [VoterController::class, 'vote'])->name('vote.store');
 

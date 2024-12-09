@@ -20,7 +20,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('candidates')->name('candidates.')->group(function () {
 
-        Route::get('/show', [CandidateController::class, 'admin'])->name('show');
+        Route::get('/show', [CandidateController::class, 'showAdmin'])->name('show');
         Route::post('/store', [CandidateController::class, 'store'])->name('store');
         Route::put('/update', [CandidateController::class, 'update']);
         Route::put('/destroy', [CandidateController::class, 'destroy']);

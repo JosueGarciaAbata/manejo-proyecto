@@ -41,6 +41,7 @@ class CreateCandidate extends Component
             'id_pol_par_bel' => $this->id_pol_par_bel
         ]);
 
+        $this->dispatch('render');
         $this->reset(['name', 'last_name', 'position', 'entry_date', 'description', 'id_pol_par_bel']);
         $this->closeModal();
 

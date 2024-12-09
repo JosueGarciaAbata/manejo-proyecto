@@ -61,6 +61,7 @@
                             @enderror
                         </div>
 
+                        {{-- Partido politico --}}
                         <div class="mb-3">
                             <label for="id_pol_par_bel" class="form-label">Partido Político</label>
                             <select id="id_pol_par_bel" class="form-control" wire:model="id_pol_par_bel">
