@@ -14,7 +14,7 @@
         </div>
     </section>
 
-    <section class="candidates-section">
+    <section class="candidates-section-admin">
         <div class="container">
             @livewire('create-candidate')
             @livewire('show-candidate')

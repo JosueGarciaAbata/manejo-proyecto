@@ -1,5 +1,5 @@
 <div>
-    <section class="candidates-section">
+    <section class="candidates-section-admin">
         <div class="container">
             <div class="row">
                 @forelse ($candidates as $candidate)

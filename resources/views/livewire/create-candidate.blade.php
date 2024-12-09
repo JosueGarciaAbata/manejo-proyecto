@@ -1,21 +1,23 @@
 <div>
     <!-- Botón para abrir el modal -->
-    <button wire:click="openModal" class="btn btn-primary">
-        Agregar Nuevo Candidato
-    </button>
+    <div class="d-flex flex-column align-items-end">
+        <button wire:click="openModal" class="btn btn-primary">
+            Agregar Nuevo Candidato
+        </button>
+    </div>
 
     <!-- Modal -->
-    <div class="modal fade {{ $isOpen ? 'show' : '' }}" tabindex="-1" role="dialog"
-        style="{{ $isOpen ? 'display: block;' : 'display: none;' }}" aria-labelledby="exampleModalLabel"
-        aria-hidden="{{ $isOpen ? 'false' : 'true' }}">
+    <div class="modal fade @if ($isOpen) show @endif" tabindex="-1" role="dialog"
+        style="display: @if ($isOpen) block @else none @endif;" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Agregar Nuevo Candidato</h5>
-                    <button type="button" class="btn-close" wire:click="closeModal">Cerrar</button>
+                <div class="modal-header d-flex flex-md-row mt-3 mx-3">
+                    <h5 class="modal-title">Nuevo registro</h5>
+                    <button type="button" class="btn btn-danger rounded px-3" wire:click="closeModal">Cerrar</button>
                 </div>
-                <div class="modal-body">
-                    <form wire:submit.prevent="saveCandidate">
+                <div class="modal-body p-4 mb-3">
+                    <form wire:submit.prevent="saveCandidate" class="d-flex flex-column gap-3">
                         <!-- Nombre -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
@@ -55,7 +57,8 @@
                         <!-- Descripción -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Descripción</label>
-                            <textarea id="description" class="form-control" wire:model="description" rows="3"></textarea>
+                            <textarea id="description" class="form-control" wire:model="description" rows="2"
+                                style="width: 100%; margin: 0; resize: none"></textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
