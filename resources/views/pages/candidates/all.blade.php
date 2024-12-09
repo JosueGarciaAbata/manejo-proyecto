@@ -19,6 +19,12 @@
 
             @livewire('create-candidate')
 
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+
             <div class="row">
                 @forelse ($candidates as $candidate)
                     @include('pages.candidates.candidate-item', ['candidate' => $candidate])

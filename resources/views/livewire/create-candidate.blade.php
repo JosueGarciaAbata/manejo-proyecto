@@ -61,6 +61,19 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="id_pol_par_bel" class="form-label">Partido Político</label>
+                            <select id="id_pol_par_bel" class="form-control" wire:model="id_pol_par_bel">
+                                <option value="">Seleccione un partido</option>
+                                @foreach ($politicalParties as $party)
+                                    <option value="{{ $party->id_lis }}">{{ $party->nom_lis }}</option>
+                                @endforeach
+                            </select>
+                            @error('id_pol_par_bel')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                         <!-- Botón Guardar -->
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
