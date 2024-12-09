@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\Encoders\AutoEncoder;
 
 class EventController extends Controller
 {
@@ -85,9 +85,11 @@ class EventController extends Controller
                 'tit_eve' => 'required|unique:events,tit_eve|max:45',
                 'des_eve' => 'required',
                 'fec_ini_eve' => 'required|date|after_or_equal:today',
-                'fec_fin_eve' => 'required|date|after:fec_ini_eve',
+                'event_start_time' => 'required|date_format:H:i:s',
+                'fec_fin_eve' => 'required|date|after_or_equal:fec_ini_eve',
+                'event_end_time' => 'required|date_format:H:i:s|after:event_start_time',
                 'featured_image' => 'required|mimes:jpeg,jpg,png|max:4096',
-                'tag_eve' => 'nullable|max:50',
+                'tag_eve' => 'required|max:50',
                 'dir_eve' => 'required|max:255',
             ],
             [
@@ -144,12 +146,23 @@ class EventController extends Controller
                 $image = $manager->read($request->file('featured_image'));
                 $resizedImage = $image->resize(570, 521);
                 $resizedImage->save(storage_path('app/public/' . $thumbnails_path . '/resized_' . $new_filename));
+
+                $fec_ini_eve = $request->input('fec_ini_eve') . ' ' . $request->input('event_start_time');
+                $fec_fin_eve = $request->input('fec_fin_eve') . ' ' . $request->input('event_end_time');
+    
+                // Verifica que las fechas y horas sean válidas
+                try {
+                    $fec_ini_eve = Carbon::createFromFormat('Y-m-d H:i:s', $fec_ini_eve);
+                    $fec_fin_eve = Carbon::createFromFormat('Y-m-d H:i:s', $fec_fin_eve);
+                } catch (\Exception $e) {
+                    return response()->json(['code' => 3, 'msg' => 'Formato inválido en fecha y hora.']);
+                }
                 
                 $event = new Event();
                 $event->tit_eve = $request->tit_eve;
                 $event->des_eve = $request->des_eve;
-                $event->fec_ini_eve = $request->fec_ini_eve;
-                $event->fec_fin_eve = $request->fec_fin_eve;
+                $event->fec_ini_eve = $fec_ini_eve;
+                $event->fec_fin_eve = $fec_fin_eve;
                 $event->pre_img = 'thumbnails/thumb_' . $new_filename;
                 $event->res_img = 'thumbnails/resized_' . $new_filename;
                 $event->tag_eve = $request->tag_eve;
@@ -172,5 +185,19 @@ class EventController extends Controller
                 'trace' => $e->getTraceAsString() // Agregar el rastro completo de la excepción
             ]);
         }
-    }    
+    }
+    
+    public function editEvent(Request $request)
+    {
+        if (!request()->event_id) {
+            return abort(404);
+        } else {
+            $event = Event::find(request()->event_id);
+            $data = [
+                'event' => $event,
+                'pageTitle' => 'Edit Post',
+            ];
+            return view('back.pages.edit_post', $data);
+        }
+    }
 }
