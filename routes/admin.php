@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\EventController;
 
 //TODO: Poner aquí un middleware
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -16,4 +17,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/create', [ProposalController::class, 'create'])->name('create');
         Route::post('/update', [ProposalController::class, 'update'])->name('update');
     });
+
+    Route::prefix('events')->name('events.')->group(function () {
+        Route::view('/add', 'back.pages.add-event')->name('add-event'); 
+        Route::post('/create', [EventController::class, 'createEvent'])->name('create');
+    });
+
 });
