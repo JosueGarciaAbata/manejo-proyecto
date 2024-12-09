@@ -30,9 +30,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('custom-page')->name('custom-page.')->group(function () {
 
         Route::get('/show', [PageController::class, 'show'])->name('show');
-        Route::get('/eslogan-and-icon', [PageController::class, 'ourSlogan'])->name('show');
-        Route::get('/organization', [PageController::class, 'aboutOrganization'])->name('show');
-        Route::get('/footer', [PageController::class, 'watchFooter'])->name('show');
+        Route::get('/eslogan-and-icon', [PageController::class, 'ourSlogan'])->name('slogan');
+        Route::get('/organization', [PageController::class, 'aboutOrganization'])->name('org');
+        Route::get('/footer', [PageController::class, 'watchFooter'])->name('footer');
 
     });
 });
