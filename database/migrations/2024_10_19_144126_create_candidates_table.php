@@ -14,12 +14,8 @@ return new class extends Migration {
             $table->id('id_can'); // Primary key
             $table->string('nom_can', 100)->notNullable();
             $table->string('ape_can', 100)->notNullable();
-
-            $validPositions = ['Rector', 'Vicerrector Académico', 'Vicerrector de Investigación', 'Vicerrector Administrativo'];
-            $table->enum('car_can', $validPositions)->notNullable();
-
+            $table->string('car_can')->notNullable();
             $table->date('fec_ing_can')->notNullable();
-
             $table->unsignedBigInteger('id_pol_par_bel')->notNullable();
 
             $table->foreign('id_pol_par_bel')
