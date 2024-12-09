@@ -7,7 +7,7 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\Encoders\AutoEncoder;
 
 class EventController extends Controller
 {
@@ -129,8 +129,7 @@ class EventController extends Controller
                 if (!$upload) {
                     return response()->json(['code' => 3, 'msg' => 'Error al subir la imagen destacada.']);
                 }
-    
-                // Crear imágenes redimensionadas
+                
                 $thumbnails_path = $path . 'thumbnails/';
                 if (!Storage::disk('public')->exists($thumbnails_path)) {
                     Storage::disk('public')->makeDirectory($thumbnails_path, 0755, true);
@@ -138,19 +137,13 @@ class EventController extends Controller
                 
                 $manager = new ImageManager(new Driver());
 
-                $image = $manager->read(storage_path('app/public/' . $path . $new_filename));
-                $image->resize(200, 200);
-                $thumbnailData = (String) $image->encode(new WebpEncoder(quality: 95)); // Cambia "jpg" y la calidad según tus necesidades
-
-                // Guardar la miniatura en el sistema de archivos
-                Storage::put('public/' . $thumbnails_path . '/thumb_' . $new_filename, $thumbnailData);
-            
-                $image = $manager->read(storage_path('app/public/' . $path . $new_filename));
-
-                $resizedImage = $image->resize(500, 350);
-                $resizedData = $resizedImage->encode(new WebpEncoder(quality: 95));
+                $image = $manager->read($request->file('featured_image'));
+                $image->resize(184, 218);
+                $image->save(storage_path('app/public/' . $thumbnails_path . '/thumb_' . $new_filename));
                 
-                Storage::put('public/' . $thumbnails_path . '/resized_' . $new_filename, $resizedData);
+                $image = $manager->read($request->file('featured_image'));
+                $resizedImage = $image->resize(570, 521);
+                $resizedImage->save(storage_path('app/public/' . $thumbnails_path . '/resized_' . $new_filename));
                 
                 $event = new Event();
                 $event->tit_eve = $request->tit_eve;
