@@ -6,16 +6,17 @@
 
 <section class="inner-banner">
     <div class="container">
-        <h2 class="inner-banner__title">Personaliza tu pagina</h2>
+        <h2 class="inner-banner__title">Personaliza tu página</h2>
         <ul class="list-unstyled thm-breadcrumb">
             <li><a href="{{ route('home') }}">Inicio</a></li>
         </ul>
     </div>
 </section>
+
 <section class="page-preview">
     <div class="container">
         <article>
-            <form action="{{ route('admin.organization.config.update') }}" method="POST">
+            <form action="{{ route('admin.organization.config.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
             
@@ -26,7 +27,10 @@
             
                 <div>
                     <label for="icon_path">Icono</label>
-                    <input type="text" id="icon_path" name="icon_path" value="{{ $config->icon_path }}">
+                    <input type="file" id="icon_path" name="icon_path">
+                    @if($config->icon_path)
+                        <img src="{{ asset('storage/' . $config->icon_path) }}" alt="Icono" width="100">
+                    @endif
                 </div>
             
                 <div>
@@ -41,7 +45,10 @@
             
                 <div>
                     <label for="representative">Representante</label>
-                    <input type="text" id="representative" name="representative" value="{{ $config->representative }}">
+                    <input type="file" id="representative" name="representative">
+                    @if($config->representative)
+                        <img src="{{ asset('storage/' . $config->representative) }}" alt="Representante" width="100">
+                    @endif
                 </div>
             
                 <div>
@@ -55,21 +62,45 @@
                 </div>
             
                 <div>
-                    <label for="social_icons">Iconos de redes sociales (JSON)</label>
-                    <textarea id="social_icons" name="social_icons">{{ json_encode($config->social_icons) }}</textarea>
+                    <label for="social_links">Redes Sociales</label>
+                    @foreach($config->socialLinks as $link)
+                        <div class="social-link">
+                            <label>Plataforma:</label>
+                            <input type="text" name="social_links[platform][]" value="{{ $link->platform }}">
+                            <label>URL:</label>
+                            <input type="text" name="social_links[url][]" value="{{ $link->url }}">
+                        </div>
+                    @endforeach
+            
+                    <div class="social-link">
+                        <label>Nueva Plataforma:</label>
+                        <input type="text" name="social_links[platform][]" value="">
+                        <label>URL:</label>
+                        <input type="text" name="social_links[url][]" value="">
+                    </div>
                 </div>
             
                 <div>
-                    <label for="contact_info">Información de contacto (JSON)</label>
-                    <textarea id="contact_info" name="contact_info">{{ json_encode($config->contact_info) }}</textarea>
+                    <label for="contact_details">Información de Contacto</label>
+                    @foreach($config->contactDetails as $contact)
+                        <div class="contact-detail">
+                            <label>Tipo:</label>
+                            <input type="text" name="contact_details[type][]" value="{{ $contact->type }}">
+                            <label>Valor:</label>
+                            <input type="text" name="contact_details[value][]" value="{{ $contact->value }}">
+                        </div>
+                    @endforeach
+                    <div class="contact-detail">
+                        <label>Nuevo Tipo:</label>
+                        <input type="text" name="contact_details[type][]" value="">
+                        <label>Nuevo Valor:</label>
+                        <input type="text" name="contact_details[value][]" value="">
+                    </div>
                 </div>
-            
                 <button type="submit">Guardar Configuración</button>
             </form>    
         </article>          
     </div>
-    
 </section>
-
 
 @endsection

@@ -11,13 +11,20 @@ class OrganizationConfig extends Model
 
     protected $fillable = [
         'slogan', 'icon_path', 'mission', 'vision', 'representative',
-        'main_proposals', 'footer_text', 'social_icons', 'contact_info'
+        'main_proposals', 'footer_text'
     ];
 
-    // Indica que estos campos son arreglos JSON
     protected $casts = [
         'main_proposals' => 'array',
-        'social_icons' => 'array',
-        'contact_info' => 'array',
     ];
+
+    public function socialLinks()
+    {
+        return $this->hasMany(OrganizationSocialLink::class);
+    }
+
+    public function contactDetails()
+    {
+        return $this->hasMany(OrganizationContactDetail::class);
+    }
 }

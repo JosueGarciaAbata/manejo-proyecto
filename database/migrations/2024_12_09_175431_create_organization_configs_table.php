@@ -17,8 +17,7 @@ return new class extends Migration
             $table->string('representative')->nullable();
             $table->json('main_proposals')->nullable();
             $table->text('footer_text')->nullable();
-            $table->json('social_icons')->nullable(); 
-            $table->json('contact_info')->nullable();             $table->timestamps();
+            $table->timestamps();
         });
     }
 

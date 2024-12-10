@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\OrganizationConfig;
+use App\Models\OrganizationContactDetail;
+use App\Models\OrganizationSocialLink;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,19 +15,32 @@ class OrganizationSeeder extends Seeder
         OrganizationConfig::create([
             'slogan' => 'Trabajemos Juntos Por Una Mejor Universidad Técnica de Ambato',
             'icon_path' => 'images/icons/logo.png',
-            'representative' => 'Juan Pérez',
-            'main_proposals' => ['Mejorar la eficiencia energética', 'Fomentar la inclusión digital', 'Reducir el impacto ambiental'],
-            'footer_text' => '© 2024 Organización Ejemplo. Todos los derechos reservados.',
-            'social_icons' => [
-                ['platform' => 'facebook', 'url' => 'https://facebook.com/org'],
-                ['platform' => 'twitter', 'url' => 'https://twitter.com/org'],
-                ['platform' => 'linkedin', 'url' => 'https://linkedin.com/org']
-            ],
-            'contact_info' => [
-                'email' => 'contacto@ejemplo.com',
-                'phone' => '+52 123 456 7890',
-                'address' => 'Calle Ejemplo #123, Ciudad, País'
-            ]
+            'representative' => 'images/representatives/john_doe.png',
+            'footer_text' => 'Sé parte del cambio en la Universidad Técnica de Ambato.',
+        ]);
+        
+        // Agregar redes sociales
+        OrganizationSocialLink::create([
+            'organization_config_id' => 1,
+            'platform' => 'Twitter',
+            'url' => 'https://twitter.com/uta_org',
+        ]);
+        OrganizationSocialLink::create([
+            'organization_config_id' => 1,
+            'platform' => 'Facebook',
+            'url' => 'https://facebook.com/uta_org',
+        ]);
+        
+        // Agregar detalles de contacto
+        OrganizationContactDetail::create([
+            'organization_config_id' => 1,
+            'type' => 'email',
+            'value' => 'contacto@ejemplo.com',
+        ]);
+        OrganizationContactDetail::create([
+            'organization_config_id' => 1,
+            'type' => 'phone',
+            'value' => '+52 123 456 7890',
         ]);
     }
 }
