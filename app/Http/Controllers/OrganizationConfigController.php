@@ -12,6 +12,7 @@ class OrganizationConfigController extends Controller
 {
     public function showConfig()
     {
+        // Obtenemos la configuración y las propuestas visibles
         $config = OrganizationConfig::with(['socialLinks', 'contactDetails'])->first();
         $proposals = Proposal::where('visible', 1)->get();
     
@@ -32,7 +33,6 @@ class OrganizationConfigController extends Controller
 
         $config = OrganizationConfig::firstOrCreate([]);
 
-        // Actualización de archivos
         if ($request->hasFile('icon_path')) {
             $config->icon_path = $request->file('icon_path')->store('organization/icons', 'public');
         }
@@ -40,29 +40,27 @@ class OrganizationConfigController extends Controller
             $config->representative = $request->file('representative')->store('organization/representatives', 'public');
         }
 
-        // Actualización de campos básicos
         $config->update($request->except(['icon_path', 'representative', 'social_links', 'contact_details']));
 
-        // Actualización de redes sociales
         if ($request->has('social_links')) {
             $config->socialLinks()->delete();
-            foreach ($request->social_links as $link) {
+            
+            foreach ($request->social_links['platform'] as $index => $platform) {
                 OrganizationSocialLink::create([
                     'organization_config_id' => $config->id,
-                    'platform' => $link['platform'],
-                    'url' => $link['url'],
+                    'platform' => $platform,
+                    'url' => $request->social_links['url'][$index],
                 ]);
             }
         }
 
-        // Actualización de contactos
         if ($request->has('contact_details')) {
             $config->contactDetails()->delete();
-            foreach ($request->contact_details as $detail) {
+            foreach ($request->contact_details['type'] as $index => $type) {
                 OrganizationContactDetail::create([
                     'organization_config_id' => $config->id,
-                    'type' => $detail['type'],
-                    'value' => $detail['value'],
+                    'type' => $type,
+                    'value' => $request->contact_details['value'][$index],
                 ]);
             }
         }

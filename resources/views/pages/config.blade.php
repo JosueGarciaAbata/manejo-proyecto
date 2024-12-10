@@ -71,7 +71,6 @@
                             <input type="text" name="social_links[url][]" value="{{ $link->url }}">
                         </div>
                     @endforeach
-            
                     <div class="social-link">
                         <label>Nueva Plataforma:</label>
                         <input type="text" name="social_links[platform][]" value="">
