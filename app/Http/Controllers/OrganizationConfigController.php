@@ -9,8 +9,8 @@ class OrganizationConfigController extends Controller
 {
     public function showConfig()
     {
-        $config = OrganizationConfig::first(); 
-        return view('organization.config', compact('pages.organization'));
+        $config = OrganizationConfig::first();
+        return view('pages.config', compact('config'));
     }
 
     public function updateConfig(Request $request)
@@ -27,9 +27,20 @@ class OrganizationConfigController extends Controller
             'contact_info' => 'nullable|array',
         ]);
 
-        $config = OrganizationConfig::first();
+        $data = $request->only([
+            'slogan',
+            'icon_path',
+            'mission',
+            'vision',
+            'representative',
+            'main_proposals',
+            'footer_text',
+            'social_icons',
+            'contact_info'
+        ]);
 
-        $config->update($request->all());
+        $config = OrganizationConfig::firstOrCreate([]);
+        $config->update($data);
 
         return redirect()->back()->with('success', 'Configuración actualizada con éxito.');
     }

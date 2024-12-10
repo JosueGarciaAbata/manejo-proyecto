@@ -30,9 +30,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('organization')->name('organization.')->group(function () {
         Route::get('/config/show', [OrganizationConfigController::class, 'showConfig'])
-    ->name('organization.config.update');
+    ->name('config.update');
 
         Route::put('/config/update', [OrganizationConfigController::class, 'updateConfig'])
-    ->name('organization.config.update');
+    ->name('config.update');
     });
 });
