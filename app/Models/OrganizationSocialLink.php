@@ -15,4 +15,9 @@ class OrganizationSocialLink extends Model
     {
         return $this->belongsTo(OrganizationConfig::class);
     }
+
+    public function icon()
+    {
+        return $this->belongsTo(Icon::class, 'icon_id');
+    }
 }

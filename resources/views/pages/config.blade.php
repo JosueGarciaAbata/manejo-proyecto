@@ -34,16 +34,6 @@
                 </div>
             
                 <div>
-                    <label for="mission">Misión</label>
-                    <textarea id="mission" name="mission">{{ $config->mission }}</textarea>
-                </div>
-            
-                <div>
-                    <label for="vision">Visión</label>
-                    <textarea id="vision" name="vision">{{ $config->vision }}</textarea>
-                </div>
-            
-                <div>
                     <label for="representative">Representante</label>
                     <input type="file" id="representative" name="representative">
                     @if($config->representative)
@@ -53,7 +43,17 @@
             
                 <div>
                     <label for="main_proposals">Propuestas principales</label>
-                    <input type="text" id="main_proposals" name="main_proposals[]" value="{{ implode(', ', $config->main_proposals ?? []) }}">
+                    @foreach ($proposals as $proposal)
+                        <div>
+                            <input 
+                                type="checkbox" 
+                                id="proposal_{{ $proposal->id }}" 
+                                name="main_proposals[]" 
+                                value="{{ $proposal->id }}"
+                                {{ in_array($proposal->id, $config->main_proposals ?? []) ? 'checked' : '' }}>
+                            <label for="proposal_{{ $proposal->id }}">{{ $proposal->tit_pro }}</label>
+                        </div>
+                    @endforeach
                 </div>
             
                 <div>

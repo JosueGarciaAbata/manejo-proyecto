@@ -10,7 +10,13 @@ return new class extends Migration
     {
         Schema::create('organization_social_links', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('organization_config_id')->constrained('organization_configs')->onDelete('cascade');
+            $table->foreignId('organization_config_id')
+                ->constrained('organization_configs')
+                ->onDelete('cascade');
+            $table->foreignId('icon_id')
+                ->nullable()
+                ->constrained('icons', 'id_icon')
+                ->onDelete('set null');
             $table->string('platform');
             $table->string('url');
             $table->timestamps();

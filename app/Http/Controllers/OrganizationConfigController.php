@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrganizationConfig;
 use App\Models\OrganizationContactDetail;
 use App\Models\OrganizationSocialLink;
+use App\Models\Proposal;
 use Illuminate\Http\Request;
 
 class OrganizationConfigController extends Controller
@@ -12,7 +13,9 @@ class OrganizationConfigController extends Controller
     public function showConfig()
     {
         $config = OrganizationConfig::with(['socialLinks', 'contactDetails'])->first();
-        return view('pages.config', compact('config'));
+        $proposals = Proposal::where('visible', 1)->get();
+    
+        return view('pages.config', compact('config', 'proposals'));
     }
 
     public function updateConfig(Request $request)
@@ -20,8 +23,6 @@ class OrganizationConfigController extends Controller
         $request->validate([
             'slogan' => 'nullable|string|max:255',
             'icon_path' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'mission' => 'nullable|string',
-            'vision' => 'nullable|string',
             'representative' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'main_proposals' => 'nullable|array',
             'footer_text' => 'nullable|string',
