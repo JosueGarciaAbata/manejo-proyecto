@@ -34,8 +34,7 @@ class CreateCandidate extends Component
         ]);
 
         // Si no se proporciona imagen
-        $image_path = $this->ruta_can ? $this->image->store('candidates', 'public') : 'images/default.png';
-
+        $image_path = $this->ruta_can ? $this->image->store('assets/images/candidates') : 'assets/images/candidates/default.png';
 
         Candidate::create([
             'nom_can' => $this->name,
