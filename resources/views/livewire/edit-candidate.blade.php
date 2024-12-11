@@ -47,19 +47,21 @@
                             @enderror
                         </div>
 
-                        {{-- <div>
+                        <div>
                             <label for="ruta_can">Imagen (opcional):</label>
-                            <input type="file" wire:model="candidate.ruta_can">
-                            @error('candidate.ruta_can')
-                                <span class="error">{{ $message }}</span>
+                            <input type="file" wire:model="ruta_can" accept="image/*">
+                            @error('ruta_can')
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
 
                             <!-- Previsualización de la imagen cargada -->
-                            @if (!empty($candidate['ruta_can']))
+                            @if ($ruta_can)
+                                <img src="{{ $ruta_can->temporaryUrl() }}" alt="Previsualización" width="150">
+                            @elseif (!empty($candidate['ruta_can']))
                                 <img src="{{ asset($candidate['ruta_can']) }}" alt="Imagen del Candidato"
                                     width="150">
                             @endif
-                        </div> --}}
+                        </div>
 
                         <div class="mb-3">
                             <label for="description" class="form-label">Descripción</label>
