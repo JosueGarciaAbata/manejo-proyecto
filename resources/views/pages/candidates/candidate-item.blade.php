@@ -18,6 +18,13 @@
                           <span>{{ $candidate->tit_can }}</span>
                           <span>{{ $candidate->fec_ing_can }}</span>
                       </div>
+
+                      <div class="actions mt-2">
+                          <button class="btn btn-primary btn-sm"
+                              wire:click="editCandidate({{ $candidate->id_can }})">Editar</button>
+                          <button class="btn btn-danger btn-sm"
+                              wire:click="deleteCandidate({{ $candidate->id_can }})">Eliminar</button>
+                      </div>
                   </div>
               </div>
           </div>

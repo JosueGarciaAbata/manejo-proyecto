@@ -64,6 +64,14 @@
                             @enderror
                         </div>
 
+                        <div>
+                            <label for="ruta_can">Imagen (opcional):</label>
+                            <input type="file" wire:model=":ruta_can">
+                            @error('ruta_can')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                         {{-- Partido politico --}}
                         <div class="mb-3">
                             <label for="id_pol_par_bel" class="form-label">Partido Político</label>
