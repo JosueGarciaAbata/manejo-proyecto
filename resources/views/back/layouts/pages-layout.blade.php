@@ -144,26 +144,6 @@
             });
         });
     </script>
-
-    {{-- CKEditor Script --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            ClassicEditor
-                .create(document.querySelector('#post_content'))
-                .then(editor => {
-                    window.editor = editor; // Save the instance globally
-                    editor.editing.view.change(writer => {
-                        writer.setStyle('min-height', '200px', editor.editing.view.document.getRoot());
-                    });
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
-
-
-
     @stack('scripts')
     @livewireScripts
 

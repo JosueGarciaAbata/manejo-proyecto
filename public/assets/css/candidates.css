@@ -25,8 +25,8 @@
     object-fit: cover;
 }
 
-.candidate-item .cd-text .cd-title {
-    margin-bottom: 28px;
+.candidate-item .cd-text {
+    padding: 10px 0;
 }
 
 .candidate-item .cd-text .cd-title h4 {
@@ -45,6 +45,7 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    padding: 20px;
 }
 
 .cd-pic {
