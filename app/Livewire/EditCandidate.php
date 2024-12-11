@@ -59,7 +59,7 @@ class EditCandidate extends Component
         }
 
         // Limpiar el formulario y cerrar el modal
-        $this->reset(['candidate', 'ruta_can']);
+        $this->reset(['ruta_can']);
         $this->closeModal();
         $this->dispatch('render');
     }
