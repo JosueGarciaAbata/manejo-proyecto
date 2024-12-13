@@ -13,16 +13,26 @@ return new class extends Migration
             $table->string('slogan')->nullable();
             $table->string('icon_path')->nullable();
             $table->text('mission')->nullable();
-            $table->text('vision')->nullable();
+            // $table->text('vision')->nullable();
             $table->string('representative')->nullable();
-            $table->json('main_proposals')->nullable();
+            // $table->json('main_proposals')->nullable();
             $table->text('footer_text')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('organization_config_proposals', function(Blueprint $table){
+            $table->id();
+            $table->foreignId("org_main_prop")->
+            constrained('organization_configs')->
+            onDelete('cascade');
+            $table->foreignId('id_pro_prop')->
+            constrained('proposals','id_pro');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('organization_config_proposals');
         Schema::dropIfExists('organization_configs');
     }
 };

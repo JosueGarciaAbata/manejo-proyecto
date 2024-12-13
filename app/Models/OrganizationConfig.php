@@ -27,4 +27,12 @@ class OrganizationConfig extends Model
     {
         return $this->hasMany(OrganizationContactDetail::class);
     }
+
+    public function proposals(){
+        return $this->belongsToMany(
+            Proposal::class, // modelo 
+            'organization_config_proposals', // tabla interm 
+            'org_main_prop', // clav for para OrgConfg
+            'id_pro_prop'); // clav for para Proposal, ambos d la tabla interm
+    }
 }

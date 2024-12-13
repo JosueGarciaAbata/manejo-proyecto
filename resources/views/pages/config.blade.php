@@ -3,7 +3,9 @@
 @section('title', 'Customize organization page')
 
 @section('content')
-
+<section>
+    {{-- @dd($config->socialLinks[0]->icon) --}}
+</section>
 <section class="inner-banner">
     <div class="container">
         <h2 class="inner-banner__title">Personaliza tu página</h2>
@@ -22,12 +24,13 @@
             
                 <div>
                     <label for="slogan">Eslogan</label>
-                    <input type="text" id="slogan" name="slogan" value="{{ $config->slogan }}">
+                    <input type="text" id="slogan" name="slogan" placeholder="Modifica tu eslogan" value="{{ $config->slogan }}">
                 </div>
             
                 <div>
                     <label for="icon_path">Icono</label>
                     <input type="file" id="icon_path" name="icon_path">
+                    <br>
                     @if($config->icon_path)
                         <img src="{{ asset('storage/' . $config->icon_path) }}" alt="Icono" width="100">
                     @endif
@@ -36,37 +39,41 @@
                 <div>
                     <label for="representative">Representante</label>
                     <input type="file" id="representative" name="representative">
+                    <br>
                     @if($config->representative)
                         <img src="{{ asset('storage/' . $config->representative) }}" alt="Representante" width="100">
                     @endif
                 </div>
             
                 <div>
-                    <label for="main_proposals">Propuestas principales</label>
+                    <h3>Propuestas principales</h3>
                     @foreach ($proposals as $proposal)
                         <div>
                             <input 
                                 type="checkbox" 
-                                id="proposal_{{ $proposal->id }}" 
+                                id="proposal_{{ $proposal->id_pro }}" 
                                 name="main_proposals[]" 
-                                value="{{ $proposal->id }}"
-                                {{ in_array($proposal->id, $config->main_proposals ?? []) ? 'checked' : '' }}>
-                            <label for="proposal_{{ $proposal->id }}">{{ $proposal->tit_pro }}</label>
+                                value="{{ $proposal->id_pro }}"
+                                {{ $config->proposals->pluck('id')->contains($proposal->id_pro) ? 'checked' : '' }}>
+                            <label for="proposal_{{ $proposal->id_pro }}">{{ $proposal->tit_pro }}</label>
                         </div>
                     @endforeach
                 </div>
             
                 <div>
-                    <label for="footer_text">Texto del footer</label>
+                    <h3>Texto del footer</h3>
                     <textarea id="footer_text" name="footer_text">{{ $config->footer_text }}</textarea>
                 </div>
             
                 <div>
                     <label for="social_links">Redes Sociales</label>
                     @foreach($config->socialLinks as $link)
-                        <div class="social-link">
-                            <label>Plataforma:</label>
-                            <input type="text" name="social_links[platform][]" value="{{ $link->platform }}">
+                        <div class="social-link" id="{{$link->id_icon}}">
+                            {{-- <label>{{ $link->platform }}</label> --}}
+                            <article class="social_network_img">
+                                <img src="{{ asset($link->icon->path_icon) }}" alt="">                            
+                            </article>
+                            
                             <label>URL:</label>
                             <input type="text" name="social_links[url][]" value="{{ $link->url }}">
                         </div>
@@ -80,19 +87,21 @@
                 </div>
             
                 <div>
-                    <label for="contact_details">Información de Contacto</label>
+                    <h3>Información de Contacto</h3>
                     @foreach($config->contactDetails as $contact)
                         <div class="contact-detail">
-                            <label>Tipo:</label>
-                            <input type="text" name="contact_details[type][]" value="{{ $contact->type }}">
-                            <label>Valor:</label>
-                            <input type="text" name="contact_details[value][]" value="{{ $contact->value }}">
+                            <label>{{ $contact->type }}
+                                <input type="text" name="contact_details[value][]" value="{{ $contact->value }}">
+
+                            </label>
                         </div>
                     @endforeach
+                    <h3>Nuevo contacto</h3>
                     <div class="contact-detail">
-                        <label>Nuevo Tipo:</label>
+                        <label>Tipo:</label>
                         <input type="text" name="contact_details[type][]" value="">
-                        <label>Nuevo Valor:</label>
+                        <br>
+                        <label>Valor:</label>
                         <input type="text" name="contact_details[value][]" value="">
                     </div>
                 </div>
