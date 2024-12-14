@@ -18,9 +18,9 @@ return new class extends Migration {
             $table->dateTime("fec_pub_eve");
             $table->dateTime("fec_ini_eve");
             $table->dateTime("fec_fin_eve");
-            $table->string("tag_eve", 50);
-            $table->string("pre_img", 100);
-            $table->string("res_img", 100);
+            $table->string("tag_eve", 100);
+            $table->string("pre_img", 150);
+            $table->string("res_img", 150);
             $table->string("dir_eve", 255);
 
             $table->softDeletes(); 
