@@ -100,7 +100,11 @@ class ProposalController extends Controller
                 $new_filename = time().'_'.$filename;
                 $upload = Storage::disk('public')->put($path . $new_filename, file_get_contents($file));
                 if (!$upload) {
-                    return response()->json(['code' => 3, 'msg' => 'Error al subir la imagen destacada.']);
+                    return response()->json([
+                        'success' => false,
+                        'code' => 2,
+                        'msg' => 'Error al subir la imagen'
+                    ]);
                 }
             }
             $candidateId = $request->id_can;
@@ -117,15 +121,20 @@ class ProposalController extends Controller
                     
             if ($propuesta->save()) {
                 return response()->json([
+                    'code' => 1,
+                    'success' => true,
                     'msg' => 'Propuesta registrada'
                 ]);
             } else {
                 return response()->json([
+                    'code' => 2,
+                    'success' => false,
                     'msg' => 'Problema al registrar la propuesta'
                 ]);
             }
         } catch (\Throwable $th) {
             return response()->json([
+                'code' => 2,
                 'success' => false,
                 'msg' => 'Problema al registrar la propuesta',
                 'error' => $th->getMessage()
@@ -142,7 +151,7 @@ class ProposalController extends Controller
             'prop' => $prop,
             'title' => 'Edit Proposal'
         ];
-        return view('pages.proposals.edit-proposal',$data);
+        return view('back.pages.proposals.edit-proposal',$data);
     }
 
     public function update(Request $request) {
