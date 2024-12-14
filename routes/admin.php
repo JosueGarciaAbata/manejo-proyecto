@@ -21,6 +21,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('events')->name('events.')->group(function () {
         Route::view('/add', 'back.pages.add-event')->name('add-event'); 
         Route::post('/create', [EventController::class, 'createEvent'])->name('create');
+        Route::view('/all', 'back.pages.all-events')->name('all-events');
     });
 
 });
