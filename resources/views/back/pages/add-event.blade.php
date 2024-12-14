@@ -84,6 +84,7 @@
                                     </div>
                                 </div>
                                 <span class="text-danger error-text fec_fin_eve_error"></span>
+                                <span class="text-danger error-text event_end_eve_error"></span>
                             </div>
                             
                             <div class="mb-3">
@@ -147,12 +148,7 @@
         
         $('input[type="file"][name="featured_image"]').ijaboViewer({
             preview: "#image-previewer",
-            imageShape: 'rectangular',
             allowedExtensions: ['jpg', 'jpeg', 'png'],
-            onErrorShape: function(message, element) {
-                console.log(message);
-                toastr.error(message);
-            },
             onInvalidType: function(message, element) {
                 toastr.error(message);
             }
