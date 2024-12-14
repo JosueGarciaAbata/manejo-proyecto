@@ -326,9 +326,9 @@
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
                                         <a class="dropdown-item" href="{{ route("admin.events.add-event") }}">
-                                            Escribe Uno
+                                            Añadir Uno
                                         </a>
-                                        <a class="dropdown-item" href="">
+                                        <a class="dropdown-item" href="{{ route('admin.events.all-events') }}">
                                             Todos
                                             <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
                                         </a>
