@@ -24,8 +24,8 @@
                 <div class="event-details__content">
                     <h3 class="event-details__title">{{ $event->tit_eve }}</h3>
                     @foreach ($event->paragraphs as $paragraph)
-                        <p class="event-details__text">{{ trim($paragraph) }}</p>
-                    @endforeach
+                        <p class="event-details__text">{!! trim($paragraph) !!}</p>
+                    @endforeach                
                 </div><!-- /.event-details__content -->
             </div><!-- /.col-lg-6 -->
             <div class="col-lg-6">
@@ -63,13 +63,15 @@
                         ¡Te invitamos a formar parte de este evento único! Tu presencia marcará la diferencia. 
                     </p>                    
                     <ul class="list-unstyled event-details-box__list">
-                        <!-- Fecha del evento -->
-                        <li>{{ \Carbon\Carbon::parse($event->fec_ini_eve)->format('d F, Y') }}</li>
-                        
-                        <!-- Horario del evento -->
-                        <li>{{ \Carbon\Carbon::parse($event->fec_ini_eve)->format('g:i a') }} - {{ \Carbon\Carbon::parse($event->fec_fin_eve)->format('g:i a') }}</li>
-                        <li>{{ $event->dir_eve }}</li>    
-                    </ul><!-- /.list-unstyled event-details-box__list -->
+                        @if (\Carbon\Carbon::parse($event->fec_ini_eve)->toDateString() === \Carbon\Carbon::parse($event->fec_fin_eve)->toDateString())
+                            <li>{{ \Carbon\Carbon::parse($event->fec_ini_eve)->format('d F, Y') }}</li>
+                            <li>{{ \Carbon\Carbon::parse($event->fec_ini_eve)->format('g:i a') }} - {{ \Carbon\Carbon::parse($event->fec_fin_eve)->format('g:i a') }}</li>
+                        @else
+                            <li>{{ \Carbon\Carbon::parse($event->fec_ini_eve)->format('d F, Y') }} - <br>{{ \Carbon\Carbon::parse($event->fec_fin_eve)->format('d F, Y') }}</li>
+                            <li>{{ \Carbon\Carbon::parse($event->fec_ini_eve)->format('g:i a') }} - {{ \Carbon\Carbon::parse($event->fec_fin_eve)->format('g:i a') }}</li>
+                        @endif
+                        <li>{{ $event->dir_eve }}</li>
+                    </ul><!-- /.list-unstyled event-details-box__list -->                    
                 </div><!-- /.event-details-box__single -->
             </div><!-- /.col-lg-4 -->
             
