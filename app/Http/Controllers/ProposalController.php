@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 use App\Models\Proposal;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\ImageManager;
 
 class ProposalController extends Controller
 {
@@ -81,31 +85,50 @@ class ProposalController extends Controller
     }
 
     public function create(Request $request) {
-        $request->validate([
-            'tit_pro' => 'required',
-            'des_pro' => 'required',
-            'fec_inc_pro' => 'required',
-            'id_can' => 'required'
-        ]);
-        
-        $candidateId = $request->id_can;
-        $candidate = Candidate::findOrFail($candidateId);
-
-        $propuesta = new Proposal();
-        $propuesta->id_can_pro = $request->id_can;
-        $propuesta->tit_pro = $request->tit_pro;
-        $propuesta->des_pro = $request->des_pro;
-        $propuesta->fec_inc_pro = $request->fec_inc_pro;
-        $propuesta->tags_pro = $request->tags_pro;
-        $propuesta->visible = 1;
-                
-        if ($propuesta->save()) {
-            return response()->json([
-                'msg' => 'Propuesta registrada'
+        try {
+            $request->validate([
+                'tit_pro' => 'required',
+                'des_pro' => 'required',
+                'fec_inc_pro' => 'required',
+                'id_can' => 'required'
             ]);
-        } else {
+            $new_filename = "";
+            if ($request->hasFile('image')) {
+                $path = "images/proposal_images/";
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName();
+                $new_filename = time().'_'.$filename;
+                $upload = Storage::disk('public')->put($path . $new_filename, file_get_contents($file));
+                if (!$upload) {
+                    return response()->json(['code' => 3, 'msg' => 'Error al subir la imagen destacada.']);
+                }
+            }
+            $candidateId = $request->id_can;
+            $candidate = Candidate::findOrFail($candidateId);
+    
+            $propuesta = new Proposal();
+            $propuesta->id_can_pro = $request->id_can;
+            $propuesta->tit_pro = $request->tit_pro;
+            $propuesta->des_pro = $request->des_pro;
+            $propuesta->fec_inc_pro = $request->fec_inc_pro;
+            $propuesta->tags_pro = $request->tags_pro;
+            $propuesta->img_pro = $new_filename;
+            $propuesta->visible = 1;
+                    
+            if ($propuesta->save()) {
+                return response()->json([
+                    'msg' => 'Propuesta registrada'
+                ]);
+            } else {
+                return response()->json([
+                    'msg' => 'Problema al registrar la propuesta'
+                ]);
+            }
+        } catch (\Throwable $th) {
             return response()->json([
-                'msg' => 'Problema al registrar la propuesta'
+                'success' => false,
+                'msg' => 'Problema al registrar la propuesta',
+                'error' => $th->getMessage()
             ]);
         }
     }
