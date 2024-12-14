@@ -10,9 +10,8 @@ use Livewire\WithPagination;
 class AllEvents extends Component
 {
     use WithPagination;
-    public $perPage = 10;
+    public $perPage = 12;
     public $search = null;
-    public $author = null;
     public $orderBy = null;
 
     protected $listeners = [
@@ -77,7 +76,12 @@ class AllEvents extends Component
 
     public function render()
     {
-        $events = Event::paginate($this->perPage);;
-        return view('livewire.all-events' , compact('events'));
-    }
+        $events = Event::search(trim($this->search))
+            ->when($this->orderBy, function ($query) {
+                $query->orderBy('id_eve', $this->orderBy);
+            })
+            ->paginate($this->perPage);
+    
+        return view('livewire.all-events', compact('events'));
+    }    
 }
