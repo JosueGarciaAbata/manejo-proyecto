@@ -34,12 +34,12 @@
                         <h3 class="m-0 mb-1">{{ $proposal->tit_pro }}</h3>
                     </div>
                     <div class="d-flex">
-                        <a href="{{ route('admin.proposals.edit-proposal', ['id_pro' => $proposal->id]) }}"
+                        <a href="{{ route('admin.proposals.edit-proposal', ['id_pro' => $proposal->id_pro]) }}"
                             class="card-btn">Editar</a>
-                        <a href="{{ route('admin.proposals.edit-proposal', ['id_pro' => $proposal->id]) }}"
+                        <a href="{{ route('admin.proposals.edit-proposal', ['id_pro' => $proposal->id_pro]) }}"
                             class="card-btn">Editar</a>
 
-                        <a href="" wire:click.prevent='deletePost({{ $proposal->id }})' class="card-btn">Esconder</a>
+                        <a href="" wire:click.prevent='deletePost({{ $proposal->id_pro }})' class="card-btn">Esconder</a>
 
                     </div>
                 </div>
