@@ -8,13 +8,13 @@ use App\Http\Controllers\EventController;
 //TODO: Poner aquí un middleware
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('proposals')->name('proposals.')->group(function () {
-        Route::get('/all', [ProposalController::class, 'all'])->name('all');
         Route::get('/search', [ProposalController::class, 'searchAdmin'])->name('search');
         Route::view('/add-proposal', 'back.pages.proposals.add-proposal')->name('add-proposal');
         Route::get('/edit-proposal', [ProposalController::class, 'edit'])->name('edit-proposal');
         Route::post('/create', [ProposalController::class, 'create'])->name('create');
         Route::post('/update', [ProposalController::class, 'update'])->name('update');
-        Route::get('/{id}', [ProposalController::class, 'showAdmin'])->name('proposal.show');
+        Route::post('/hide', [ProposalController::class, 'hide'])->name('hide');
+        Route::put('/delete', [ProposalController::class, 'delete'])->name('delete');
     });
 
     Route::prefix('candidates')->name('candidates.')->group(function () {

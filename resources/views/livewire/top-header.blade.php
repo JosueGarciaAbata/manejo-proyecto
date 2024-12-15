@@ -360,7 +360,7 @@
                                         <a class="dropdown-item" href="{{ route("admin.proposals.add-proposal") }}">
                                             Escribe Uno
                                         </a>
-                                        <a class="dropdown-item" href="{{ route("admin.proposals.all") }}">
+                                        <a class="dropdown-item" href="{{ route("admin.proposals.search", ['query'=>'']) }}">
                                             Todos
                                         </a>
                                     </div>

@@ -79,11 +79,6 @@ class ProposalController extends Controller
 
     //Funciones de admin/superadmin
 
-    public function all() {
-        $proposals = Proposal::all();
-        return view('back.pages.proposals.all', compact('proposals'));
-    }
-
     public function create(Request $request) {
         try {
             $request->validate([
@@ -222,12 +217,6 @@ class ProposalController extends Controller
         }
     }
 
-    public function showAdmin($id)
-    {
-        $proposal = Proposal::with('candidate')->findOrFail($id);
-        return view('pages.proposal-detail', compact('proposal'));
-    }
-
     public function searchAdmin(Request $request)
     {
         $request->validate([
@@ -247,4 +236,63 @@ class ProposalController extends Controller
 
         return view('back.pages.proposals.all', compact('proposals'));
     }
+
+    public function delete(Request $request) {
+        try {
+            $request->validate([
+                'id_pro' => 'required'
+            ]);
+            $proposal = Proposal::findOrFail($request->id_pro);
+            $prop_image_old = $proposal->img_pro;
+            $path = "images/proposal_images/";
+            if (!($prop_image_old == null || $prop_image_old == "")  && Storage::disk('public')->exists($path . $prop_image_old) ) {
+                Storage::disk('public')->delete($path.$prop_image_old);
+            }
+            if ($proposal->delete()) {
+                return response()->json([
+                    'success' => true,
+                    'msg' => 'Se elimino la propuesta'
+                ]);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'msg' => 'No se elimino la propuesta'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'msg' => 'No se encontró la propuesta',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
+    public function hide(Request $request) {
+        try {
+            $request->validate([
+                'id_pro' => 'required'
+            ]);
+            $proposal = Proposal::findOrFail($request->id_pro);
+            $proposal->visible = false;
+            if ($proposal->save()) {
+                return response()->json([
+                    'success' => true,
+                    'msg' => 'Se escondio la propuesta'
+                ]);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'msg' => 'No se escondio la propuesta'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'msg' => 'No se encontró la propuesta',
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
+
 }
