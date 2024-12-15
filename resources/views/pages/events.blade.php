@@ -116,9 +116,9 @@
                         </div>
                     </div>
                 </div>
-            @empty
-                <p class="text-center">No hay eventos que coincidan con la búsqueda.</p>
-            @endforelse
+                @empty
+                    <p class="text-center">No hay eventos que coincidan con la búsqueda.</p>
+                @endforelse
             </div>            
             
             @php

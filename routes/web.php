@@ -10,6 +10,8 @@ use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\VoterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\isAdmin;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
@@ -82,3 +84,35 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
 });
+
+Route::get('/storage-event/{imagen}', function ($imagen) {
+    $path = storage_path('app/public/images/event_images/' . $imagen);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+})->name('storage');
+
+Route::get('/storage-resize-event/{imagen}', function ($imagen) {
+    $path = storage_path('app/public/images/event_images/thumbnails/resized_' . $imagen);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+})->name('storage_resize');
