@@ -21,8 +21,8 @@
                         <!-- Nombre -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
-                            <input type="text" id="name" class="form-control" wire:model="name">
-                            @error('name')
+                            <input type="text" id="name" class="form-control" wire:model="nom_can">
+                            @error('nom_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -30,8 +30,8 @@
                         <!-- Apellido -->
                         <div class="mb-3">
                             <label for="last_name" class="form-label">Apellido</label>
-                            <input type="text" id="last_name" class="form-control" wire:model="last_name">
-                            @error('last_name')
+                            <input type="text" id="last_name" class="form-control" wire:model="ape_can">
+                            @error('ape_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -39,8 +39,8 @@
                         <!-- Cargo -->
                         <div class="mb-3">
                             <label for="position" class="form-label">Cargo</label>
-                            <input type="text" id="position" class="form-control" wire:model="position">
-                            @error('position')
+                            <input type="text" id="position" class="form-control" wire:model="car_can">
+                            @error('car_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -48,8 +48,8 @@
                         <!-- Fecha de Ingreso -->
                         <div class="mb-3">
                             <label for="entry_date" class="form-label">Fecha de Ingreso</label>
-                            <input type="date" id="entry_date" class="form-control" wire:model="entry_date">
-                            @error('entry_date')
+                            <input type="date" id="entry_date" class="form-control" wire:model="fec_ing_can">
+                            @error('fec_ing_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -57,16 +57,16 @@
                         <!-- Descripción -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Descripción</label>
-                            <textarea id="description" class="form-control" wire:model="description" rows="2"
+                            <textarea id="description" class="form-control" wire:model="descrip_can" rows="2"
                                 style="width: 100%; margin: 0; resize: none"></textarea>
-                            @error('description')
+                            @error('descrip_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div>
                             <label for="ruta_can">Imagen (opcional):</label>
-                            <input type="file" wire:model="ruta_can">
+                            <input type="file" wire:model="ruta_can" accept="image/png, image/jpeg, image/jpg">
                             @error('ruta_can')
                                 <span class="error">{{ $message }}</span>
                             @enderror

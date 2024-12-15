@@ -4,10 +4,13 @@ namespace App\Livewire;
 
 use App\Models\PoliticalParty;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\Candidate;
 
 class CreateCandidate extends Component
 {
+    use WithFileUploads;
+
     public $isOpen = false;
     public $name, $last_name, $position, $entry_date, $description, $id_pol_par_bel, $ruta_can;
 
@@ -24,17 +27,19 @@ class CreateCandidate extends Component
     public function saveCandidate()
     {
         $this->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'entry_date' => 'required|date',
-            'description' => 'nullable|string|max:1000',
-            'id_pol_par_bel' => 'required|exists:political_parties,id_lis',
+            'nom_can' => 'required|string|max:255',
+            'ape_can' => 'required|string|max:255',
+            'car_can' => 'required|string|max:255',
+            'fec_ing_can' => 'required|date',
+            'descrip_can' => 'nullable|string|max:1000',
             'ruta_can' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'id_pol_par_bel' => 'required|exists:political_parties,id_lis',
         ]);
 
-        // Si no se proporciona imagen
-        $image_path = $this->ruta_can ? $this->image->store('assets/images/candidates') : 'assets/images/candidates/default.png';
+        // Si no se proporciona imagen, usar la predeterminada
+        $image_path = $this->ruta_can
+            ? $this->ruta_can->store('assets/images/candidates', 'public')
+            : 'assets/images/candidates/default.png';
 
         Candidate::create([
             'nom_can' => $this->name,
