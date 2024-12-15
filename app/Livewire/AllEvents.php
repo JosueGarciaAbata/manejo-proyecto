@@ -11,8 +11,8 @@ class AllEvents extends Component
 {
     use WithPagination;
     public $perPage = 12;
-    public $search = null;
-    public $orderBy = null;
+    public $search = '';
+    public $orderBy = 'asc';
 
     protected $listeners = [
         'deleteEventAction',
@@ -31,11 +31,11 @@ class AllEvents extends Component
     
     public function deleteEvent($id)
     {
-        $this->dispatchBrowserEvent('deleteEvent', [
-            'title' => 'Are you sure?',
-            'html' => 'You want to delete this event.',
-            'id' => $id,
-        ]);
+        $this->dispatch('deleteEvent', 
+            title: '¿Estás seguro?',
+            html: 'Quieres eliminar este evento.',
+            id: $id,
+        );
     }
 
     public function deleteEventAction($id)
@@ -46,12 +46,12 @@ class AllEvents extends Component
         $featured_image = $event->res_img;
 
         if ($featured_image != null && Storage::disk('public')->exists($path . $featured_image)) {
-            if (Storage::disk('public')->exists($path . 'thumbnails/resized_' . $featured_image)) {
-                Storage::disk('public')->delete($path . 'thumbnails/resized_' . $featured_image);
+            if (Storage::disk('public')->exists($path . $preview_image)) {
+                Storage::disk('public')->delete($path . $featured_image);
             }
 
-            if (Storage::disk('public')->exists($path . 'thumbnails/thumb_' . $featured_image)) {
-                Storage::disk('public')->delete($path . 'thumbnails/thumb_' . $featured_image);
+            if (Storage::disk('public')->exists($path . $preview_image)) {
+                Storage::disk('public')->delete($path . $featured_image);
             }
 
             Storage::disk('public')->delete($path . $featured_image);
@@ -60,18 +60,20 @@ class AllEvents extends Component
         $delete_event = $event->delete();
 
         if ($delete_event) {
+            //return response()->json(['code' => 1, 'msg' => 'Evento borrado exitosamente.']);
             $this->showToastr('Event has been successfully deleted.', 'success');
         } else {
+            //return response()->json(['code' => 3, 'msg' => 'Algo salio mal.']);
             $this->showToastr('Something went wrong.', 'error');
         }
     }
 
     public function showToastr($message, $type)
     {
-        return $this->dispatchBrowserEvent('showToastr', [
-            'type' => $type,
-            'message' => $message,
-        ]);
+        return $this->dispatch('showToastr', 
+            type: $type,
+            message: $message,
+        );
     }
 
     public function render()
