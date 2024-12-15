@@ -45,6 +45,68 @@
                             @enderror
                         </div>
 
+                        {{-- Lider, sublider, integrante --}}
+                        <div class="mb-3">
+                            <label for="jerarquia" class="form-label">Rol</label>
+                            <select wire:model="jerarquia" id="jerarquia" class="form-control">
+                                <option value="">Seleccione una jerarquía</option>
+                                <option value="lider">Líder</option>
+                                <option value="sublider">Sublíder</option>
+                                <option value="integrante">Integrante</option>
+                            </select>
+                            @error('jerarquia')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Experiencia profesional -------------- --}}
+                        <h5>Experiencia Profesional</h5>
+                        <div class="mb-3">
+                            <!-- Input para agregar experiencia -->
+                            <input type="text" wire:model="newExperience" wire:keydown.enter.prevent="addExperience"
+                                placeholder="Añadir experiencia y presiona Enter" />
+                            <button type="button" wire:click="addExperience"
+                                class="btn btn-primary btn-sm">Agregar</button>
+                        </div>
+
+                        <!-- Mostrar experiencias agregadas como chips -->
+                        @if (count($experiences) > 0)
+                            <div class="mb-3">
+                                @foreach ($experiences as $index => $exp)
+                                    <span class="badge bg-secondary me-2">
+                                        {{ $exp }}
+                                        <button type="button" wire:click="removeExperience({{ $index }})"
+                                            class="btn btn-danger btn-sm">&times;</button>
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                        {{-- End experiencia profesional ------------- --}}
+
+                        {{-- Educación -------------- --}}
+                        <h5>Formación</h5>
+                        <div class="mb-3">
+                            <!-- Input para agregar educación -->
+                            <input type="text" wire:model="newEducation" wire:keydown.enter.prevent="addEducation"
+                                placeholder="Añadir educación y presiona Enter" />
+                            <button type="button" wire:click="addEducation"
+                                class="btn btn-primary btn-sm">Agregar</button>
+                        </div>
+
+                        <!-- Mostrar educaciones agregadas como chips -->
+                        @if (count($educations) > 0)
+                            <div class="mb-3">
+                                @foreach ($educations as $index => $edu)
+                                    <span class="badge bg-secondary me-2">
+                                        {{ $edu }}
+                                        <button type="button" wire:click="removeEducation({{ $index }})"
+                                            class="btn btn-danger btn-sm">&times;</button>
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                        {{-- End educación ------------- --}}
+
                         <!-- Fecha de Ingreso -->
                         <div class="mb-3">
                             <label for="entry_date" class="form-label">Fecha de Ingreso</label>

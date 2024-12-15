@@ -17,7 +17,8 @@
                                 <h5 class="card-title mb-1">
                                     <a href="{{ route('candidate', ['id' => $candidate->id_can]) }}"
                                         class="text-decoration-none text-primary">
-                                        {{ $candidate->nom_can }} {{ $candidate->ape_can }}
+                                        {{ $candidate->nom_can }} {{ $candidate->ape_can }} es
+                                        {{ $candidate->jerarquia }}
                                     </a>
                                 </h5>
                                 <p class="mb-1 text-muted"><strong>Cargo:</strong> {{ $candidate->car_can }}</p>

@@ -13,8 +13,16 @@ class EditCandidate extends Component
     public $isOpen = false;
 
     public $candidate = [];
+    public $jerarquia;
 
     public $ruta_can; // Propiedad separada para el archivo
+
+    // Experiencias dinámicas
+    public $experiences = [];
+    public $newExperience = '';
+
+    public $educations = [];
+    public $newEducation = '';
 
     protected $rules = [
         'candidate.nom_can' => 'required|string|max:255',
@@ -22,6 +30,7 @@ class EditCandidate extends Component
         'candidate.car_can' => 'required|string|max:255',
         'candidate.fec_ing_can' => 'required|date',
         'candidate.descrip_can' => 'nullable|string|max:1000',
+        'jerarquia' => 'required|in:lider,sublider,integrante',
         'ruta_can' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Validación para el archivo
     ];
 
@@ -39,6 +48,44 @@ class EditCandidate extends Component
     {
         $this->candidate = $candidate->toArray();
         $this->candidate['id_can'] = $candidate->id_can; // Asegurar el ID
+
+        // Cargar la jerarquía
+        $this->jerarquia = $candidate->jerarquia;
+
+        // Cargar las experiencias y educaciones relacionadas
+        $this->experiences = $candidate->professionalExperiences()->pluck('nom_exp', 'id_exp')->toArray();
+        $this->educations = $candidate->educationalBackgrounds()->pluck('nom_edu', 'id_edu')->toArray();
+    }
+
+    // Agregar nueva experiencia temporal
+    public function addExperience()
+    {
+        if (!empty($this->newExperience)) {
+            $this->experiences[] = $this->newExperience;
+            $this->newExperience = '';
+        }
+    }
+
+    // Eliminar una experiencia temporal
+    public function removeExperience($index)
+    {
+        unset($this->experiences[$index]);
+        $this->experiences = array_values($this->experiences);
+    }
+
+
+    public function addEducation()
+    {
+        if (!empty($this->newEducation)) {
+            $this->educations[] = $this->newEducation;
+            $this->newEducation = '';
+        }
+    }
+
+    public function removeEducation($index)
+    {
+        unset($this->educations[$index]);
+        $this->educations = array_values($this->educations);
     }
 
     public function editCandidate()
@@ -60,9 +107,22 @@ class EditCandidate extends Component
             $this->candidate['ruta_can'] = $newPath;
         }
 
+        $this->candidate['jerarquia'] = $this->jerarquia;
+        $candidate = Candidate::find($this->candidate['id_can']);
+        $candidate->update($this->candidate);
 
-        if (!empty($this->candidate['id_can'])) {
-            Candidate::find($this->candidate['id_can'])->update($this->candidate);
+        // Actualizar experiencias: borrar existentes y reinsertar
+        $candidate->professionalExperiences()->delete();
+        foreach ($this->experiences as $experience) {
+            $candidate->professionalExperiences()->create([
+                'nom_exp' => $experience,
+            ]);
+        }
+
+        // Actualizar educación
+        $candidate->educationalBackgrounds()->delete();
+        foreach ($this->educations as $education) {
+            $candidate->educationalBackgrounds()->create(['nom_edu' => $education]);
         }
 
         // Limpiar el formulario y cerrar el modal

@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id('id_can'); // Primary key
+            $table->enum('jerarquia', ['lider', 'sublider', 'integrante'])->default('integrante');
             $table->string('nom_can', 100)->notNullable();
             $table->string('ape_can', 100)->notNullable();
             $table->string('car_can')->notNullable();
