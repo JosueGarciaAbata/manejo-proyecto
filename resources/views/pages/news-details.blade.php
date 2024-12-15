@@ -29,7 +29,7 @@
                             </ul>
                             <h3 class="blog-one__title">{{ $newsItem->tit_new }}</h3>
                             @foreach ($newsItem->paragraphs as $paragraph)
-                                <p class="blog-one__text">{{ trim($paragraph) }}</p>
+                                <p class="blog-one__text">{!! trim($paragraph) !!}</p>
                             @endforeach
                             <div class="share-block">
                                 <div class="left-block">
