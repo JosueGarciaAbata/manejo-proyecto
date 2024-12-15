@@ -21,8 +21,8 @@
                         <!-- Nombre -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Nombre</label>
-                            <input type="text" id="name" class="form-control" wire:model="name">
-                            @error('name')
+                            <input type="text" id="name" class="form-control" wire:model="nom_can">
+                            @error('nom_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -30,8 +30,8 @@
                         <!-- Apellido -->
                         <div class="mb-3">
                             <label for="last_name" class="form-label">Apellido</label>
-                            <input type="text" id="last_name" class="form-control" wire:model="last_name">
-                            @error('last_name')
+                            <input type="text" id="last_name" class="form-control" wire:model="ape_can">
+                            @error('ape_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -39,17 +39,79 @@
                         <!-- Cargo -->
                         <div class="mb-3">
                             <label for="position" class="form-label">Cargo</label>
-                            <input type="text" id="position" class="form-control" wire:model="position">
-                            @error('position')
+                            <input type="text" id="position" class="form-control" wire:model="car_can">
+                            @error('car_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
+                        {{-- Lider, sublider, integrante --}}
+                        <div class="mb-3">
+                            <label for="jerarquia" class="form-label">Rol</label>
+                            <select wire:model="jerarquia" id="jerarquia" class="form-control">
+                                <option value="">Seleccione una jerarquía</option>
+                                <option value="lider">Líder</option>
+                                <option value="sublider">Sublíder</option>
+                                <option value="integrante">Integrante</option>
+                            </select>
+                            @error('jerarquia')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Experiencia profesional -------------- --}}
+                        <h5>Experiencia Profesional</h5>
+                        <div class="mb-3">
+                            <!-- Input para agregar experiencia -->
+                            <input type="text" wire:model="newExperience" wire:keydown.enter.prevent="addExperience"
+                                placeholder="Añadir experiencia y presiona Enter" />
+                            <button type="button" wire:click="addExperience"
+                                class="btn btn-primary btn-sm">Agregar</button>
+                        </div>
+
+                        <!-- Mostrar experiencias agregadas como chips -->
+                        @if (count($experiences) > 0)
+                            <div class="mb-3">
+                                @foreach ($experiences as $index => $exp)
+                                    <span class="badge bg-secondary me-2">
+                                        {{ $exp }}
+                                        <button type="button" wire:click="removeExperience({{ $index }})"
+                                            class="btn btn-danger btn-sm">&times;</button>
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                        {{-- End experiencia profesional ------------- --}}
+
+                        {{-- Educación -------------- --}}
+                        <h5>Formación</h5>
+                        <div class="mb-3">
+                            <!-- Input para agregar educación -->
+                            <input type="text" wire:model="newEducation" wire:keydown.enter.prevent="addEducation"
+                                placeholder="Añadir educación y presiona Enter" />
+                            <button type="button" wire:click="addEducation"
+                                class="btn btn-primary btn-sm">Agregar</button>
+                        </div>
+
+                        <!-- Mostrar educaciones agregadas como chips -->
+                        @if (count($educations) > 0)
+                            <div class="mb-3">
+                                @foreach ($educations as $index => $edu)
+                                    <span class="badge bg-secondary me-2">
+                                        {{ $edu }}
+                                        <button type="button" wire:click="removeEducation({{ $index }})"
+                                            class="btn btn-danger btn-sm">&times;</button>
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+                        {{-- End educación ------------- --}}
+
                         <!-- Fecha de Ingreso -->
                         <div class="mb-3">
                             <label for="entry_date" class="form-label">Fecha de Ingreso</label>
-                            <input type="date" id="entry_date" class="form-control" wire:model="entry_date">
-                            @error('entry_date')
+                            <input type="date" id="entry_date" class="form-control" wire:model="fec_ing_can">
+                            @error('fec_ing_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -57,17 +119,17 @@
                         <!-- Descripción -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Descripción</label>
-                            <textarea id="description" class="form-control" wire:model="description" rows="2"
+                            <textarea id="description" class="form-control" wire:model="descrip_can" rows="2"
                                 style="width: 100%; margin: 0; resize: none"></textarea>
-                            @error('description')
+                            @error('descrip_can')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div>
-                            <label for="ruta_can">Imagen (opcional):</label>
-                            <input type="file" wire:model="ruta_can">
-                            @error('ruta_can')
+                            <label for="image">Imagen (opcional):</label>
+                            <input type="file" wire:model="image" accept="image/png, image/jpeg, image/jpg">
+                            @error('image')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>

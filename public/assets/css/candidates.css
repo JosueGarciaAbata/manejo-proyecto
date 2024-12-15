@@ -29,6 +29,13 @@
     padding: 10px 0;
 }
 
+.candidate-item .candidate-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
 .candidate-item .cd-text .cd-title h4 {
     color: black;
     font-weight: 600;

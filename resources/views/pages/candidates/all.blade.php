@@ -1,19 +1,18 @@
-@extends('layouts.app')
+@extends('back.layouts.pages-layout')
 
 @section('title', 'Candidates')
 
+@section('page-header')
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <h2 class="page-title">
+                Todos los candidatos
+            </h2>
+        </div>
+    </div>
+@endsection
 
 @section('content')
-    <section class="inner-banner">
-        <div class="container">
-            <h2 class="inner-banner__title">Candidatos</h2>
-            <ul class="list-unstyled thm-breadcrumb">
-                <li><a href="{{ route('home') }}">Inicio</a></li>
-                <li>Candidatos</li>
-            </ul>
-        </div>
-    </section>
-
     <section class="candidates-section-admin">
         <div class="container">
             @livewire('create-candidate')

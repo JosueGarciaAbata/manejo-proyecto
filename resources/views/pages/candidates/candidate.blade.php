@@ -17,7 +17,7 @@
     <section class="candidate">
 
         <div class="candidate-img">
-            <img src="{{ asset($candidate->ruta_can) }}" alt="Imagen del candidato">
+            <img src="{{ asset('storage/' . $candidate->ruta_can) }}" alt="Imagen del candidato">
         </div>
 
         <div class="candidate-content">
@@ -54,7 +54,7 @@
             </div> <!-- .candidate-form -->
 
             <!-- Validación para redes sociales -->
-            <div class="social-icons">
+            {{-- <div class="social-icons">
                 <h3>Redes sociales</h3>
                 <div class="social-icons__content">
                     @forelse ($candidate->socialLinks as $socialLink)
@@ -65,7 +65,7 @@
                         <p>No se han encontrado redes sociales asociadas.</p>
                     @endforelse
                 </div>
-            </div>
+            </div> --}}
 
         </div> <!-- .candidate-content -->
     </section>
