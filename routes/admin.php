@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\NewsController;
 
 //TODO: Poner aquí un middleware
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -31,5 +32,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::view('/all', 'back.pages.all-events')->name('all-events');
         Route::get('/edit-event', [EventController::class, 'editEvent'])->name('edit-event');
         Route::post('/update-event', [EventController::class, 'updateEvent'])->name('update-event');
+    });
+
+    Route::prefix('news')->name('news.')->group(function () {
+        Route::view('/add', 'back.pages.add-new')->name('add-new');
+        Route::post('/create', [NewsController::class, 'createNew'])->name('create');
+        Route::view('/all', 'back.pages.all-news')->name('all-news');
+        Route::get('/edit-new', [NewsController::class, 'editNew'])->name('edit-new');
+        Route::post('/update-new', [NewsController::class, 'updateNew'])->name('update-new');
     });
 });
