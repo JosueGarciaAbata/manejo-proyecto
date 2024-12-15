@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="/back/dist/libs/ijabo/ijabo.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css">
 
+    <!--Tagify-->
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+    
     <!--Amsify-->
     @stack('stylesheets')
     @livewireStyles
@@ -100,6 +103,9 @@
     <script src="/back/dist/js/demo.min.js" defer></script>
     <!-- CKEditor -->
     <script src="/ckeditor/ckeditor.js"></script>
+    <!--Tagify Scripts-->
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
 
