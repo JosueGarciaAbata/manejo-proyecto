@@ -17,7 +17,7 @@
     <section class="candidate">
 
         <div class="candidate-img">
-            <img src="{{ asset($candidate->ruta_can) }}" alt="">
+            <img src="{{ asset($candidate->ruta_can) }}" alt="Imagen del candidato">
         </div>
 
         <div class="candidate-content">
@@ -27,46 +27,46 @@
 
             <div class="candidate-form">
 
+                <!-- Validación para formación educativa -->
                 <div class="candidate-form__educational">
-                    <h3>Formacion</h3>
+                    <h3>Formación</h3>
                     <div class="candidate-form__educational__content">
-                        @foreach ($candidate->educationalBackgrounds as $educational)
+                        @forelse ($candidate->educationalBackgrounds as $educational)
                             <p>{{ $educational->nom_edu }}</p>
-                        @endforeach
+                        @empty
+                            <p>No se han encontrado registros de formación educativa.</p>
+                        @endforelse
                     </div>
                 </div>
 
+                <!-- Validación para experiencia profesional -->
                 <div class="candidate-form__professional">
                     <h3>Experiencia</h3>
                     <div class="candidate-form__professional__content">
-                        @foreach ($candidate->professionalExperiences as $experience)
+                        @forelse ($candidate->professionalExperiences as $experience)
                             <p>{{ $experience->nom_exp }}</p>
-                        @endforeach
+                        @empty
+                            <p>No se han encontrado registros de experiencia profesional.</p>
+                        @endforelse
                     </div>
                 </div>
 
             </div> <!-- .candidate-form -->
 
+            <!-- Validación para redes sociales -->
             <div class="social-icons">
                 <h3>Redes sociales</h3>
                 <div class="social-icons__content">
-                    @foreach ($candidate->socialLinks as $socialLink)
-                        <a href="{{ $socialLink->url_soc }}">
+                    @forelse ($candidate->socialLinks as $socialLink)
+                        <a href="{{ $socialLink->url_soc }}" target="_blank">
                             <img src="{{ asset($socialLink->icon->path_icon) }}" alt="{{ $socialLink->platform_soc }}">
                         </a>
-                    @endforeach
+                    @empty
+                        <p>No se han encontrado redes sociales asociadas.</p>
+                    @endforelse
                 </div>
             </div>
 
         </div> <!-- .candidate-content -->
     </section>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <div class="close-btn" onclick="closeModal()">&times;</div>
-            <div id="modal-body">
-
-            </div>
-        </div>
-    </div>
 @endsection

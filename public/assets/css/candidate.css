@@ -12,6 +12,10 @@
     margin-right: 50px;
 }
 
+.candidate-item {
+    padding: 10px 20px;
+}
+
 .candidate-content h1 {
     font-size: 40px;
 }

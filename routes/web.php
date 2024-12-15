@@ -15,13 +15,9 @@ use Illuminate\Support\Facades\Response;
 
 Route::get('/', [HomeController::class, 'show'])->name('home');
 
-Route::get('/candidates', [CandidateController::class, 'candidates'])->name('candidates');
+Route::get('/candidates', [CandidateController::class, 'showUsers'])->name('candidates');
 Route::get('/candidate/{id}', [CandidateController::class, 'candidate'])->name('candidate');
 Route::post('/candidates', [VoterController::class, 'vote'])->name('vote.store');
-Route::get('/candidates/admin', [CandidateController::class, 'admin']);
-Route::post('/candidates/admin/store', [CandidateController::class, 'store']);
-Route::put('/candidates/admin/update', [CandidateController::class, 'update']);
-Route::put('/candidates/admin/destroy', [CandidateController::class, 'destroy']);
 
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/events/search', [EventController::class, 'search'])->name('events.search');
