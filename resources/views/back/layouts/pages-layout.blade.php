@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="/amsify/amsify.suggestags.css">
 
     <link rel="stylesheet" href="/back/dist/libs/ijabo/ijabo.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css">
 
     <!--Amsify-->
     @stack('stylesheets')
@@ -49,6 +50,7 @@
         }
     </style>
 
+    <link rel="stylesheet" href="/css/fonts.css">
 </head>
 
 <body>
@@ -99,6 +101,8 @@
     <!-- CKEditor -->
     <script src="/ckeditor/ckeditor.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+
     {{-- Toastr Script for Livewire --}}
     <script>
         $(document).ready(function() {
@@ -112,11 +116,10 @@
         $('input[name="post_tags"]').amsifySuggestags();
 
 
-        window.addEventListener('showToastr', event => {
-            const data = event.detail[0]; 
-            console.log(data);
+        window.addEventListener('showToastr', (event) => {
+            console.log(event);
+            const data = event.detail; 
 
-            // Asegúrate de que el tipo sea válido y la función existe
             if (data && toastr[data.type] && typeof data.message === 'string') {
                 toastr[data.type](data.message);
             } else {
@@ -147,6 +150,7 @@
     @stack('scripts')
     @livewireScripts
 
+    
 </body>
 
 </html>
