@@ -1,13 +1,13 @@
 <div>
     <div class="row">
         <div class="col-md-6 mb-3">
-            <label for="" class="form-label">Buscar</label>
-            <input type="text" class="form-control" placeholder="Keyword..." wire:model='search'>
+            <label for="search" class="form-label">Buscar</label>
+            <input type="text" id="search" class="form-control" placeholder="Keyword..." wire:model.live='search'>
         </div>
         
         <div class="col-md-2 mb-3">
             <label for="" class="form-label">Ordenar en</label>
-            <select class="form-select" wire:model='orderBy'>
+            <select class="form-select" wire:model.live='orderBy'>
                 <option value="asc">Asc</option>
                 <option value="desc">Desc</option>
             </select>
@@ -23,8 +23,8 @@
                     <h3 class="m-0 mb-1">{{$event->tit_eve}}</h3>
                 </div>
                 <div class="d-flex">
-                    <a href="" class="card-btn">Edit</a>
-                    <a href="" wire:click.prevent='deletePost({{$event->id}})' class="card-btn">Delete</a>
+                    <a href="{{ route('admin.events.edit-event',['id_eve'=>$event->id_eve])}}" class="card-btn">Edit</a>
+                    <a href="" wire:click.prevent='deleteEvent({{$event->id_eve}})' class="card-btn">Delete</a>
                 </div>
             </div>
         </div>
