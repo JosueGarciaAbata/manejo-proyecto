@@ -29,7 +29,7 @@ class DeleteCandidate extends Component
     {
         Candidate::find($this->candidate['id_can'])->delete();
 
-        $this->dispatch('render');
+        $this->dispatch('render'); // Forzar actualización del componente padre
 
         $this->closeModal();
         session()->flash('message', 'Candidato eliminado correctamente.');

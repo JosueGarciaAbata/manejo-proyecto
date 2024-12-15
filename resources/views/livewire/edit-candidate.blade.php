@@ -67,7 +67,7 @@
                             @if ($ruta_can)
                                 <img src="{{ $ruta_can->temporaryUrl() }}" alt="Previsualización" width="150">
                             @elseif (!empty($candidate['ruta_can']))
-                                <img src="{{ asset($candidate['ruta_can']) }}" alt="Imagen del Candidato"
+                                <img src="{{ asset('storage/' . $candidate['ruta_can']) }}" alt="Imagen del Candidato"
                                     width="150">
                             @endif
                         </div>

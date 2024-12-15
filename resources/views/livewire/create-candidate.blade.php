@@ -65,9 +65,9 @@
                         </div>
 
                         <div>
-                            <label for="ruta_can">Imagen (opcional):</label>
-                            <input type="file" wire:model="ruta_can" accept="image/png, image/jpeg, image/jpg">
-                            @error('ruta_can')
+                            <label for="image">Imagen (opcional):</label>
+                            <input type="file" wire:model="image" accept="image/png, image/jpeg, image/jpg">
+                            @error('image')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>

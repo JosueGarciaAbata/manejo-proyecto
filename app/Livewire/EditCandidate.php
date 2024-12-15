@@ -3,6 +3,7 @@
 namespace App\Livewire;
 use App\Models\Candidate;
 use Livewire\WithFileUploads; // Importar el trait necesario
+use Illuminate\Support\Facades\Storage;
 
 use Livewire\Component;
 
@@ -44,15 +45,21 @@ class EditCandidate extends Component
     {
         $this->validate(); // Validar los datos
 
-        // Verificar si se ha subido un archivo de imagen
+
+        // Verificar si se ha subido una nueva imagen
         if ($this->ruta_can) {
             // Guardar la nueva imagen en la carpeta especificada
-            $path = $this->ruta_can->store('assets/images/candidates', 'public');
-            $this->candidate['ruta_can'] = $path; // Actualizar la ruta en el arreglo
-        } elseif (empty($this->candidate['ruta_can'])) {
-            // Si no hay nueva imagen ni ruta existente, asignar una imagen por defecto
-            $this->candidate['ruta_can'] = 'assets/images/candidates/default.png';
+            $newPath = $this->ruta_can->store('images/candidates', 'public');
+
+            // Eliminar la imagen anterior si existe y no es la predeterminada
+            if (!empty($this->candidate['ruta_can']) && $this->candidate['ruta_can'] !== 'images/candidates/default.png') {
+                \Storage::disk('public')->delete($this->candidate['ruta_can']);
+            }
+
+            // Actualizar la ruta en el arreglo para guardarla en la base de datos
+            $this->candidate['ruta_can'] = $newPath;
         }
+
 
         if (!empty($this->candidate['id_can'])) {
             Candidate::find($this->candidate['id_can'])->update($this->candidate);

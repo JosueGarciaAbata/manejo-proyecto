@@ -8,7 +8,7 @@
                         <div class="card shadow-sm">
                             <!-- Imagen del Candidato -->
                             <div class="card-img-top text-center" style="height: 200px; overflow: hidden;">
-                                <img src="{{ asset($candidate->ruta_can) }}" alt="{{ $candidate->car_can }}"
+                                <img src="{{ asset('storage/' . $candidate->ruta_can) }}" alt="{{ $candidate->car_can }}"
                                     class="img-fluid rounded" style="object-fit: cover; height: 100%; width: 100%;">
                             </div>
 
@@ -26,8 +26,8 @@
 
                             <!-- Acciones (Editar / Eliminar) -->
                             <div class="d-flex justify-content-center align-items-center">
-                                @livewire('edit-candidate', ['candidate' => $candidate], key('edit-' . $candidate->id_can))
-                                @livewire('delete-candidate', ['candidate' => $candidate], key('delete-' . $candidate->id_can))
+                                @livewire('edit-candidate', ['candidate' => $candidate], key('edit-' . $candidate->id_can . '-' . $loop->index))
+                                @livewire('delete-candidate', ['candidate' => $candidate], key('delete-' . $candidate->id_can . '-' . $loop->index))
                             </div>
                         </div>
                     </div>
