@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class News extends Model
 {
@@ -26,24 +27,31 @@ class News extends Model
     
     public function getPreviewImgUrlAttribute()
     {
-        $basePath = 'assets/images/news/preview/';
+        $basePath = 'images/news_images/';
         $imagePath = $basePath . $this->pre_img;
         
-        if (file_exists(public_path($imagePath))) {
-            return asset($imagePath);
+        if (Storage::disk('public')->exists($imagePath)) {
+            return Storage::url($imagePath);
         }
         return asset('assets/images/news/preview/news_preview.jpg');
     }
     
     public function getResourceImgUrlAttribute()
     {
-        $basePath = 'assets/images/news/';
-        $imagePath = $basePath . $this->res_img;
+        $basePath = 'images/news_images/';
+        $imagePath = $basePath . $this->pre_img;
         
-        if (file_exists(public_path($imagePath))) {
-            return asset($imagePath);
+        if (Storage::disk('public')->exists($imagePath)) {
+            return Storage::url($imagePath);
         }
         return asset('assets/images/news/news_default.jpg');
+    }
+
+    public function scopeSearch($query,$term){
+        $term="%$term%";
+        $query->where(function($query) use ($term){
+            $query->where('tit_new','like',$term);
+        });
     }
 
     public function getFormattedFecPubNewAttribute()
