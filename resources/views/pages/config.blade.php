@@ -8,7 +8,7 @@
 
 @section('content')
 <section>
-    {{-- @dd($config->socialLinks[0]->icon) --}}
+    {{-- @dd($config->proposals[0]) --}}
 </section>
 <section class="inner-banner">
     <div class="container">
@@ -39,11 +39,11 @@
                         </label>
                         <input type="file" id="icon_file" name="icon" accept="image/*">
                     </div>
-                    <div>
-                        @if($config->icon_path)
-                            <img alt="Vista previa" id="icon-preview" src="{{ asset('storage/' . $config->icon_path) }}" alt="Icono">
+                    <div class="icon_preview">
+                        @if($config->icon)
+                            <img alt="Vista previa" id="icon-preview" src="{{ asset('storage/' . $config->icon) }}" alt="Icono">
                         @else
-                        <img alt="Vista previa" id="icon-preview" src="{{ asset('assets/images/icon.jpeg') }}" alt="Icono">
+                            <img alt="Vista previa" id="icon-preview" src="{{ asset('assets/images/icon.jpeg') }}" alt="Icono">
                         @endif
                     </div>
                 </div>
@@ -54,11 +54,14 @@
                         <label class="file-label" for="representant_file">
                             <span class="file-icon">📁</span> Subir archivo
                         </label>
-                        <input type="file" id="representant_file" name="representative" accept="image/*">
+                        <input type="file" id="representant_file" name="representant" accept="image/*">
                     </div>
-                    <div >
-                        @if($config->representative)
-                            <img src="{{ asset('storage/' . $config->representative) }}" alt="Representante" width="100" id="representant-preview">
+                    <div  class="icon_preview">
+                        @if($config->representant)
+                            <img src="{{ asset('storage/' . $config->representant) }}" alt="Representante" id="representant-preview">
+                        @else
+                            <img src="{{ asset('assets/images/icon.jpeg') }}" alt="Representante" id="representant-preview">
+                        
                         @endif
                     </div>
                 </div>
@@ -72,7 +75,7 @@
                                 id="proposal_{{ $proposal->id_pro }}" 
                                 name="main_proposals[]" 
                                 value="{{ $proposal->id_pro }}"
-                                {{ $config->proposals->pluck('id')->contains($proposal->id_pro) ? 'checked' : '' }}>
+                                {{ $config->proposals->pluck('id_pro')->contains($proposal->id_pro) ? 'checked' : '' }}>
                             <label for="proposal_{{ $proposal->id_pro }}">{{ $proposal->tit_pro }}</label>
                         </div>
                     @endforeach
@@ -94,12 +97,12 @@
                             <input type="text" name="social_links[url][]" value="{{ $link->url }}">
                         </div>
                     @endforeach
-                    <div class="social-link">
+                    {{-- <div class="social-link">
                         <label>Nueva Plataforma:</label>
                         <input type="text" name="social_links[platform][]" value="">
                         <label>URL:</label>
                         <input type="text" name="social_links[url][]" value="">
-                    </div>
+                    </div> --}}
                 </div>
             
                 <div>
@@ -130,5 +133,5 @@
 @endsection
 
 @push('scripts')
-    <link rel="stylesheet" href="{{ asset('assets/js/organization.js') }}">
+    <script src="{{ asset('assets/js/organization.js') }}"></script>
 @endpush

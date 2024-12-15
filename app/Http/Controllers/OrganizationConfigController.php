@@ -28,8 +28,8 @@ class OrganizationConfigController extends Controller
     {
         $validatedData = $request->validate([
             'slogan' => 'nullable|string|max:255',
-            'icon_path' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'representative' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'icon' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'representant' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'main_proposals' => 'nullable|array',
             'footer_text' => 'nullable|string',
             'social_links.platform' => 'nullable|array',
@@ -41,18 +41,18 @@ class OrganizationConfigController extends Controller
         $config = OrganizationConfig::firstOrCreate([]);
 
         // Actualizar archivos de imagen
-        if ($request->hasFile('icon_path')) {
-            if ($config->icon_path) {
-                Storage::disk('public')->delete($config->icon_path);
+        if ($request->hasFile('icon')) {
+            if ($config->icon) {
+                Storage::disk('public')->delete($config->icon);
             }
-            $config->icon_path = $request->file('icon_path')->store('organization/icons', 'public');
+            $config->icon = $request->file('icon')->store('organization/icons', 'public');
         }
 
-        if ($request->hasFile('representative')) {
-            if ($config->representative) {
-                Storage::disk('public')->delete($config->representative);
+        if ($request->hasFile('representant')) {
+            if ($config->representant) {
+                Storage::disk('public')->delete($config->representant);
             }
-            $config->representative = $request->file('representative')->store('organization/representatives', 'public');
+            $config->representant = $request->file('representant')->store('organization/represent', 'public');
         }
 
         // Actualizar configuraciones principales

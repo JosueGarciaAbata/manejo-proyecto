@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('organization_configs', function (Blueprint $table) {
             $table->id();
             $table->string('slogan')->nullable();
-            $table->string('icon_path')->nullable();
+            $table->string('icon')->nullable();
             $table->text('mission')->nullable();
             // $table->text('vision')->nullable();
-            $table->string('representative')->nullable();
+            $table->string('representant')->nullable();
             // $table->json('main_proposals')->nullable();
             $table->text('footer_text')->nullable();
             $table->timestamps();

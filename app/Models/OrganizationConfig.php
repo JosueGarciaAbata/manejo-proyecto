@@ -10,7 +10,7 @@ class OrganizationConfig extends Model
     use HasFactory;
 
     protected $fillable = [
-        'slogan', 'icon_path', 'representative',
+        'slogan', 'icon', 'representant',
         'main_proposals', 'footer_text'
     ];
 
