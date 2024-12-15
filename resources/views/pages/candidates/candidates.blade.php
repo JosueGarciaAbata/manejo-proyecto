@@ -23,7 +23,8 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="cd-pic" id="{{ $candidate->id_can }}">
-                                        <img src="{{ asset($candidate->ruta_can) }}" alt="{{ $candidate->car_can }}">
+                                        <img src="{{ asset('storage/' . $candidate->ruta_can) }}"
+                                            alt="{{ $candidate->car_can }}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
