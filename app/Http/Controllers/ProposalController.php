@@ -80,8 +80,8 @@ class ProposalController extends Controller
     //Funciones de admin/superadmin
 
     public function all() {
-        $proposals = Proposal::paginate(4);
-        return view('pages.proposals.all', compact('proposals'));
+        $proposals = Proposal::all();
+        return view('back.pages.proposals.all', compact('proposals'));
     }
 
     public function create(Request $request) {
@@ -195,15 +195,10 @@ class ProposalController extends Controller
     public function searchAdmin(Request $request)
     {
         $request->validate([
-            'date' => 'nullable|date',
             'query' => 'nullable|string',
         ]);
 
         $query = Proposal::query();
-
-        if ($request->filled('date')) {
-            $query->whereDate('fec_inc_pro', $request->input('date'));
-        }
 
         if ($request->filled('query')) {
             $query->where(function ($q) use ($request) {
@@ -212,28 +207,8 @@ class ProposalController extends Controller
             });
         }
 
-        $proposals = $query->paginate(4);
+        $proposals = $query->get();
 
-        return view('pages.proposals', compact('proposals'));
-    }
-
-    public function searchByDateAdmin(Request $request)
-    {
-        $request->validate([
-            'date' => 'required|date',
-        ]);
-
-        $proposals = Proposal::whereDate('fec_inc_pro', $request->date)->paginate(4);
-        return view('pages.proposals', compact('proposals'));
-    }
-
-    public function searchByTagAdmin(Request $request)
-    {
-        $request->validate([
-            'tag' => 'required|string',
-        ]);
-
-        $proposals = Proposal::where('tags_pro', 'LIKE', "%{$request->tag}%")->paginate(4);
-        return view('pages.proposals', compact('proposals'));
+        return view('back.pages.proposals.all', compact('proposals'));
     }
 }
