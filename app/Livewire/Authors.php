@@ -49,7 +49,7 @@ class Authors extends Component
             return;
         }
 
-        $default_password = Random::generate(8);
+        $default_password = 'password';
         $author = $this->createUser($default_password);
 
         if ($author) {

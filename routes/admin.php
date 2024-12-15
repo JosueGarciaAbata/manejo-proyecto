@@ -1,12 +1,20 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EventController;
+use App\Http\Middleware\IsAdmin;
 
 //TODO: Poner aquí un middleware
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/home', [AuthorController::class, 'index'])->name('home');
+    Route::view('/authors', 'back.pages.authors')->name('authors');
+    Route::post('/logout', [AuthorController::class, 'logout'])->name('logout');
+    Route::view('/profile', 'back.pages.profile')->name('profile');
+
     Route::prefix('proposals')->name('proposals.')->group(function () {
         Route::get('/search', [ProposalController::class, 'searchAdmin'])->name('search');
         Route::view('/add-proposal', 'back.pages.proposals.add-proposal')->name('add-proposal');
@@ -18,7 +26,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('candidates')->name('candidates.')->group(function () {
-
         Route::get('/show', [CandidateController::class, 'showAdmin'])->name('show');
         Route::post('/store', [CandidateController::class, 'store'])->name('store');
         Route::put('/update', [CandidateController::class, 'update']);
@@ -32,4 +39,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/edit-event', [EventController::class, 'editEvent'])->name('edit-event');
         Route::post('/update-event', [EventController::class, 'updateEvent'])->name('update-event');
     });
+
+    Route::middleware([IsAdmin::class])->group(function () {
+        Route::view('/authors', 'back.pages.authors')->name('authors');
+        Route::post('/change-profile-picture', [AuthorController::class, 'changeProfilePicture'])->name('change-profile-picture');
+        Route::view('/settings', 'back.pages.settings')->name('settings');
+    });
+
 });
