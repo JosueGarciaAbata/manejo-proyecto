@@ -47,6 +47,46 @@
                             @enderror
                         </div>
 
+                        {{-- Lider, sublider, integrante --}}
+                        <div class="mb-3">
+                            <label for="jerarquia" class="form-label">Rol</label>
+                            <select wire:model="jerarquia" id="jerarquia" class="form-control">
+                                <option value="">Seleccione una jerarquía</option>
+                                <option value="lider">Líder</option>
+                                <option value="sublider">Sublíder</option>
+                                <option value="integrante">Integrante</option>
+                            </select>
+                            @error('jerarquia')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- Para la experiencia profesional --}}
+                        <div class="mb-3">
+                            <label for="experiences" class="form-label">Experiencias Profesionales</label>
+
+                            <!-- Mostrar experiencias agregadas como chips -->
+                            @if (count($experiences) > 0)
+                                <div class="mb-3">
+                                    @foreach ($experiences as $index => $exp)
+                                        <span class="badge bg-secondary me-2">
+                                            {{ $exp }}
+                                            <button type="button" wire:click="removeExperience({{ $index }})"
+                                                class="btn btn-danger btn-sm">&times;</button>
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <!-- Input para agregar nuevas experiencias -->
+                            <div class="input-group mb-3">
+                                <input type="text" wire:model="newExperience" class="form-control"
+                                    placeholder="Añadir experiencia...">
+                                <button type="button" wire:click="addExperience"
+                                    class="btn btn-primary">Agregar</button>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label for="entry_date" class="form-label">Fecha de Ingreso</label>
                             <input type="date" id="entry_date" class="form-control"
@@ -56,6 +96,33 @@
                             @enderror
                         </div>
 
+                        {{-- Para la foramción --}}
+                        <div class="mb-3">
+                            <label for="educations" class="form-label">Formación</label>
+
+                            <!-- Mostrar experiencias agregadas como chips -->
+                            @if (count($educations) > 0)
+                                <div class="mb-3">
+                                    @foreach ($educations as $index => $exp)
+                                        <span class="badge bg-secondary me-2">
+                                            {{ $exp }}
+                                            <button type="button" wire:click="removeEducation({{ $index }})"
+                                                class="btn btn-danger btn-sm">&times;</button>
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <!-- Input para agregar nuevas experiencias -->
+                            <div class="input-group mb-3">
+                                <input type="text" wire:model="newEducation" class="form-control"
+                                    placeholder="Añadir educación...">
+                                <button type="button" wire:click="addEducation"
+                                    class="btn btn-primary">Agregar</button>
+                            </div>
+                        </div>
+
+                        {{-- Imagen --}}
                         <div>
                             <label for="ruta_can">Imagen (opcional):</label>
                             <input type="file" wire:model="ruta_can" accept="image/*">
@@ -67,8 +134,8 @@
                             @if ($ruta_can)
                                 <img src="{{ $ruta_can->temporaryUrl() }}" alt="Previsualización" width="150">
                             @elseif (!empty($candidate['ruta_can']))
-                                <img src="{{ asset('storage/' . $candidate['ruta_can']) }}" alt="Imagen del Candidato"
-                                    width="150">
+                                <img src="{{ asset('storage/' . $candidate['ruta_can']) }}"
+                                    alt="Imagen del Candidato" width="150">
                             @endif
                         </div>
 
