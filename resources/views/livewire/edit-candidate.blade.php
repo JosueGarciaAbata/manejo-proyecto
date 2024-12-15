@@ -78,22 +78,15 @@
                                 </div>
                             @endif
 
-                            <!-- Input para agregar nuevas experiencias -->
-                            <div class="input-group mb-3">
-                                <input type="text" wire:model="newExperience" class="form-control"
-                                    placeholder="Añadir experiencia...">
+                            <div class="mb-3">
+                                <!-- Input para agregar experiencia -->
+                                <input type="text" wire:model="newExperience"
+                                    wire:keydown.enter.prevent="addExperience"
+                                    placeholder="Añadir experiencia y presiona Enter" />
                                 <button type="button" wire:click="addExperience"
-                                    class="btn btn-primary">Agregar</button>
+                                    class="btn btn-primary btn-sm">Agregar</button>
                             </div>
-                        </div>
 
-                        <div class="mb-3">
-                            <label for="entry_date" class="form-label">Fecha de Ingreso</label>
-                            <input type="date" id="entry_date" class="form-control"
-                                wire:model="candidate.fec_ing_can">
-                            @error('candidate.fec_ing_can')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
                         </div>
 
                         {{-- Para la foramción --}}
@@ -113,14 +106,25 @@
                                 </div>
                             @endif
 
-                            <!-- Input para agregar nuevas experiencias -->
-                            <div class="input-group mb-3">
-                                <input type="text" wire:model="newEducation" class="form-control"
-                                    placeholder="Añadir educación...">
+                            <div class="mb-3">
+                                <!-- Input para agregar experiencia -->
+                                <input type="text" wire:model="newEducation"
+                                    wire:keydown.enter.prevent="addEducation"
+                                    placeholder="Añadir experiencia y presiona Enter" />
                                 <button type="button" wire:click="addEducation"
-                                    class="btn btn-primary">Agregar</button>
+                                    class="btn btn-primary btn-sm">Agregar</button>
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="entry_date" class="form-label">Fecha de Ingreso</label>
+                            <input type="date" id="entry_date" class="form-control"
+                                wire:model="candidate.fec_ing_can">
+                            @error('candidate.fec_ing_can')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
 
                         {{-- Imagen --}}
                         <div>
