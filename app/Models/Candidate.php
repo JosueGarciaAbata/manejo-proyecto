@@ -22,6 +22,7 @@ class Candidate extends Model
         'descrip_can',
         'id_can_soc',
         'id_pol_par_bel',
+        'jerarquia'
     ];
 
     protected static function boot()

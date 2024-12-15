@@ -21,6 +21,7 @@ class Proposal extends Model
         'visible',
         'tags_pro',
         'id_can_pro',
+        'img_pro'
     ];
 
     protected static function boot()

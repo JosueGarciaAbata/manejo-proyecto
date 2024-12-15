@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class isAdmin
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,10 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->type != 1) {
-            abort(403, 'Acces denied');
+        if (!auth()->check() || auth()->user()->type != 1) {
+            abort(403, 'Access denied');
         }
+    
         return $next($request);
-    }
+    }    
 }

@@ -27,7 +27,11 @@
     <link rel="stylesheet" href="/amsify/amsify.suggestags.css">
 
     <link rel="stylesheet" href="/back/dist/libs/ijabo/ijabo.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css">
 
+    <!--Tagify-->
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+    
     <!--Amsify-->
     @stack('stylesheets')
     @livewireStyles
@@ -49,6 +53,7 @@
         }
     </style>
 
+    <link rel="stylesheet" href="/css/fonts.css">
 </head>
 
 <body>
@@ -98,6 +103,11 @@
     <script src="/back/dist/js/demo.min.js" defer></script>
     <!-- CKEditor -->
     <script src="/ckeditor/ckeditor.js"></script>
+    <!--Tagify Scripts-->
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
 
     {{-- Toastr Script for Livewire --}}
     <script>
@@ -112,11 +122,10 @@
         $('input[name="post_tags"]').amsifySuggestags();
 
 
-        window.addEventListener('showToastr', event => {
-            const data = event.detail[0]; 
-            console.log(data);
+        window.addEventListener('showToastr', (event) => {
+            console.log(event);
+            const data = event.detail; 
 
-            // Asegúrate de que el tipo sea válido y la función existe
             if (data && toastr[data.type] && typeof data.message === 'string') {
                 toastr[data.type](data.message);
             } else {
@@ -144,29 +153,10 @@
             });
         });
     </script>
-
-    {{-- CKEditor Script --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            ClassicEditor
-                .create(document.querySelector('#post_content'))
-                .then(editor => {
-                    window.editor = editor; // Save the instance globally
-                    editor.editing.view.change(writer => {
-                        writer.setStyle('min-height', '200px', editor.editing.view.document.getRoot());
-                    });
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
-
-
-
     @stack('scripts')
     @livewireScripts
 
+    
 </body>
 
 </html>

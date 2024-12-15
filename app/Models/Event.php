@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'events'; 
     protected $primaryKey = 'id_eve';
@@ -29,26 +31,32 @@ class Event extends Model
     
     public function getPreviewImgUrlAttribute()
     {
-        $basePath = 'assets/images/event/preview/';
+        $basePath = 'images/event_images/';
         $imagePath = $basePath . $this->pre_img;
         
-        if (file_exists(public_path($imagePath))) {
-            return asset($imagePath);
+        if (Storage::disk('public')->exists($imagePath)) {
+            return Storage::url($imagePath);
         }
         return asset('assets/images/event/preview/example_preview_event.jpg');
     }
     
     public function getResourceImgUrlAttribute()
     {
-        $basePath = 'assets/images/event/';
+        $basePath = 'images/event_images/';
         $imagePath = $basePath . $this->res_img;
         
-        if (file_exists(public_path($imagePath))) {
-            return asset($imagePath);
+        if (Storage::disk('public')->exists($imagePath)) {
+            return Storage::url($imagePath);
         }
         return asset('assets/images/event/example_event.jpg');
     }
-    
+
+    public function scopeSearch($query,$term){
+        $term="%$term%";
+        $query->where(function($query) use ($term){
+            $query->where('tit_eve','like',$term);
+        });
+    }
     
     public function getFormattedStartDateAttribute()
     {
