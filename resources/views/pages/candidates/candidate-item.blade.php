@@ -18,6 +18,10 @@
                           <span>{{ $candidate->tit_can }}</span>
                           <span>{{ $candidate->fec_ing_can }}</span>
                       </div>
+
+                      <div class="actions mt-2">
+                          @livewire('edit-candidate', ['candidate' => $candidate], key($candidate->id_can))
+                      </div>
                   </div>
               </div>
           </div>
