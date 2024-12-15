@@ -26,8 +26,11 @@
             </div><!-- /.block-title -->
 
             <div class="block-title text-center">
-                <img src="{{ asset('assets/images/logo_without_background.png') }}" alt="Awesome Image" class="wow zoomIn"
-                    data-wow-duration="1500ms">
+                @if ($organizationConfig->icon)
+                    <img src="{{ asset('storage/' . $organizationConfig->icon) }}" class="wow zoomIn" data-wow-duration="1500ms">    
+                @else
+                    <img src="{{ asset('assets/images/logo_without_background.png') }}" class="wow zoomIn" data-wow-duration="1500ms">
+                @endif
             </div>
             <!-- /.about-one__text -->
         </div><!-- /.container -->
@@ -41,7 +44,11 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-three__image">
-                        <img src="{{ asset('assets/images/marycruz.jpg') }}" alt="Awesome Image" />
+                        @if ($imgMainPoliticalParty)
+                            <img src="{{ asset($imgMainPoliticalParty) }}">    
+                        @else
+                            <img src="{{ asset('assets/images/marycruz.jpg') }}" />
+                        @endif
                     </div><!-- /.about-three__image -->
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">

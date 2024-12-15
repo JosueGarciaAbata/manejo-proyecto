@@ -54,6 +54,7 @@
     </style>
 
     <link rel="stylesheet" href="/css/fonts.css">
+    @stack('styles')
 </head>
 
 <body>

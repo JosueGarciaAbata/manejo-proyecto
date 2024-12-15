@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('back.layouts.pages-layout')
 
 @section('title', 'Customize organization page')
 
@@ -7,17 +7,18 @@
 @endpush
 
 @section('content')
-<section>
-    {{-- @dd($config->proposals[0]) --}}
-</section>
-<section class="inner-banner">
-    <div class="container">
-        <h2 class="inner-banner__title">Personaliza tu página</h2>
-        <ul class="list-unstyled thm-breadcrumb">
-            <li><a href="{{ route('home') }}">Inicio</a></li>
-        </ul>
+{{-- <section>
+    @dd($config->proposals[0])
+</section> --}}
+@section('page-header')
+    <div class="row g-2 align-items-center">
+        <div class="col">
+            <h2 class="page-title">
+                Personaliza tu página
+            </h2>
+        </div>
     </div>
-</section>
+@endsection
 
 <section class="page-preview">
     <div class="container">
@@ -47,7 +48,7 @@
                         @endif
                     </div>
                 </div>
-            
+                <br>
                 <div>
                     <label for="icon_path">Representante</label>
                     <div class="file-wrapper">
@@ -65,9 +66,9 @@
                         @endif
                     </div>
                 </div>
-            
+                <br>
                 <div>
-                    <h3>Propuestas principales</h3>
+                    <h2>Principales propuestas</h2>
                     @foreach ($proposals as $proposal)
                         <div>
                             <input 
@@ -80,12 +81,12 @@
                         </div>
                     @endforeach
                 </div>
-            
+                <br>
                 <div>
                     <h3>Texto del footer</h3>
                     <textarea id="footer_text" name="footer_text">{{ $config->footer_text }}</textarea>
                 </div>
-            
+                <br>
                 <div>
                     <label for="social_links">Redes Sociales</label>
                     @foreach($config->socialLinks as $link)
@@ -104,9 +105,9 @@
                         <input type="text" name="social_links[url][]" value="">
                     </div> --}}
                 </div>
-            
+                <br>
                 <div>
-                    <h3>Información de Contacto</h3>
+                    <h2>Información de Contacto</h2>
                     @foreach($config->contactDetails as $contact)
                         <div class="contact-detail">
                             <label>{{ $contact->type }}
@@ -115,7 +116,8 @@
                             </label>
                         </div>
                     @endforeach
-                    <h3>Nuevo contacto</h3>
+                    <br>
+                    <h2>Nuevo contacto</h2>
                     <div class="contact-detail">
                         <label>Tipo:</label>
                         <input type="text" name="contact_details[type][]" value="">

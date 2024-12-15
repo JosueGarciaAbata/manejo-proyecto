@@ -23,6 +23,7 @@ class HomeController extends Controller
     {
 
         $missionVision = PoliticalParty::where('id_lis', 1)->value('mis_vis_lis');
+        $imgMainPoliticalParty = Candidate::first()->value('ruta_can');
 
         $proposals = Candidate::where('id_pol_par_bel', 1)
             ->with('proposals')
@@ -47,7 +48,8 @@ class HomeController extends Controller
             'missionVision' => $missionVision,
             'proposals' => $proposals,
             'voteCount' => $voteCount,
-            'events' => $events
+            'events' => $events,
+            'imgMainPoliticalParty' => $imgMainPoliticalParty
         ]);
 
     }

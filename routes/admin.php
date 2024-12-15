@@ -12,7 +12,6 @@ use App\Http\Middleware\IsAdmin;
 //TODO: Poner aquí un middleware
 Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('/home', [AuthorController::class, 'index'])->name('home');
     Route::view('/authors', 'back.pages.authors')->name('authors');
     Route::post('/logout', [AuthorController::class, 'logout'])->name('logout');
     Route::view('/profile', 'back.pages.profile')->name('profile');
@@ -35,10 +34,10 @@ Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function (
     });
 
     Route::prefix('organization')->name('organization.')->group(function () {
-        Route::get('/config/show', [OrganizationConfigController::class, 'showConfig'])
-    ->name('config.update');
+        Route::get('/show-config', [OrganizationConfigController::class, 'showConfig'])
+    ->name('config.show');
 
-        Route::put('/config/update', [OrganizationConfigController::class, 'updateConfig'])
+        Route::put('/update-config', [OrganizationConfigController::class, 'updateConfig'])
     ->name('config.update');
     });
     Route::prefix('events')->name('events.')->group(function () {
