@@ -31,7 +31,7 @@
                                 d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
                         </svg>
                     </a>
-                    
+
                     <!--
                     <div class="nav-item dropdown d-none d-md-flex me-3">
                         <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
@@ -301,7 +301,6 @@
                                     </span>
                                 </a>
                             </li>
-                            
                         @endif
 
                         <li class="nav-item dropdown">
@@ -325,7 +324,7 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route("admin.events.add-event") }}">
+                                        <a class="dropdown-item" href="{{ route('admin.events.add-event') }}">
                                             Añadir Uno
                                         </a>
                                         <a class="dropdown-item" href="{{ route('admin.events.all-events') }}">
@@ -357,17 +356,49 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="{{ route("admin.proposals.add-proposal") }}">
+                                        <a class="dropdown-item" href="{{ route('admin.proposals.add-proposal') }}">
                                             Escribe Uno
                                         </a>
-                                        <a class="dropdown-item" href="{{ route("admin.proposals.search", ['query'=>'']) }}">
+                                        <a class="dropdown-item"
+                                            href="{{ route('admin.proposals.search', ['query' => '']) }}">
                                             Todos
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        
+
+
+
+                        {{-- Candidatos --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
+                                data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-feather">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M4 20l10 -10m0 -5v5h5m-9 -1v5h5m-9 -1v5h5m-5 -5l4 -4l4 -4" />
+                                        <path
+                                            d="M19 10c.638 -.636 1 -1.515 1 -2.486a3.515 3.515 0 0 0 -3.517 -3.514c-.97 0 -1.847 .367 -2.483 1m-3 13l4 -4l4 -4" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">
+                                    Candidatos
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="{{ route('admin.candidates.show') }}">
+                                            Todos
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
 
                     </ul>
                 </div>
