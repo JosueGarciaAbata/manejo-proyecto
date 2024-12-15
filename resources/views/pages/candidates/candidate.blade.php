@@ -17,7 +17,7 @@
     <section class="candidate">
 
         <div class="candidate-img">
-            <img src="{{ asset($candidate->ruta_can) }}" alt="Imagen del candidato">
+            <img src="{{ asset('storage/' . $candidate->ruta_can) }}" alt="Imagen del candidato">
         </div>
 
         <div class="candidate-content">

@@ -4,12 +4,15 @@ namespace App\Livewire;
 
 use App\Models\PoliticalParty;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\Candidate;
 
 class CreateCandidate extends Component
 {
+    use WithFileUploads;
+
     public $isOpen = false;
-    public $name, $last_name, $position, $entry_date, $description, $id_pol_par_bel, $ruta_can;
+    public $nom_can, $ape_can, $car_can, $fec_ing_can, $descrip_can, $id_pol_par_bel, $image;
 
     public function openModal()
     {
@@ -24,33 +27,34 @@ class CreateCandidate extends Component
     public function saveCandidate()
     {
         $this->validate([
-            'name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'entry_date' => 'required|date',
-            'description' => 'nullable|string|max:1000',
+            'nom_can' => 'required|string|max:255',
+            'ape_can' => 'required|string|max:255',
+            'car_can' => 'required|string|max:255',
+            'fec_ing_can' => 'required|date',
+            'descrip_can' => 'nullable|string|max:1000',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'id_pol_par_bel' => 'required|exists:political_parties,id_lis',
-            'ruta_can' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Si no se proporciona imagen
-        $image_path = $this->ruta_can ? $this->image->store('assets/images/candidates') : 'assets/images/candidates/default.png';
+        // Si no se proporciona imagen, usar la predeterminada
+        $image_path = $this->image
+            ? $this->image->store('images/candidates', 'public')
+            : 'images/candidates/default.png';
 
         Candidate::create([
-            'nom_can' => $this->name,
-            'ape_can' => $this->last_name,
-            'car_can' => $this->position,
-            'fec_ing_can' => $this->entry_date,
-            'descrip_can' => $this->description,
+            'nom_can' => $this->nom_can,
+            'ape_can' => $this->ape_can,
+            'car_can' => $this->car_can,
+            'fec_ing_can' => $this->fec_ing_can,
+            'descrip_can' => $this->descrip_can,
             'id_pol_par_bel' => $this->id_pol_par_bel,
             'ruta_can' => $image_path,
         ]);
 
-        $this->reset(['name', 'last_name', 'position', 'entry_date', 'description', 'id_pol_par_bel', 'ruta_can']);
+        $this->reset(['nom_can', 'ape_can', 'car_can', 'fec_ing_can', 'descrip_can', 'id_pol_par_bel', 'image']);
         $this->closeModal();
         $this->dispatch('render');
 
-        session()->flash('message', 'Candidato agregado exitosamente.');
     }
 
     public function render()
