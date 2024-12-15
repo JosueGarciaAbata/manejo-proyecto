@@ -1,3 +1,7 @@
+@php
+    $config = App\Models\OrganizationConfig::with(['socialLinks', 'contactDetails'])->first();
+@endphp
+
 <footer class="site-footer">
 
     <div class="site-footer__upper">
@@ -10,9 +14,13 @@
                             para lograr una educación de calidad y un futuro más brillante para todos.</p>
                         <!-- /.footer-widget__text -->
                         <div class="footer-widget__social">
-                            <a href="https://www.facebook.com/profile.php?id=61565950187878"
-                                class="fa fa-facebook-square"></a>
-                            <a href="https://www.instagram.com/marycruzlascano/" class="fa fa-instagram"></a>
+                            @forelse ($config->socialLinks as $link)
+                            <a href="{{$link->url}}" style="max-width: 1.5rem; height: 1.5rem;margin-right:1rem;border:none">    
+                                <img class="img-fluid" style="width:100%;height:100%" src="{{ asset($link->icon->path_icon) }}" alt="">                            
+                            </a>    
+                            @empty
+                                
+                            @endforelse
                         </div><!-- /.footer-widget__social -->
                     </div><!-- /.footer-widget -->
                 </div><!-- /.col-xl-4 -->
@@ -35,6 +43,16 @@
                     <div class="footer-widget footer-widget__contact">
                         <h3 class="footer-widget__title text-left">Contactos</h3><!-- /.footer-widget__title -->
                         <ul class="list-unstyled footer-widget__contact-list">
+                            @if ($config->contactDetails && $config->contactDetails->isNotEmpty())
+                                @foreach ($config->contactDetails as $contact)
+                                    <li class="d-flex align-items-center">
+                                        <i class="mr-2"></i><!-- /. -->
+                                        <a>{{$contact->value}}</a>
+                                    </li>
+                                @endforeach
+                            @else
+                                <li>No contact details available</li>
+                            @endif
                             <li class="d-flex align-items-center">
                                 <i class="potisen-icon-phone mr-2"></i><!-- /. -->
                                 <a href="tel:666-888-000">0323700090</a>

@@ -7,8 +7,12 @@
     <!-- Imagen de presentacion -->
 
     <div class="image-container">
-        <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation"
-            alt="Descripción de la imagen">
+        @if ($organizationConfig->representant)
+            <img src="{{ asset('storage/' . $organizationConfig->representant) }}" class="image_presentation" alt="Descripción de la imagen">    
+        @else
+            <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation" alt="Descripción de la imagen">    
+        @endif
+        
     </div>
 
     <!-- Descripcion rapida-->
@@ -17,7 +21,7 @@
         <div class="container">
             <div class="block-title text-center">
 
-                <h2 class="block-title__title">Trabajemos Juntos Por Una Mejor Universidad Técnica De Ambato</h2>
+                <h2 class="block-title__title">{{$organizationConfig->slogan??"Trabajemos Juntos Por Una Mejor Universidad Técnica De Ambato"}}</h2>
                 <!-- /.block-title__title -->
             </div><!-- /.block-title -->
 
@@ -94,7 +98,7 @@
             </div><!-- /.block-title -->
             <div class="row">
                 <div class="col-lg-12">
-                    @forelse($proposals as $proposal)
+                    @forelse($organizationConfig->proposals as $proposal)
                         <div class="history-one__single wow fadeInUp">
 
                             <div class="campaing-one__single">

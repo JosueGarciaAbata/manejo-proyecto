@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidate;
+use App\Models\OrganizationConfig;
 use App\Models\PoliticalParty;
 use App\Models\Voter;
 use Illuminate\Http\Request;
@@ -34,10 +35,15 @@ class HomeController extends Controller
 
         $eventController = new EventController();
         $events = (new EventController())->latestEvents();
-
+        
+        $organizationConfig = OrganizationConfig::with([
+            'socialLinks', 
+            'contactDetails', 
+            'proposals'
+            ])->first();
 
         return view('pages.home', [
-
+            "organizationConfig"=>$organizationConfig,
             'missionVision' => $missionVision,
             'proposals' => $proposals,
             'voteCount' => $voteCount,
