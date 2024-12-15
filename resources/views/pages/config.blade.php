@@ -2,6 +2,10 @@
 
 @section('title', 'Customize organization page')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-style.css') }}">
+@endpush
+
 @section('content')
 <section>
     {{-- @dd($config->socialLinks[0]->icon) --}}
@@ -17,7 +21,7 @@
 
 <section class="page-preview">
     <div class="container">
-        <article>
+        <article class="config-wraper">
             <form action="{{ route('admin.organization.config.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -26,23 +30,37 @@
                     <label for="slogan">Eslogan</label>
                     <input type="text" id="slogan" name="slogan" placeholder="Modifica tu eslogan" value="{{ $config->slogan }}">
                 </div>
-            
+
                 <div>
                     <label for="icon_path">Icono</label>
-                    <input type="file" id="icon_path" name="icon_path">
-                    <br>
-                    @if($config->icon_path)
-                        <img src="{{ asset('storage/' . $config->icon_path) }}" alt="Icono" width="100">
-                    @endif
+                    <div class="file-wrapper">
+                        <label class="file-label" for="icon_file">
+                            <span class="file-icon">📁</span> Subir archivo
+                        </label>
+                        <input type="file" id="icon_file" name="icon" accept="image/*">
+                    </div>
+                    <div>
+                        @if($config->icon_path)
+                            <img alt="Vista previa" id="icon-preview" src="{{ asset('storage/' . $config->icon_path) }}" alt="Icono">
+                        @else
+                        <img alt="Vista previa" id="icon-preview" src="{{ asset('assets/images/icon.jpeg') }}" alt="Icono">
+                        @endif
+                    </div>
                 </div>
             
                 <div>
-                    <label for="representative">Representante</label>
-                    <input type="file" id="representative" name="representative">
-                    <br>
-                    @if($config->representative)
-                        <img src="{{ asset('storage/' . $config->representative) }}" alt="Representante" width="100">
-                    @endif
+                    <label for="icon_path">Representante</label>
+                    <div class="file-wrapper">
+                        <label class="file-label" for="representant_file">
+                            <span class="file-icon">📁</span> Subir archivo
+                        </label>
+                        <input type="file" id="representant_file" name="representative" accept="image/*">
+                    </div>
+                    <div >
+                        @if($config->representative)
+                            <img src="{{ asset('storage/' . $config->representative) }}" alt="Representante" width="100" id="representant-preview">
+                        @endif
+                    </div>
                 </div>
             
                 <div>
@@ -73,8 +91,6 @@
                             <article class="social_network_img">
                                 <img src="{{ asset($link->icon->path_icon) }}" alt="">                            
                             </article>
-                            
-                            <label>URL:</label>
                             <input type="text" name="social_links[url][]" value="{{ $link->url }}">
                         </div>
                     @endforeach
@@ -112,3 +128,7 @@
 </section>
 
 @endsection
+
+@push('scripts')
+    <link rel="stylesheet" href="{{ asset('assets/js/organization.js') }}">
+@endpush

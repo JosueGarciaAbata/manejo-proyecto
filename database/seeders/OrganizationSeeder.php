@@ -22,11 +22,13 @@ class OrganizationSeeder extends Seeder
         // Agregar redes sociales
         OrganizationSocialLink::create([
             'organization_config_id' => 1,
+            'icon_id'=>1,
             'platform' => 'Twitter',
             'url' => 'https://twitter.com/uta_org',
         ]);
         OrganizationSocialLink::create([
             'organization_config_id' => 1,
+            'icon_id'=>2,
             'platform' => 'Facebook',
             'url' => 'https://facebook.com/uta_org',
         ]);
