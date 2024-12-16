@@ -4,8 +4,6 @@ use App\Http\Controllers\AuthorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\CandidateController;
-use App\Http\Controllers\OrganizationConfigController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\EventController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\NewsController;
@@ -13,6 +11,7 @@ use App\Http\Controllers\NewsController;
 //TODO: Poner aquí un middleware
 Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function () {
 
+    Route::get('/home', [AuthorController::class, 'index'])->name('home');
     Route::view('/authors', 'back.pages.authors')->name('authors');
     Route::post('/logout', [AuthorController::class, 'logout'])->name('logout');
     Route::view('/profile', 'back.pages.profile')->name('profile');
@@ -33,13 +32,13 @@ Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function (
         Route::put('/update', [CandidateController::class, 'update']);
         Route::put('/destroy', [CandidateController::class, 'destroy']);
     });
-// admin/organization/show-config
+    // admin/organization/show-config
     Route::prefix('organization')->name('organization.')->group(function () {
         Route::get('/show-config', [OrganizationConfigController::class, 'showConfig'])
-    ->name('config.show');
+            ->name('config.show');
 
         Route::put('/update-config', [OrganizationConfigController::class, 'updateConfig'])
-    ->name('config.update');
+            ->name('config.update');
     });
     Route::prefix('events')->name('events.')->group(function () {
         Route::view('/add', 'back.pages.add-event')->name('add-event');

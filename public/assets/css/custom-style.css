@@ -1,12 +1,12 @@
-.home-configurations{
+.home-configurations {
     font-size: 1.5em;
 }
 
-.inner-banner{
+.inner-banner {
     margin-bottom: 1rem;
 }
 
-#slogan{
+#slogan {
     width: 50%;
 }
 
@@ -88,27 +88,27 @@ input[type="file"] {
     border-radius: 4px;
 }
 
-.social-link{
+.social-link {
     display: flex;
     gap: 0.5rem;
 }
 
-.social_network_img{
+.social_network_img {
     max-width: 2rem;
 }
-.social_network_img img{
+.social_network_img img {
     width: 100%;
     height: auto;
 }
 
-.config-wraper{
+.config-wraper {
     margin-bottom: 1rem;
 }
 
-.contact-detail input:first-of-type{
-    display: none; 
+.contact-detail input:first-of-type {
+    display: none;
 }
-.save-conf{
+.save-conf {
     background-color: #0056b3;
     font-size: 1rem;
     color: #eee;
@@ -117,5 +117,4 @@ input[type="file"] {
     border-radius: 4px;
     cursor: pointer;
     border: 1px solid #007bff;
-
 }
