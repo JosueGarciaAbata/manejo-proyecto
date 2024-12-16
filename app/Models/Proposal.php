@@ -39,13 +39,4 @@ class Proposal extends Model
     {
         return $this->belongsTo(Candidate::class, 'id_can_pro');
     }
-
-    public function organizationConfig(){
-        return $this->belongsToMany(
-            OrganizationConfig::class,
-            'organization_config_proposals',
-            'id_pro_prop',
-            'org_main_prop'
-        );
-    }
 }

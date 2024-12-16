@@ -9,7 +9,6 @@
 
     @include('layouts.partials.favicons')
     @include('layouts.partials.styles')
-    @stack('styles')
 </head>
 
 <body>
@@ -26,7 +25,6 @@
     </div>
 
     @include('layouts.partials.scripts')
-    @stack('scripts')
 </body>
 
 </html>

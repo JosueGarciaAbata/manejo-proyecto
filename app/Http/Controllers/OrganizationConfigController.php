@@ -14,13 +14,13 @@ class OrganizationConfigController extends Controller
     public function showConfig()
     {
         $config = OrganizationConfig::with([
-            'socialLinks', 
-            'contactDetails', 
+            'socialLinks',
+            'contactDetails',
             'proposals'
-            ])->first();
-            
-            $proposals = Proposal::where('visible', 1)->get();
-    
+        ])->first();
+
+        $proposals = Proposal::where('visible', 1)->get();
+
         return view('pages.config', compact('config', 'proposals'));
     }
 
@@ -28,8 +28,8 @@ class OrganizationConfigController extends Controller
     {
         $validatedData = $request->validate([
             'slogan' => 'nullable|string|max:255',
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'representant' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'icon' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:5120',
+            'representant' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:5120',
             'main_proposals' => 'nullable|array',
             'footer_text' => 'nullable|string',
             'social_links.platform' => 'nullable|array',
@@ -66,7 +66,7 @@ class OrganizationConfigController extends Controller
 
         // Actualizar enlaces sociales
         $this->updateSocialLinks($config, $validatedData['social_links'] ?? []);
-
+        //dd($validatedData['contact_details']);
         // Actualizar detalles de contacto
         $this->updateContactDetails($config, $validatedData['contact_details'] ?? []);
 
@@ -89,12 +89,18 @@ class OrganizationConfigController extends Controller
 
     private function updateContactDetails(OrganizationConfig $config, array $contactDetails)
     {
-        if (!empty($contactDetails['type']) && !empty($contactDetails['value'])) {
-            foreach ($contactDetails['type'] as $index => $type) {
-                if (!empty($type) && !empty($contactDetails['value'][$index])) {
+        if (
+            isset($contactDetails['type'], $contactDetails['value']) &&
+            count($contactDetails['type']) === count($contactDetails['value'])
+        ) {
+            foreach (array_keys($contactDetails['type']) as $index) {
+                $type = $contactDetails['type'][$index];
+                $value = $contactDetails['value'][$index];
+
+                if (!empty($type) && !empty($value)) {
                     $config->contactDetails()->updateOrCreate(
-                        ['type' => $type],
-                        ['value' => $contactDetails['value'][$index]]
+                        ['type' => $type], // Buscar por 'type'
+                        ['value' => $value, 'config_id' => $config->id] // Actualizar el 'value'
                     );
                 }
             }

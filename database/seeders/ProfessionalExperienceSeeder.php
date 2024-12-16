@@ -139,7 +139,6 @@ class ProfessionalExperienceSeeder extends Seeder
             'nom_exp' => 'Docente Titular Agregada 3 de la Universidad Técnica de Ambato'
         ]);
 
-
         ProfessionalExperience::create([
             'id_exp' => 21,
             'id_can_exp' => 4,
