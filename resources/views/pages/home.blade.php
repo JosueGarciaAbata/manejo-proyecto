@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Página de Inicio')
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+@endpush
 
 @section('content')
 
@@ -21,9 +24,14 @@
                 <!-- /.block-title__title -->
             </div><!-- /.block-title -->
 
-            <div class="block-title text-center">
-                <img src="{{ asset('assets/images/logo_without_background.png') }}" alt="Awesome Image" class="wow zoomIn"
-                    data-wow-duration="1500ms">
+            <div class="block-title text-center img-rep">
+                @if ($organizationConfig->icon)
+                    <img src="{{ asset('storage/' . $organizationConfig->icon) }}" class="wow zoomIn"
+                        data-wow-duration="1500ms">
+                @else
+                    <img src="{{ asset('assets/images/logo_without_background.png') }}" class="wow zoomIn"
+                        data-wow-duration="1500ms">
+                @endif
             </div>
             <!-- /.about-one__text -->
         </div><!-- /.container -->

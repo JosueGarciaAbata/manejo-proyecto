@@ -32,7 +32,14 @@ Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function (
         Route::put('/update', [CandidateController::class, 'update']);
         Route::put('/destroy', [CandidateController::class, 'destroy']);
     });
+    // admin/organization/show-config
+    Route::prefix('organization')->name('organization.')->group(function () {
+        Route::get('/show-config', [OrganizationConfigController::class, 'showConfig'])
+            ->name('config.show');
 
+        Route::put('/update-config', [OrganizationConfigController::class, 'updateConfig'])
+            ->name('config.update');
+    });
     Route::prefix('events')->name('events.')->group(function () {
         Route::view('/add', 'back.pages.add-event')->name('add-event');
         Route::post('/create', [EventController::class, 'createEvent'])->name('create');
