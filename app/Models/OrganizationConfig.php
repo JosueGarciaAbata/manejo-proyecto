@@ -35,4 +35,5 @@ class OrganizationConfig extends Model
             'org_main_prop', // clav for para OrgConfg
             'id_pro_prop'); // clav for para Proposal, ambos d la tabla interm
     }
+    
 }
