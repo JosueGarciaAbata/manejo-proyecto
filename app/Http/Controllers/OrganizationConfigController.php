@@ -96,7 +96,7 @@ class OrganizationConfigController extends Controller
             foreach (array_keys($contactDetails['type']) as $index) {
                 $type = $contactDetails['type'][$index];
                 $value = $contactDetails['value'][$index];
-    
+
                 if (!empty($type) && !empty($value)) {
                     $config->contactDetails()->updateOrCreate(
                         ['type' => $type], // Buscar por 'type'
