@@ -9,22 +9,27 @@
 
     <!-- Imagen de presentacion -->
 
-    <div class="image-container">
-        <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation"
-            alt="Descripción de la imagen">
+   <div class="image-container">
+        @if ($organizationConfig->representant)
+            <img src="{{ asset('storage/' . $organizationConfig->representant) }}" class="image_presentation"
+                alt="Descripción de la imagen">
+        @else
+            <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation"
+                alt="Descripción de la imagen">
+        @endif
     </div>
-
-    <!-- Descripcion rapida-->
 
     <section class="thm--bg about-one">
         <div class="container">
             <div class="block-title text-center">
 
-                <h2 class="block-title__title">Trabajemos Juntos Por Una Mejor Universidad Técnica De Ambato</h2>
+                <h2 class="block-title__title">
+                    {{ $organizationConfig->slogan ?? 'Trabajemos Juntos Por Una Mejor Universidad Técnica De Ambato' }}
+                </h2>
                 <!-- /.block-title__title -->
             </div><!-- /.block-title -->
 
-            <div class="block-title text-center img-rep">
+            <div class="block-title text-center">
                 @if ($organizationConfig->icon)
                     <img src="{{ asset('storage/' . $organizationConfig->icon) }}" class="wow zoomIn"
                         data-wow-duration="1500ms">
@@ -45,7 +50,11 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-three__image">
-                        <img src="{{ asset('assets/images/marycruz.jpg') }}" alt="Awesome Image" />
+                        @if ($imgMainPoliticalParty)
+                            <img src="{{ asset($imgMainPoliticalParty) }}">
+                        @else
+                            <img src="{{ asset('image/candidates/Mary.jpg') }}" />
+                        @endif
                     </div><!-- /.about-three__image -->
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">

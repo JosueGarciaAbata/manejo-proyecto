@@ -17,10 +17,7 @@ class CandidateSeeder extends Seeder
         $partyA = PoliticalParty::where('nom_lis', 'Lista A')->first();
         $partyB = PoliticalParty::where('nom_lis', 'Lista B')->first();
 
-        if (!($partyA && $partyB)) {
-            throw new \Exception("No valid political parties were found to allocate candidates.");
-            return;
-        }
+
 
         $maryCruz = "Profesional con una sólida formación en contabilidad y administración.  Tiene un doctorado en ambas áreas obtenido en la Universidad Técnica de Ambato y la Universidad Rey Juan Carlos de Madrid.";
         $vinicioMejia = "Profesional con una amplia formación académica en diversas áreas, desde ingeniería hasta administración. Es Doctor en Ciencias Sociales, ha realizado estudios de posgrado en universidades de prestigio a nivel nacional e internacional.";
@@ -32,6 +29,7 @@ class CandidateSeeder extends Seeder
         Candidate::create(attributes: [
             'jerarquia' => 'lider',
             'nom_can' => 'Mary',
+            'jerarquia' => 'lider',
             'ape_can' => 'Cruz Lascano',
             'ruta_can' => 'images/candidates/Mary.jpg',
             'car_can' => 'Rector',

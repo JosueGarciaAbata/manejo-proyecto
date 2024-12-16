@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id('id_exp');
             $table->foreignId('id_can_exp')->constrained('candidates', 'id_can')->onDelete('cascade');
             // $table->string('pos_exp', 180)->notNullable();
+
             $table->string('nom_exp', 180)->notNullable();
             $table->softDeletes();
             $table->timestamps();
