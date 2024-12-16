@@ -78,9 +78,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::middleware([isAdmin::class])->group(function () {
-        Route::view('/authors', 'back.pages.authors')->name('authors');
-        Route::post('/change-profile-picture', [AuthorController::class, 'changeProfilePicture'])->name('change-profile-picture');
-        Route::view('/settings', 'back.pages.settings')->name('settings');
+        Route::view('/users', 'back.pages.authors')->name('authors');
     });
 
 });

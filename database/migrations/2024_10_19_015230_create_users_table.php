@@ -25,27 +25,6 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        // Insertar un usuario admin por defecto
-        DB::table('users')->insert([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('admin'),
-            'username' => 'admin',
-            'picture' => null,
-            'type' => 1, // Tipo 1 para admin
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-        DB::table('users')->insert([
-            'name' => 'usuario Normal',
-            'email' => 'admin1@example.com',
-            'password' => Hash::make('admin1'),
-            'username' => 'admin1',
-            'picture' => null,
-            'type' => 2, // Tipo 1 para admin
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
     }
 
     /**

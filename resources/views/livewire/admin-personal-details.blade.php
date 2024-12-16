@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="example-text-input" placeholder="name"
+                    <label class="form-label">Nombre y Apellido</label>
+                    <input type="text" class="form-control" name="example-text-input" placeholder="nombre y apellido"
                         wire:model='name'>
                     <span class="text-danger">
                         @error('name')
@@ -18,8 +18,8 @@
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label class="form-label">Username</label>
-                    <input type="text" class="form-control" name="example-text-input" placeholder="Username"
+                    <label class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-control" name="example-text-input" placeholder="nombre de usuario"
                         wire:model='username'>
                     <span class="text-danger">
                         @error('usernames')
@@ -30,8 +30,8 @@
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="text" class="form-control" name="example-text-input" placeholder="email" disabled
+                    <label class="form-label">Correo Electrónico</label>
+                    <input type="text" class="form-control" name="example-text-input" placeholder="correo" disabled
                         wire:model='email'>
                     <span class="text-danger">
                         @error('email')
@@ -51,7 +51,7 @@
                 <path d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                 <path d="M14 4l0 4l-6 0l0 -4" />
             </svg>
-            Save Changes
+            Guardar Cambios
         </button>
     </form>
 </div>

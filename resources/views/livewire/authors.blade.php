@@ -5,7 +5,7 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        Users
+                        Usuarios
                     </h2>
                 </div>
                 <!-- Page title actions -->
@@ -28,7 +28,7 @@
                                         <path d="M12 5l0 14"></path>
                                         <path d="M5 12l14 0"></path>
                                     </svg>
-                                    New user
+                                    Nuevo Usuario
                                 </a>
                             @endif
                         @endauth
@@ -67,7 +67,7 @@
                                         <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
                                         <path d="M16 5l3 3" />
                                     </svg>
-                                    Edit</a>
+                                    Editar</a>
                                 <a href="#" wire:click.prevent='deleteAuthor({{ $author }})' class="card-btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-muted" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -77,7 +77,7 @@
                                         <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
                                         <path d="M9 12l6 0" />
                                     </svg>
-                                    Delete</a>
+                                    Eliminar</a>
                             </div>
                         @endif
                     @endauth
@@ -85,7 +85,7 @@
             </div>
 
         @empty
-            <span class="text-danger">No Author Found!</span>
+            <span class="text-danger">No se encontro ningun usuario!</span>
         @endforelse
 
     </div>
@@ -104,15 +104,15 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Create a new user</h5>
+                    <h5 class="modal-title">Crear un nuevo usuario</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form wire:submit.prevent='addAuthor()' method="post">
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">Nombre y Apellido</label>
                             <input type="text" class="form-control" name="example-text-input"
-                                placeholder="Enter user name" wire:model='name'>
+                                placeholder="Ingresa el nombre y apellido" wire:model='name'>
                             <span class="text-danger">
                                 @error('name')
                                     {{ $message }}
@@ -121,9 +121,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
+                            <label class="form-label">Correo Electrónico</label>
                             <input type="text" class="form-control" name="example-text-input"
-                                placeholder="Enter user email" wire:model='email'>
+                                placeholder="Ingresa el correo electrónico" wire:model='email'>
                             <span class="text-danger">
                                 @error('email')
                                     {{ $message }}
@@ -132,9 +132,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Username</label>
+                            <label class="form-label">Nombre de Usuario</label>
                             <input type="text" class="form-control" name="example-text-input"
-                                placeholder="Enter user username" wire:model='username'>
+                                placeholder="Ingresa el nombre de usuario" wire:model='username'>
                             <span class="text-danger">
                                 @error('username')
                                     {{ $message }}
@@ -145,10 +145,10 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label">Author Type</label>
+                            <label class="form-label">Tipo de usuario</label>
                             <div>
                                 <select class="form-select" wire:model='author_type'>
-                                    <option value="">Select one</option>
+                                    <option value="">Selecciona el tipo de usuario</option>
                                     @foreach (App\Models\Type::all() as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
@@ -173,7 +173,7 @@
                                     <path d="M18 6l-12 12" />
                                     <path d="M6 6l12 12" />
                                 </svg>
-                                Close</button>
+                                Cerrar</button>
                             <button type="submit" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -185,7 +185,7 @@
                                     <path d="M19 16v6" />
                                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
                                 </svg>
-                                Create user
+                                Crear usuario
                             </button>
                         </div>
 
@@ -201,16 +201,16 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit User</h5>
+                    <h5 class="modal-title">Editar usuario</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form wire:submit.prevent='updateAuthor()' method="post">
                         <input type="hidden" wire:model='selected_author_id'>
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
+                            <label class="form-label">Nombre y Apellido</label>
                             <input type="text" class="form-control" name="example-text-input"
-                                placeholder="Enter user name" wire:model='name'>
+                                placeholder="Ingresa el nombre y apellido" wire:model='name'>
                             <span class="text-danger">
                                 @error('name')
                                     {{ $message }}
@@ -219,9 +219,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
+                            <label class="form-label">Correo Electrónico</label>
                             <input type="text" class="form-control" name="example-text-input"
-                                placeholder="Enter user email" wire:model='email'>
+                                placeholder="Ingresa el correo electrónico" wire:model='email'>
                             <span class="text-danger">
                                 @error('email')
                                     {{ $message }}
@@ -230,9 +230,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Username</label>
+                            <label class="form-label">Nombre de usuario</label>
                             <input type="text" class="form-control" name="example-text-input"
-                                placeholder="Enter user username" wire:model='username'>
+                                placeholder="Ingresa el nombre de usuario" wire:model='username'>
                             <span class="text-danger">
                                 @error('username')
                                     {{ $message }}
@@ -243,7 +243,7 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label">Author Type</label>
+                            <label class="form-label">Tipo de usuario</label>
                             <div>
                                 <select class="form-select" wire:model='author_type'>
                                     @foreach (App\Models\Type::all() as $type)
@@ -272,7 +272,7 @@
                                     <path d="M18 6l-12 12" />
                                     <path d="M6 6l12 12" />
                                 </svg>
-                                Close</button>
+                                Cerrar</button>
                             <button type="submit" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -284,7 +284,7 @@
                                     <path d="M19 16v6" />
                                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
                                 </svg>
-                                Update user
+                                Actualizar usuario
                             </button>
                         </div>
 

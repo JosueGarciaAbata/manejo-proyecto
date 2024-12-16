@@ -1,5 +1,5 @@
 @extends('back.layouts.pages-layout')
-@section('page-title', isset($pageTitle) ? $pageTitle : 'Authors')
+@section('page-title', isset($pageTitle) ? $pageTitle : 'Users')
 @section('content')
 
     <!-- Page Content -->

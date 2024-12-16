@@ -17,7 +17,7 @@
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <circle cx="12" cy="7" r="4" />
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                            </svg>Personal Details</a>
+                            </svg>Información Personal</a>
                     </li>
                     <li class="nav-item">
                         <a href="#tabs-password" class="nav-link" data-bs-toggle="tab">
@@ -30,14 +30,14 @@
                                 <path d="M8 11m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" />
                                 <path d="M10 11v-2a2 2 0 1 1 4 0v2" />
                             </svg>
-                            Change password</a>
+                            Cambiar Contraseña</a>
                     </li>
                 </ul>
             </div>
             <div class="card-body">
                 <div class="tab-content">
                     <div class="tab-pane active show" id="tabs-details">
-                        <h2>Details settings</h2>
+                        <h2>Información</h2>
                         <div>
 
                             @livewire('admin-personal-details')
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="tabs-password">
-                        <h2>Change your password</h2>
+                        <h2>Cambia tu contraseña</h2>
                         <div>
 
                             @livewire('admin-change-password-form')

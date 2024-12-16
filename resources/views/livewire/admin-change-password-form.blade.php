@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label class="form-label">Current Password</label>
-                    <input type="password" class="form-control" name="example-text-input" placeholder="Current Password"
-                        wire:model='current_password'>
+                    <label class="form-label">Contraseña Actual</label>
+                    <input type="password" class="form-control" name="example-text-input"
+                        placeholder="Ingresa tu contraseña actual" wire:model='current_password'>
                     <span class="text-danger">
                         @error('current_password')
                             {{ $message }}
@@ -16,9 +16,9 @@
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label class="form-label">New Password</label>
-                    <input type="password" class="form-control" name="example-text-input" placeholder="New Password"
-                        wire:model='new_password'>
+                    <label class="form-label">Nueva Contraseña</label>
+                    <input type="password" class="form-control" name="example-text-input"
+                        placeholder="Ingresa tu nueva contraseña" wire:model='new_password'>
                     <span class="text-danger">
                         @error('new_password')
                             {{ $message }}
@@ -28,9 +28,9 @@
             </div>
             <div class="col-md-4">
                 <div class="mb-3">
-                    <label class="form-label">Confirm Password</label>
+                    <label class="form-label">Confirmar Contraseña</label>
                     <input type="password" class="form-control" name="example-text-input"
-                        placeholder="Retype New Password" wire:model='confirm_new_password'>
+                        placeholder="Ingresa nuevamente la nueva contraseña" wire:model='confirm_new_password'>
                     <span class="text-danger">
                         @error('confirm_new_password')
                             {{ $message }}
@@ -49,7 +49,7 @@
                 <path
                     d="M10.485 17.577c.337 .29 .7 .423 1.515 .423h.413c.323 0 .633 -.133 .862 -.368a1.27 1.27 0 0 0 .356 -.886c0 -.332 -.128 -.65 -.356 -.886a1.203 1.203 0 0 0 -.862 -.368h-.826a1.2 1.2 0 0 1 -.861 -.367a1.27 1.27 0 0 1 -.356 -.886c0 -.332 .128 -.651 .356 -.886a1.2 1.2 0 0 1 .861 -.368h.413c.816 0 1.178 .133 1.515 .423" />
             </svg>
-            Change password
+            Cambiar contraseña
         </button>
     </form>
 
