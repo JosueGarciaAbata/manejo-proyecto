@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('educational_backgrounds', function (Blueprint $table) {
             $table->id('id_edu');
             $table->foreignId('id_can_edu')->constrained('candidates', 'id_can')->onDelete('cascade');
-            // $table->string('gra_edu', 180)->notNullable();
+            $table->string('gra_edu', 180)->notNullable();
             $table->string('nom_edu', 180)->notNuballe();
             $table->softDeletes();
             $table->timestamps();

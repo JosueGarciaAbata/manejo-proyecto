@@ -70,7 +70,7 @@ class Authors extends Component
             'author_type' => 'required|exists:types,id',
         ], [
             'author_type.required' => 'Elige el tipo de usuario.',
-            'author_type.exists' => 'El tipo de autor seleccionado no es válido.',
+            'author_type.exists' => 'El tipo de usuario seleccionado no es válido.',
         ]);
     }
 
@@ -136,7 +136,7 @@ class Authors extends Component
     {
         $this->dispatch('deleteAuthor', [
             'title' => '¿Estás seguro de eliminar?',
-            'html' => 'Deseas eliminar este autor: <br><b>' . $author['name'] . '</b>',
+            'html' => 'Deseas eliminar este usuario: <br><b>' . $author['name'] . '</b>',
             'id' => $author['id'],
         ]);
     }
@@ -149,10 +149,10 @@ class Authors extends Component
         if ($author) {
             // Si el autor existe, lo eliminas
             $author->delete();
-            $this->showToastr('info', 'Autor eliminado correctamente. ✅');
+            $this->showToastr('info', 'Usuario eliminado correctamente. ✅');
         } else {
             // Si no se encuentra el autor, mostramos un mensaje de error
-            $this->showToastr('error', 'Error al eliminar el autor. ❌');
+            $this->showToastr('error', 'Error al eliminar el usuario. ❌');
         }
     }
 

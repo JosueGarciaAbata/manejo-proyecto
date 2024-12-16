@@ -156,24 +156,6 @@
         </div>
     </section>
 
-    <section class="countdown-one thm-gray-bg countdown-one__home-one" style="   padding-top: 50px;padding-bottom: 50px;">
-        <div class="container">
-            <div class="inner-container">
-                <div class="row align-items-xl-center align-items-lg-center">
-                    <div class="col-xl-6">
-                        <h3 class="countdown-one__title">Las votaciones empiezan en:</h3><!-- /.countdown-one__title -->
-                    </div><!-- /.col-lg-6 -->
-                    <div class="col-xl-6 d-flex justify-content-xl-end justify-content-lg-center justify-content-sm-center">
-                        <div class="countdown-one__right">
-                            <ul class="countdown-one__list list-unstyled">
-                                <!-- content loading via js -->
-                            </ul><!-- /.coundown-one__list -->
-                        </div><!-- /.countdown-one__right -->
-                    </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
-            </div><!-- /.inner-container -->
-        </div><!-- /.container -->
-    </section><!-- /.countdown-one -->
     </div><!-- /.contact-info-one -->
 
     <div>
