@@ -18,28 +18,24 @@ class EducationalBackgroundSeeder extends Seeder
         EducationalBackground::create([
             'id_edu' => 1,
             'id_can_edu' => 1,
-            'gra_edu' => 'Cuarto nivel',
             'nom_edu' => 'Ph. D. en Economía de la Empresa y Finanzas'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 2,
             'id_can_edu' => 1,
-            'gra_edu' => 'Cuarto nivel',
             'nom_edu' => 'Master Universitario en Administración de Empresas'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 3,
             'id_can_edu' => 1,
-            'gra_edu' => 'Tercer nivel',
             'nom_edu' => 'Doctora en Contabilidad y Auditoría'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 4,
             'id_can_edu' => 1,
-            'gra_edu' => 'Tercer nivel',
             'nom_edu' => 'Licenciada en Contabilidad y Auditoría'
         ]);
 
@@ -47,42 +43,36 @@ class EducationalBackgroundSeeder extends Seeder
         EducationalBackground::create([
             'id_edu' => 5,
             'id_can_edu' => 2,
-            'gra_edu' => 'Cuarto nivel',
             'nom_edu' => 'Ph. D en Ciencias Sociales',
         ]);
 
         EducationalBackground::create([
             'id_edu' => 6,
             'id_can_edu' => 2,
-            'gra_edu' => 'Cuarto nivel',
             'nom_edu' => 'Magister en Tecnología de la Información y Multimedia Educativa'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 7,
             'id_can_edu' => 2,
-            'gra_edu' => 'Cuarto nivel',
             'nom_edu' => 'Magister en Administración'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 8,
             'id_can_edu' => 2,
-            'gra_edu' => 'Tercer Nivel',
             'nom_edu' => 'Ingeniero de SIstemas y Computacion'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 9,
             'id_can_edu' => 2,
-            'gra_edu' => 'Tercer Nivel',
             'nom_edu' => 'Ingeniero de Empresas'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 10,
             'id_can_edu' => 2,
-            'gra_edu' => 'Tercer Nivel',
             'nom_edu' => 'Licenciado en Ciencias Administrativas'
         ]);
 
@@ -90,21 +80,18 @@ class EducationalBackgroundSeeder extends Seeder
         EducationalBackground::create([
             'id_edu' => 11,
             'id_can_edu' => 3,
-            'gra_edu' => 'Cuarto Nivel',
             'nom_edu' => 'Ph. D. en Ciencias'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 12,
             'id_can_edu' => 3,
-            'gra_edu' => 'Cuarto Nivel',
             'nom_edu' => 'Magister en Diseño Mecánico'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 13,
             'id_can_edu' => 3,
-            'gra_edu' => 'Tercer Nivel',
             'nom_edu' => 'Ingeniero Mecánico'
         ]);
 
@@ -112,14 +99,12 @@ class EducationalBackgroundSeeder extends Seeder
         EducationalBackground::create([
             'id_edu' => 14,
             'id_can_edu' => 4,
-            'gra_edu' => 'Cuarto nivel',
             'nom_edu' => 'Especialista en Medicina Interna Universidad de Guayaquil'
         ]);
 
         EducationalBackground::create([
             'id_edu' => 15,
             'id_can_edu' => 4,
-            'gra_edu' => 'Cuarto nivel',
             'nom_edu' => 'Médico Cirujano de la Universidad de Guayaquil'
         ]);
 

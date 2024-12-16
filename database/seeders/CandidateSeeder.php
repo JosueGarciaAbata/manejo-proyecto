@@ -17,10 +17,7 @@ class CandidateSeeder extends Seeder
         $partyA = PoliticalParty::where('nom_lis', 'Lista A')->first();
         $partyB = PoliticalParty::where('nom_lis', 'Lista B')->first();
 
-        if (!($partyA && $partyB)) {
-            throw new \Exception("No valid political parties were found to allocate candidates.");
-            return;
-        }
+
 
         $maryCruz = "Profesional con una sólida formación en contabilidad y administración.  Tiene un doctorado en ambas áreas obtenido en la Universidad Técnica de Ambato y la Universidad Rey Juan Carlos de Madrid.";
         $vinicioMejia = "Profesional con una amplia formación académica en diversas áreas, desde ingeniería hasta administración. Es Doctor en Ciencias Sociales, ha realizado estudios de posgrado en universidades de prestigio a nivel nacional e internacional.";
@@ -31,8 +28,9 @@ class CandidateSeeder extends Seeder
 
         Candidate::create(attributes: [
             'nom_can' => 'Mary',
+            'jerarquia' => 'lider',
             'ape_can' => 'Cruz Lascano',
-            'ruta_can' => 'assets/images/candidates/Mary.jpg',
+            'ruta_can' => 'images/candidates/Mary.jpg',
             'car_can' => 'Rector',
             'fec_ing_can' => now(),
             'descrip_can' => $maryCruz,
@@ -42,7 +40,7 @@ class CandidateSeeder extends Seeder
         Candidate::create([
             'nom_can' => 'Vinicio',
             'ape_can' => 'Mejía Vayas',
-            'ruta_can' => 'assets/images/candidates/Vinicio.jpg',
+            'ruta_can' => 'images/candidates/Vinicio.jpg',
             'car_can' => 'Vicerrector Académico',
             'fec_ing_can' => now(),
             'descrip_can' => $vinicioMejia,
@@ -52,7 +50,7 @@ class CandidateSeeder extends Seeder
         Candidate::create([
             'nom_can' => 'Juan',
             'ape_can' => 'Paredes Salinas',
-            'ruta_can' => 'assets/images/candidates/Juan.jpg',
+            'ruta_can' => 'images/candidates/Juan.jpg',
             'car_can' => 'Vicerrector de Investigación',
             'fec_ing_can' => now(),
             'descrip_can' => $juanParedes,
@@ -62,21 +60,13 @@ class CandidateSeeder extends Seeder
         Candidate::create([
             'nom_can' => 'Sandra',
             'ape_can' => 'Villacis Valencia',
-            'ruta_can' => 'assets/images/candidates/Sandra.jpg',
+            'ruta_can' => 'images/candidates/Sandra.jpg',
             'car_can' => 'Vicerrector Administrativo',
             'fec_ing_can' => now(),
             'descrip_can' => $sandraVillacis,
             'id_pol_par_bel' => $partyA->id_lis,
         ]);
 
-        Candidate::create([
-            'nom_can' => 'Sara',
-            'ape_can' => 'Camacho',
-            'ruta_can' => 'assets/images/candidates/camacho.jpg',
-            'car_can' => 'Rector',
-            'fec_ing_can' => now(),
-            'descrip_can' => $saraCamacho,
-            'id_pol_par_bel' => $partyB->id_lis,
-        ]);
+
     }
 }
