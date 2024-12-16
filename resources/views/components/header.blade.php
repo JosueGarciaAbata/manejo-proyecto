@@ -24,6 +24,9 @@
                     <a href="https://apps.apple.com/app/id/app_id" class="fa fa-apple"></a> --}}
 
                 </div><!-- /.header-social -->
+                <div class="logo-box">
+                    <a href="{{ route('login') }}" >Login</a>
+                </div>
             </div><!-- /.right-side-box -->
         </div>
     </nav>
