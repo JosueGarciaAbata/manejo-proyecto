@@ -127,7 +127,8 @@
                         <input type="text" name="contact_details[value][]" value="">
                     </div>
                 </div>
-                <button type="submit">Guardar Configuración</button>
+                
+                <button class="save-conf" type="submit">Guardar Configuración</button>
             </form>    
         </article>          
     </div>

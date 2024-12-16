@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Página de Inicio')
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+@endpush
 
 @section('content')
 
@@ -25,7 +28,7 @@
                 <!-- /.block-title__title -->
             </div><!-- /.block-title -->
 
-            <div class="block-title text-center">
+            <div class="block-title text-center img-rep">
                 @if ($organizationConfig->icon)
                     <img src="{{ asset('storage/' . $organizationConfig->icon) }}" class="wow zoomIn" data-wow-duration="1500ms">    
                 @else

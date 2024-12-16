@@ -28,8 +28,8 @@ class OrganizationConfigController extends Controller
     {
         $validatedData = $request->validate([
             'slogan' => 'nullable|string|max:255',
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'representant' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'icon' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:5120',
+            'representant' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:5120',
             'main_proposals' => 'nullable|array',
             'footer_text' => 'nullable|string',
             'social_links.platform' => 'nullable|array',
