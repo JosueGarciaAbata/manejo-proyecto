@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('organization_contact_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('organization_config_id')->constrained('organization_configs')->onDelete('cascade');
-            $table->string('type'); // (e.g., email, phone)
+            $table->string('type')->unique(); // (e.g., email, phone)
             $table->string('value'); // Valor del contacto (e.g., dirección de correo)
             $table->timestamps();
         });

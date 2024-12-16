@@ -20,7 +20,7 @@
     </div>
 @endsection
 
-<section class="page-preview">
+<section class="page-preview home-configurations">
     <div class="container">
         <article class="config-wraper">
             <form action="{{ route('admin.organization.config.update') }}" method="POST" enctype="multipart/form-data">
@@ -108,17 +108,18 @@
                 <br>
                 <div>
                     <h2>Información de Contacto</h2>
-                    @foreach($config->contactDetails as $contact)
+                    @foreach($config->contactDetails as $index => $contact)
                         <div class="contact-detail">
-                            <label>{{ $contact->type }}
-                                <input type="text" name="contact_details[value][]" value="{{ $contact->value }}">
-
+                            <label for="contact-value">{{ $contact->type }}
                             </label>
+                            <input type="text" name="contact_details[type][]" value="{{ $contact->type }}">
+                        
+                            <input type="text" id="contact-value" name="contact_details[value][]" value="{{ $contact->value }}">
                         </div>
                     @endforeach
                     <br>
                     <h2>Nuevo contacto</h2>
-                    <div class="contact-detail">
+                    <div class="contact-details">
                         <label>Tipo:</label>
                         <input type="text" name="contact_details[type][]" value="">
                         <br>

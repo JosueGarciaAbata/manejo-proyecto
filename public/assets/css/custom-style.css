@@ -1,4 +1,4 @@
-body{
+.home-configurations{
     font-size: 1.5em;
 }
 
@@ -103,4 +103,8 @@ input[type="file"] {
 
 .config-wraper{
     margin-bottom: 1rem;
+}
+
+.contact-detail input:first-of-type{
+    display: none; 
 }
