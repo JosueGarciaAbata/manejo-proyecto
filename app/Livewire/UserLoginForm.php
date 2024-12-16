@@ -58,6 +58,6 @@ class UserLoginForm extends Component
             return redirect()->to($this->retunUrl);
         }
 
-        return redirect()->route('admin.organization.config.show');
+        return redirect()->route('admin.candidates.show');
     }
 }
