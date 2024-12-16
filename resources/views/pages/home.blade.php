@@ -7,12 +7,8 @@
     <!-- Imagen de presentacion -->
 
     <div class="image-container">
-        @if ($organizationConfig->representant)
-            <img src="{{ asset('storage/' . $organizationConfig->representant) }}" class="image_presentation" alt="Descripción de la imagen">    
-        @else
-            <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation" alt="Descripción de la imagen">    
-        @endif
-        
+        <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation"
+            alt="Descripción de la imagen">
     </div>
 
     <!-- Descripcion rapida-->
@@ -21,16 +17,13 @@
         <div class="container">
             <div class="block-title text-center">
 
-                <h2 class="block-title__title">{{$organizationConfig->slogan??"Trabajemos Juntos Por Una Mejor Universidad Técnica De Ambato"}}</h2>
+                <h2 class="block-title__title">Trabajemos Juntos Por Una Mejor Universidad Técnica De Ambato</h2>
                 <!-- /.block-title__title -->
             </div><!-- /.block-title -->
 
             <div class="block-title text-center">
-                @if ($organizationConfig->icon)
-                    <img src="{{ asset('storage/' . $organizationConfig->icon) }}" class="wow zoomIn" data-wow-duration="1500ms">    
-                @else
-                    <img src="{{ asset('assets/images/logo_without_background.png') }}" class="wow zoomIn" data-wow-duration="1500ms">
-                @endif
+                <img src="{{ asset('assets/images/logo_without_background.png') }}" alt="Awesome Image" class="wow zoomIn"
+                    data-wow-duration="1500ms">
             </div>
             <!-- /.about-one__text -->
         </div><!-- /.container -->
@@ -44,11 +37,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-three__image">
-                        @if ($imgMainPoliticalParty)
-                            <img src="{{ asset($imgMainPoliticalParty) }}">    
-                        @else
-                            <img src="{{ asset('assets/images/marycruz.jpg') }}" />
-                        @endif
+                        <img src="{{ asset('assets/images/marycruz.jpg') }}" alt="Awesome Image" />
                     </div><!-- /.about-three__image -->
                 </div><!-- /.col-lg-6 -->
                 <div class="col-lg-6">
@@ -105,7 +94,7 @@
             </div><!-- /.block-title -->
             <div class="row">
                 <div class="col-lg-12">
-                    @forelse($organizationConfig->proposals as $proposal)
+                    @forelse($proposals as $proposal)
                         <div class="history-one__single wow fadeInUp">
 
                             <div class="campaing-one__single">

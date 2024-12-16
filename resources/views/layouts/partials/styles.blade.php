@@ -1,14 +1,5 @@
-@php
-    $config = App\Models\OrganizationConfig::first();
-@endphp
-
 <!-- Favicon -->
-@if ($config->icon)
-<link rel="icon" type="image/png" href="{{ asset('storage/'.$config->icon) }}">    
-@else
-<link rel="icon" type="image/png" href="{{ asset('assets/images/favicons/logo.png') }}">    
-@endif
-
+<link rel="icon" type="image/png" href="{{ asset('assets/images/favicons/logo.png') }}">
 <!-- Google Fonts -->
 <link
     href="https://fonts.googleapis.com/css?family=Barlow:300,400,500,600,700,800,900%7CLibre+Baskerville:400,700&display=swap"
