@@ -1,4 +1,4 @@
-.home-configurations {
+.home-configuratios {
     font-size: 1.5em;
 }
 
@@ -33,7 +33,9 @@ input[type="file"] {
     border-radius: 4px;
     cursor: pointer;
     border: 1px solid #007bff;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
     margin-bottom: 1rem;
 }
 
@@ -103,18 +105,4 @@ input[type="file"] {
 
 .config-wraper {
     margin-bottom: 1rem;
-}
-
-.contact-detail input:first-of-type {
-    display: none;
-}
-.save-conf {
-    background-color: #0056b3;
-    font-size: 1rem;
-    color: #eee;
-    margin: 1rem 0;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 1px solid #007bff;
 }

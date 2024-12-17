@@ -1,15 +1,12 @@
 @extends('layouts.app')
 
 @section('title', 'Página de Inicio')
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-@endpush
 
 @section('content')
 
     <!-- Imagen de presentacion -->
 
-   <div class="image-container">
+    <div class="image-container">
         @if ($organizationConfig->representant)
             <img src="{{ asset('storage/' . $organizationConfig->representant) }}" class="image_presentation"
                 alt="Descripción de la imagen">
@@ -17,7 +14,10 @@
             <img src="{{ asset('assets/images/background/image_presentation.jpg') }}" class="image_presentation"
                 alt="Descripción de la imagen">
         @endif
+
     </div>
+
+    <!-- Descripcion rapida-->
 
     <section class="thm--bg about-one">
         <div class="container">
@@ -111,7 +111,7 @@
             </div><!-- /.block-title -->
             <div class="row">
                 <div class="col-lg-12">
-                    @forelse($proposals as $proposal)
+                    @forelse($organizationConfig->proposals as $proposal)
                         <div class="history-one__single wow fadeInUp">
 
                             <div class="campaing-one__single">

@@ -14,23 +14,25 @@ class OrganizationSeeder extends Seeder
     {
         OrganizationConfig::create([
             'slogan' => 'Trabajemos Juntos Por Una Mejor Universidad Técnica de Ambato',
-            'footer_text' => 'Sé parte del cambio en la Universidad Técnica de Ambato',
+            'icon' => 'images/icons/logo.png',
+            'representant' => 'images/representatives/john_doe.png',
+            'footer_text' => 'Sé parte del cambio en la Universidad Técnica de Ambato.',
         ]);
-
+        
         // Agregar redes sociales
         OrganizationSocialLink::create([
             'organization_config_id' => 1,
-            'icon_id' => 1,
-            'platform' => 'Facebook',
-            'url' => 'https://facebook.com/uta_org',
+            'icon_id'=>1,
+            'platform' => 'Instagram',
+            'url' => 'https://twitter.com/uta_org',
         ]);
         OrganizationSocialLink::create([
             'organization_config_id' => 1,
-            'icon_id' => 2,
-            'platform' => 'Twiter',
-            'url' => 'https://twitter.com/uta_org',
+            'icon_id'=>2,
+            'platform' => 'Facebook',
+            'url' => 'https://facebook.com/uta_org',
         ]);
-
+        
         // Agregar detalles de contacto
         OrganizationContactDetail::create([
             'organization_config_id' => 1,

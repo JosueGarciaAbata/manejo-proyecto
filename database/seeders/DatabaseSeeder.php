@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             EducationalBackgroundSeeder::class,
             ProfessionalExperienceSeeder::class,
-            OrganizationSeeder::class,
+            OrganizationSeeder::class
         ]);
 
         // User::factory(10)->create();

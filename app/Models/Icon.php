@@ -24,4 +24,9 @@ class Icon extends Model
         return $this->hasOne(SocialLink::class, 'id_icon_soc', 'id_icon');
     }
 
+    public function socialLinks()
+    {
+        return $this->hasMany(OrganizationSocialLink::class, 'icon_id');
+    }
+
 }

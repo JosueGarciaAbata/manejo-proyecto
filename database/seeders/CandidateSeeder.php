@@ -27,7 +27,6 @@ class CandidateSeeder extends Seeder
 
 
         Candidate::create(attributes: [
-            'jerarquia' => 'lider',
             'nom_can' => 'Mary',
             'jerarquia' => 'lider',
             'ape_can' => 'Cruz Lascano',
@@ -67,5 +66,7 @@ class CandidateSeeder extends Seeder
             'descrip_can' => $sandraVillacis,
             'id_pol_par_bel' => $partyA->id_lis,
         ]);
+
+
     }
 }
